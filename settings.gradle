@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "Peer2Peer"
