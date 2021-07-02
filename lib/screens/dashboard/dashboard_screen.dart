@@ -44,7 +44,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: Container(
                 padding: EdgeInsets.all(kDefaultPadding),
                 decoration: BoxDecoration(
-                    color: kPrimaryTextColor.withOpacity(.8),
+                    color: kPrimaryTextColor.withOpacity(.9),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(25),
                         topRight: Radius.circular(25))),
@@ -116,6 +116,59 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ),
                         )
                       ],
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: kDefaultPadding),
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        // alignment: Alignment.bottomRight,
+                        children: [
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: kPrimaryDarkColor,
+                                borderRadius: BorderRadius.circular(20)
+                              ),
+                              height: size.width * .2,
+                              width: size.width * .3,
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: size.width * .008, left: size.width * .008),
+                            child: Material(
+                              elevation: 5,
+                              borderRadius: BorderRadius.circular(20),
+                              child: Container(
+                                width: double.infinity,
+                                height: size.height * .15,
+                                decoration: BoxDecoration(
+                                  color: kPrimaryTextColor,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: -5.0,
+                            right: -5.0,
+                            child: Container(
+                              height: 40,
+                              width: 70,
+                              child: Center(
+                                child: Text('Offer', style: Theme.of(context).textTheme.headline6!.copyWith(
+                                    color: kPrimaryTextColor,
+                                    fontSize: 16
+                                ),),
+                              ),
+                              decoration: BoxDecoration(
+                                  color: kPrimaryDarkColor,
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
