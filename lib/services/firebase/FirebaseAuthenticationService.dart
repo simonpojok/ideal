@@ -35,19 +35,10 @@ class FirebaseAuthenticationService implements AuthenticationService {
         user: PeerToPeerUser.User(id: userCredential.user!.uid),
       );
     } on FirebaseAuthException catch (e) {
-      print('Failed with error code: ${e.code} ${e.message}');
-      print(e.message);
-      final message = AuthenticationMessage(
+      return AuthenticationMessage(
         status: false,
-        message: 'SignIn Successful',
+        message: e.message ?? '',
       );
-      if (e.code == 'user-not-found') {
-        message.message = 'No User found with this email';
-      }
-      if (e.code == '') {
-        message.message = 'Invalid Email or Password';
-      }
-      return message;
     }
   }
 }
