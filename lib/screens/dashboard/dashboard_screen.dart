@@ -35,10 +35,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
         centerTitle: true,
         title: Text('DASHBOARD'),
       ),
-      body: Column(
-        children: [
-          DashboardHeader()
-        ],
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            DashboardHeader(),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(kDefaultPadding),
+                child: Text('Hello world'),
+                decoration: BoxDecoration(
+                  color: kPrimaryTextColor,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(25),
+                    topRight: Radius.circular(25)
+                  )
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -46,8 +62,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
 class DashboardHeader extends StatelessWidget {
   const DashboardHeader({
-    Key? key,}) : super(key: key);
-
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,25 +71,24 @@ class DashboardHeader extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
       margin: EdgeInsets.only(
-        left: kDefaultPadding,
-        right: kDefaultPadding,
-        top: size.height * .12
-      ),
+          left: kDefaultPadding,
+          right: kDefaultPadding,
+          top: size.height * .12,
+          bottom: kDefaultPadding * 1.5),
       child: TextFormField(
         style: Theme.of(context)
             .textTheme
             .headline6!
             .copyWith(color: kPrimaryTextColor, fontSize: 17),
         decoration: InputDecoration(
-          hintText: 'Create a new loan banner',
-          border: InputBorder.none,
-          hintStyle:
-          Theme.of(context).textTheme.headline6!.copyWith(
-            color: kPrimaryTextColor.withOpacity(0.5),
-            fontSize: 17
-          ),
-          suffixIcon: Icon(Icons.navigate_next, color: kPrimaryTextColor,)
-        ),
+            hintText: 'Create a new loan banner',
+            border: InputBorder.none,
+            hintStyle: Theme.of(context).textTheme.headline6!.copyWith(
+                color: kPrimaryTextColor.withOpacity(0.5), fontSize: 17),
+            suffixIcon: Icon(
+              Icons.navigate_next,
+              color: kPrimaryTextColor,
+            )),
       ),
       decoration: BoxDecoration(
         color: kPrimaryDarkColor,
