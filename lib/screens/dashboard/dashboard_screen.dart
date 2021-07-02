@@ -44,7 +44,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: Container(
                 padding: EdgeInsets.all(kDefaultPadding),
                 decoration: BoxDecoration(
-                    color: kPrimaryTextColor,
+                    color: kPrimaryTextColor.withOpacity(.8),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(25),
                         topRight: Radius.circular(25))),
@@ -72,7 +72,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 Icons.message,
                                 color: kPrimaryDarkColor,
                                 size: kDefaultPadding * 2,
-                              )
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(2),
+                                child: Text('19', style: TextStyle(color: kPrimaryTextColor),),
+                                decoration: BoxDecoration(
+                                    color: Colors.amber,
+                                    borderRadius: BorderRadius.circular(10)
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -84,7 +92,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 Icons.notifications,
                                 color: kPrimaryDarkColor,
                                 size: kDefaultPadding * 2,
-                              )
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(2),
+                                child: Text('19', style: TextStyle(color: kPrimaryTextColor),),
+                                decoration: BoxDecoration(
+                                    color: Colors.amber,
+                                  borderRadius: BorderRadius.circular(10)
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -95,7 +111,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 Icons.tune,
                                 color: kPrimaryDarkColor,
                                 size: kDefaultPadding * 2,
-                              )
+                              ),
                             ],
                           ),
                         )
