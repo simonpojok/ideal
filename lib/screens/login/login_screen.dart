@@ -84,7 +84,35 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(25)),
                   );
                 },
-              )
+              ),
+              StreamBuilder<String>(
+                stream: _loginBloc.password,
+                builder: (context, snapshot) {
+                  return Container(
+                    margin: EdgeInsets.only(top: kDefaultPadding * 2),
+                    padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                    child: TextField(
+                      obscureText: true,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .copyWith(color: kPrimaryTextColor),
+                      decoration: InputDecoration(
+                        hintText: 'Password',
+                        border: InputBorder.none,
+                        hintStyle:
+                        Theme.of(context).textTheme.headline6!.copyWith(
+                          color: kPrimaryTextColor.withOpacity(0.5),
+                        ),
+                      ),
+                      onChanged: _loginBloc.passwordChanged.add,
+                    ),
+                    decoration: BoxDecoration(
+                        color: kPrimaryDarkColor,
+                        borderRadius: BorderRadius.circular(25)),
+                  );
+                },
+              ),
             ],
           ),
         ),
