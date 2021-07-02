@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:flutter/services.dart';
 import 'package:peer2peer/services/authentication_api.dart';
 
 class LoginBloc {
@@ -9,16 +9,18 @@ class LoginBloc {
   bool _emailValid = false;
   bool _passwordValid = false;
 
-
-  final StreamController<String> _emailController = StreamController.broadcast();
+  final StreamController<String> _emailController =
+      StreamController.broadcast();
   Sink<String> get emailChanged => _emailController.sink;
   Stream<String> get email => _emailController.stream;
 
-  final StreamController<String> _passwordController = StreamController.broadcast();
+  final StreamController<String> _passwordController =
+      StreamController.broadcast();
   Sink<String> get passwordChanged => _passwordController.sink;
   Stream<String> get password => _passwordController.stream;
 
-  final StreamController<bool> _enableLoginButtonController = StreamController.broadcast();
+  final StreamController<bool> _enableLoginButtonController =
+      StreamController.broadcast();
   Sink<bool> get enableLoginButtonChanged => _enableLoginButtonController.sink;
   Stream<bool> get enableLoginButton => _enableLoginButtonController.stream;
 
@@ -44,7 +46,7 @@ class LoginBloc {
     });
   }
 
-  void _updateEnableLoginButtonStream(){
+  void _updateEnableLoginButtonStream() {
     if (_emailValid && _passwordValid) {
       enableLoginButtonChanged.add(true);
     } else {
@@ -52,12 +54,13 @@ class LoginBloc {
     }
   }
 
-  Future<String> login() async {
+  Future<String> loginEmailAndPassword() async {
     String result = '';
     if (_emailValid && _passwordValid) {
-      await authenticationService.createUserWithEmailAndPassword(email: _email, password: _password)
+      await authenticationService
+          .signInWithEmailAndPassword(email: _email, password: _password)
           .then((String uid) {
-            result = 'Created user: $uid';
+        result = 'Created user: $uid';
       });
     } else {
       return 'Login Password and Email is required';

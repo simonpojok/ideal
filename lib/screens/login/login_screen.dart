@@ -133,23 +133,31 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                 ),
-                StreamBuilder(
+                StreamBuilder<bool>(
                     stream: _loginBloc.enableLoginButton,
                     builder: (context, snapshot) {
                       return Container(
                         margin: EdgeInsets.only(top: kDefaultPadding * 2),
                         width: double.infinity,
                         height: 50,
-                        child: Center(
-                            child: Text(
-                          'Login',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline6!
-                              .copyWith(color: kPrimaryTextColor),
-                        )),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(25),
+                          child: MaterialButton(
+                            onPressed: snapshot.data == true ? () {
+                              _loginBloc.loginEmailAndPassword();
+                            } : null,
+                            child: Center(
+                                child: Text(
+                              'Login',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(color: kPrimaryTextColor),
+                            )),
+                          ),
+                        ),
                         decoration: BoxDecoration(
-                          color: kPrimaryLightColor,
+                          color: snapshot.data == true ? kPrimaryLightColor : kPrimaryLightColor.withOpacity(.4),
                           borderRadius: BorderRadius.circular(25),
                         ),
                       );
