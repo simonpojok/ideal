@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/services.dart';
+import 'package:peer2peer/models/login/login_message.dart';
 import 'package:peer2peer/services/authentication_api.dart';
 
 class LoginBloc {
@@ -59,8 +60,8 @@ class LoginBloc {
     if (_emailValid && _passwordValid) {
       await authenticationService
           .signInWithEmailAndPassword(email: _email, password: _password)
-          .then((String uid) {
-        result = 'Created user: $uid';
+          .then((AuthenticationMessage message) {
+        result = 'Created user: $message';
       });
     } else {
       return 'Login Password and Email is required';
