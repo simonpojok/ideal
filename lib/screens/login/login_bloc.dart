@@ -52,12 +52,6 @@ class LoginBloc {
     }
   }
 
-  void dispose() {
-    _emailController.close();
-    _passwordController.close();
-    _enableLoginButtonController.close();
-  }
-
   Future<String> login() async {
     String result = '';
     if (_emailValid && _passwordValid) {
@@ -69,5 +63,11 @@ class LoginBloc {
       return 'Login Password and Email is required';
     }
     return result;
+  }
+
+  void dispose() {
+    _emailController.close();
+    _passwordController.close();
+    _enableLoginButtonController.close();
   }
 }
