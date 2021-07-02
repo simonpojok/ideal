@@ -43,13 +43,65 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(kDefaultPadding),
-                child: Text('Hello world'),
                 decoration: BoxDecoration(
-                  color: kPrimaryTextColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25),
-                    topRight: Radius.circular(25)
-                  )
+                    color: kPrimaryTextColor,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(25),
+                        topRight: Radius.circular(25))),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Requests'.toUpperCase(),
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline5!
+                                .copyWith(
+                                    color: kPrimaryColor,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Container(
+                          child: Stack(
+                            children: [
+                              Icon(
+                                Icons.message,
+                                color: kPrimaryDarkColor,
+                                size: kDefaultPadding * 2,
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 1.5),
+                          child: Stack(
+                            children: [
+                              Icon(
+                                Icons.notifications,
+                                color: kPrimaryDarkColor,
+                                size: kDefaultPadding * 2,
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Stack(
+                            children: [
+                              Icon(
+                                Icons.tune,
+                                color: kPrimaryDarkColor,
+                                size: kDefaultPadding * 2,
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
                 ),
               ),
             )
