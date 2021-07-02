@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "441651724145",
+    "project_id": "peer2peer-5c8a7",
+    "storage_bucket": "peer2peer-5c8a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441651724145:android:6c93489ad505ad58b980d0",
+        "android_client_info": {
+          "package_name": "com.lukwan.peer2peer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441651724145-chf0ld4e6vjc3ftr8pfj9ji46mfus2p8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq_NmtRZB5Eiw2p97WBJ-kVikqbsemJmQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441651724145-chf0ld4e6vjc3ftr8pfj9ji46mfus2p8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
