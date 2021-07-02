@@ -1,4 +1,7 @@
-import '../user.dart';
+class User {
+  String id;
+  User({required this.id});
+}
 
 class AuthenticationMessage {
   bool status;

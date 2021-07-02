@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/services.dart';
-import 'package:peer2peer/models/login/login_message.dart';
 import 'package:peer2peer/services/authentication_api.dart';
+import 'package:peer2peer/services/models/authentication_message.dart';
 
 class LoginBloc {
   final AuthenticationService authenticationService;

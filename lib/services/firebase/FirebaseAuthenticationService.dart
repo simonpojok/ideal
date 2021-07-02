@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:peer2peer/models/login/login_message.dart';
-import 'package:peer2peer/models/user.dart' as PeerToPeerUser;
+import 'package:peer2peer/services/models/authentication_message.dart' as PeerToPeerUser;
 import 'package:peer2peer/services/authentication_api.dart';
+import 'package:peer2peer/services/models/authentication_message.dart';
 
 class FirebaseAuthenticationService implements AuthenticationService {
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
