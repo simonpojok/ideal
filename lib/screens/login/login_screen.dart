@@ -16,6 +16,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late LoginBloc _loginBloc;
+  bool _showPassword = true;
 
   @override
   void initState() {
@@ -33,87 +34,128 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding * 2),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(
-                    top: size.height * .20, bottom: size.height * .15),
-                child: Center(
-                  child: Text(
-                    'LOGO',
-                    style: Theme.of(context).textTheme.headline5!.copyWith(
-                          color: kPrimaryTextColor,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 40,
-                        ),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(
+                      top: size.height * .20, bottom: size.height * .15),
+                  child: Center(
+                    child: Text(
+                      'LOGO',
+                      style: Theme.of(context).textTheme.headline5!.copyWith(
+                            color: kPrimaryTextColor,
+                            fontWeight: FontWeight.w800,
+                            fontSize: 40,
+                          ),
+                    ),
                   ),
                 ),
-              ),
-              Text(
-                'Login',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline5!
-                    .copyWith(color: kPrimaryTextColor),
-              ),
-              StreamBuilder<String>(
-                stream: _loginBloc.email,
-                builder: (context, snapshot) {
-                  return Container(
-                    margin: EdgeInsets.only(top: kDefaultPadding * 2),
-                    padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                    child: TextField(
-                      keyboardType: TextInputType.emailAddress,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6!
-                          .copyWith(color: kPrimaryTextColor),
-                      decoration: InputDecoration(
-                        hintText: 'Email',
-                        border: InputBorder.none,
-                        hintStyle:
-                            Theme.of(context).textTheme.headline6!.copyWith(
-                                  color: kPrimaryTextColor.withOpacity(0.5),
-                                ),
-                      ),
-                      onChanged: _loginBloc.emailChanged.add,
-                    ),
-                    decoration: BoxDecoration(
-                        color: kPrimaryDarkColor,
-                        borderRadius: BorderRadius.circular(25)),
-                  );
-                },
-              ),
-              StreamBuilder<String>(
-                stream: _loginBloc.password,
-                builder: (context, snapshot) {
-                  return Container(
-                    margin: EdgeInsets.only(top: kDefaultPadding * 2),
-                    padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                    child: TextField(
-                      obscureText: true,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6!
-                          .copyWith(color: kPrimaryTextColor),
-                      decoration: InputDecoration(
-                        hintText: 'Password',
-                        border: InputBorder.none,
-                        hintStyle:
-                        Theme.of(context).textTheme.headline6!.copyWith(
-                          color: kPrimaryTextColor.withOpacity(0.5),
+                Text(
+                  'Login',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline5!
+                      .copyWith(color: kPrimaryTextColor),
+                ),
+                StreamBuilder<String>(
+                  stream: _loginBloc.email,
+                  builder: (context, snapshot) {
+                    return Container(
+                      margin: EdgeInsets.only(top: kDefaultPadding * 2),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                      child: TextField(
+                        keyboardType: TextInputType.emailAddress,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6!
+                            .copyWith(color: kPrimaryTextColor),
+                        decoration: InputDecoration(
+                          hintText: 'Email',
+                          border: InputBorder.none,
+                          hintStyle:
+                              Theme.of(context).textTheme.headline6!.copyWith(
+                                    color: kPrimaryTextColor.withOpacity(0.5),
+                                  ),
                         ),
+                        onChanged: _loginBloc.emailChanged.add,
                       ),
-                      onChanged: _loginBloc.passwordChanged.add,
-                    ),
-                    decoration: BoxDecoration(
-                        color: kPrimaryDarkColor,
-                        borderRadius: BorderRadius.circular(25)),
-                  );
-                },
-              ),
-            ],
+                      decoration: BoxDecoration(
+                          color: kPrimaryDarkColor,
+                          borderRadius: BorderRadius.circular(25)),
+                    );
+                  },
+                ),
+                StreamBuilder<String>(
+                  stream: _loginBloc.password,
+                  builder: (context, snapshot) {
+                    return Container(
+                      margin: EdgeInsets.only(top: kDefaultPadding * 2),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                      child: TextField(
+                        obscureText: _showPassword,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6!
+                            .copyWith(color: kPrimaryTextColor),
+                        decoration: InputDecoration(
+                          hintText: 'Password',
+                          border: InputBorder.none,
+                          hintStyle:
+                              Theme.of(context).textTheme.headline6!.copyWith(
+                                    color: kPrimaryTextColor.withOpacity(0.5),
+                                  ),
+                          suffixIcon: Material(
+                            color: kPrimaryDarkColor,
+                            child: InkWell(
+                              child: Icon(
+                                _showPassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: kPrimaryTextColor,
+                              ),
+                              onTap: () {
+                                setState(() {
+                                  _showPassword = !_showPassword;
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                        onChanged: _loginBloc.passwordChanged.add,
+                      ),
+                      decoration: BoxDecoration(
+                          color: kPrimaryDarkColor,
+                          borderRadius: BorderRadius.circular(25)),
+                    );
+                  },
+                ),
+                StreamBuilder(
+                    stream: _loginBloc.enableLoginButton,
+                    builder: (context, snapshot) {
+                      return Container(
+                        margin: EdgeInsets.only(top: kDefaultPadding * 2),
+                        width: double.infinity,
+                        height: 50,
+                        child: Center(
+                            child: Text(
+                          'Login',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6!
+                              .copyWith(color: kPrimaryTextColor),
+                        )),
+                        decoration: BoxDecoration(
+                          color: kPrimaryLightColor,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                      );
+                    })
+              ],
+            ),
           ),
         ),
       ),
