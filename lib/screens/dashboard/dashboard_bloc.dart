@@ -1,0 +1,5 @@
+class DashboardBloc {
+  void dispose() {
+
+  }
+}
