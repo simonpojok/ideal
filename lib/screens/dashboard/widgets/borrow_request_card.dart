@@ -14,7 +14,6 @@ class BorrowRequestCard extends StatelessWidget {
       padding: EdgeInsets.only(top: kDefaultPadding),
       child: Stack(
         clipBehavior: Clip.none,
-        // alignment: Alignment.bottomRight,
         children: [
           Align(
             alignment: Alignment.topLeft,
