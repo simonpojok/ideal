@@ -38,23 +38,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
         title: Text('DASHBOARD'),
       ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              child: Center(child: DashboardHeader()),
-            ),
-            Container(
-              height: height * .80,
-              padding: EdgeInsets.all(kDefaultPadding),
-              decoration: BoxDecoration(
-                color: kPrimaryTextColor.withOpacity(.9),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(25),
-                  topRight: Radius.circular(25),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              DashboardHeader(),
+              Container(
+                height: height * .80,
+                padding: EdgeInsets.all(kDefaultPadding),
+                decoration: BoxDecoration(
+                  color: kPrimaryTextColor.withOpacity(.9),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(25),
+                    topRight: Radius.circular(25),
+                  ),
                 ),
-              ),
-              child: SingleChildScrollView(
                 child: Column(
                   children: [
                     Row(
@@ -67,9 +66,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 .textTheme
                                 .headline5!
                                 .copyWith(
-                                color: kPrimaryColor,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                                    color: kPrimaryColor,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
                           ),
                         ),
                         Container(
@@ -129,29 +128,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         )
                       ],
                     ),
-                    BorrowRequestCard(),
-                    BorrowRequestCard(),
-                    BorrowRequestCard(),
-                    BorrowRequestCard(),
-                    BorrowRequestCard(),
-                    // Container(
-                    //   height: double.infinity,
-                    //   width: double.infinity,
-                    //   child: ListView(
-                    //     children: [
-                    //       BorrowRequestCard(),
-                    //       BorrowRequestCard(),
-                    //       BorrowRequestCard(),
-                    //       BorrowRequestCard(),
-                    //       BorrowRequestCard(),
-                    //     ],
-                    //   ),
-                    //)
+                    Flexible(
+                      child: ListView.builder(
+                        itemCount: 30,
+                        itemBuilder: (context, index) => BorrowRequestCard(),
+                      ),
+                    ),
                   ],
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
