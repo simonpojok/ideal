@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:peer2peer/screens/dashboard/dashboard_screen.dart';
+import 'package:peer2peer/screens/signup/signup_screen.dart';
 import 'constants.dart';
 
 void main() {
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         future: _initializeFirebase(),
         builder: (context, snapshot) {
           if(snapshot.connectionState == ConnectionState.done) {
-            return DashboardScreen();
+            return SignUpScreen();
           }
           return Center(
             child: Scaffold(
