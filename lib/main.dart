@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:peer2peer/screens/dashboard/dashboard_screen.dart';
-import './screens/login/login_screen.dart';
 import 'constants.dart';
 
 void main() {

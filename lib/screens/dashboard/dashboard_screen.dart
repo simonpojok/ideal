@@ -12,7 +12,6 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     double height = MediaQuery.of(context).size.height -
         (MediaQuery.of(context).padding.top + kToolbarHeight);
     return Scaffold(
@@ -45,8 +44,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
             children: [
               DashboardHeader(),
               Container(
-                height: height * .80,
-                padding: EdgeInsets.all(kDefaultPadding),
+                height: height * .8,
+                padding: EdgeInsets.all(kDefaultPadding * .8),
                 decoration: BoxDecoration(
                   color: kPrimaryTextColor.withOpacity(.9),
                   borderRadius: BorderRadius.only(
@@ -56,78 +55,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Requests'.toUpperCase(),
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline5!
-                                .copyWith(
-                                    color: kPrimaryColor,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Container(
-                          child: Stack(
-                            children: [
-                              Icon(
-                                Icons.message,
-                                color: kPrimaryDarkColor,
-                                size: kDefaultPadding * 2,
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(2),
-                                child: Text(
-                                  '19',
-                                  style: TextStyle(color: kPrimaryTextColor),
-                                ),
-                                decoration: BoxDecoration(
-                                    color: Colors.amber,
-                                    borderRadius: BorderRadius.circular(10)),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: kDefaultPadding * 1.5),
-                          child: Stack(
-                            children: [
-                              Icon(
-                                Icons.notifications,
-                                color: kPrimaryDarkColor,
-                                size: kDefaultPadding * 2,
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(2),
-                                child: Text(
-                                  '19',
-                                  style: TextStyle(color: kPrimaryTextColor),
-                                ),
-                                decoration: BoxDecoration(
-                                    color: Colors.amber,
-                                    borderRadius: BorderRadius.circular(10)),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          child: Stack(
-                            children: [
-                              Icon(
-                                Icons.tune,
-                                color: kPrimaryDarkColor,
-                                size: kDefaultPadding * 2,
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                    NotificationsBanner(),
                     Flexible(
                       child: ListView.builder(
                         itemCount: 30,
@@ -141,6 +69,88 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class NotificationsBanner extends StatelessWidget {
+  const NotificationsBanner({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+          child: Text(
+            'Requests'.toUpperCase(),
+            style: Theme.of(context)
+                .textTheme
+                .headline5!
+                .copyWith(
+                    color: kPrimaryColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+          ),
+        ),
+        Container(
+          child: Stack(
+            children: [
+              Icon(
+                Icons.message,
+                color: kPrimaryDarkColor,
+                size: kDefaultPadding * 2,
+              ),
+              Container(
+                padding: EdgeInsets.all(2),
+                child: Text(
+                  '19',
+                  style: TextStyle(color: kPrimaryTextColor),
+                ),
+                decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(
+              horizontal: kDefaultPadding * 1.5),
+          child: Stack(
+            children: [
+              Icon(
+                Icons.notifications,
+                color: kPrimaryDarkColor,
+                size: kDefaultPadding * 2,
+              ),
+              Container(
+                padding: EdgeInsets.all(2),
+                child: Text(
+                  '19',
+                  style: TextStyle(color: kPrimaryTextColor),
+                ),
+                decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          child: Stack(
+            children: [
+              Icon(
+                Icons.tune,
+                color: kPrimaryDarkColor,
+                size: kDefaultPadding * 2,
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }
@@ -185,42 +195,46 @@ class BorrowRequestCard extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CircleAvatar(
-                          child: Icon(Icons.person),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(3),
-                              child: Text(
-                                'Adam M',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2!
-                                    .copyWith(
-                                        color:
-                                            kPrimaryDarkColor.withOpacity(0.8)),
-                              ),
-                              decoration: BoxDecoration(
-                                  color: kPrimaryLightColor.withOpacity(0.4),
-                                  borderRadius: BorderRadius.circular(5)),
+                    Flexible(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CircleAvatar(
+                            child: Icon(Icons.person),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Flexible(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(3),
+                                  child: Text(
+                                    'Adam M',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(
+                                            color:
+                                                kPrimaryDarkColor.withOpacity(0.8)),
+                                  ),
+                                  decoration: BoxDecoration(
+                                      color: kPrimaryLightColor.withOpacity(0.4),
+                                      borderRadius: BorderRadius.circular(5)),
+                                ),
+                                Divider(),
+                                Text('Adam M. would like to borrow')
+                              ],
                             ),
-                            Divider(
-                              height: 1,
-                            ),
-                            Text('Adam M. would like to borrow')
-                          ],
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                     Text(
                       'Payment History',
@@ -234,8 +248,8 @@ class BorrowRequestCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: -5.0,
-            right: -5.0,
+            bottom: 0.0,
+            right: 0.0,
             child: Container(
               height: 40,
               width: 70,
@@ -249,8 +263,12 @@ class BorrowRequestCard extends StatelessWidget {
                 ),
               ),
               decoration: BoxDecoration(
-                  color: kPrimaryDarkColor,
-                  borderRadius: BorderRadius.circular(15)),
+                color: kPrimaryDarkColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  bottomRight: Radius.circular(20)
+                ),
+              ),
             ),
           ),
         ],
@@ -269,29 +287,34 @@ class DashboardHeader extends StatelessWidget {
     double height = MediaQuery.of(context).size.height -
         (MediaQuery.of(context).padding.top + kToolbarHeight);
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-      margin: EdgeInsets.only(
-          left: kDefaultPadding,
-          right: kDefaultPadding,
-          bottom: kDefaultPadding * 1.5),
-      child: TextFormField(
-        style: Theme.of(context)
-            .textTheme
-            .headline6!
-            .copyWith(color: kPrimaryTextColor, fontSize: 17),
-        decoration: InputDecoration(
-            hintText: 'Create a new loan banner',
-            border: InputBorder.none,
-            hintStyle: Theme.of(context).textTheme.headline6!.copyWith(
-                color: kPrimaryTextColor.withOpacity(0.5), fontSize: 17),
-            suffixIcon: Icon(
-              Icons.navigate_next,
-              color: kPrimaryTextColor,
-            )),
-      ),
-      decoration: BoxDecoration(
-        color: kPrimaryDarkColor,
-        borderRadius: BorderRadius.circular(25),
+      height: height * .2,
+      child: Center(
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+          margin: EdgeInsets.only(
+              left: kDefaultPadding,
+              right: kDefaultPadding,
+              bottom: kDefaultPadding * 1.5),
+          child: TextFormField(
+            style: Theme.of(context)
+                .textTheme
+                .headline6!
+                .copyWith(color: kPrimaryTextColor, fontSize: 17),
+            decoration: InputDecoration(
+                hintText: 'Create a new loan banner',
+                border: InputBorder.none,
+                hintStyle: Theme.of(context).textTheme.headline6!.copyWith(
+                    color: kPrimaryTextColor.withOpacity(0.5), fontSize: 17),
+                suffixIcon: Icon(
+                  Icons.navigate_next,
+                  color: kPrimaryTextColor,
+                )),
+          ),
+          decoration: BoxDecoration(
+            color: kPrimaryDarkColor,
+            borderRadius: BorderRadius.circular(25),
+          ),
+        ),
       ),
     );
   }
