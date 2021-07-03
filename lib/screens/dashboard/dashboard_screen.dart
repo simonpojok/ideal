@@ -47,7 +47,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             children: [
               DashboardHeader(),
               Container(
-                height: height * .8,
+                height: height * .75,
                 padding: EdgeInsets.all(kDefaultPadding * .8),
                 decoration: BoxDecoration(
                   color: kPrimaryTextColor.withOpacity(.9),
