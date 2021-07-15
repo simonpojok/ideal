@@ -3,8 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:peer2peer/services/authentication_api.dart';
 import 'package:peer2peer/services/models/authentication_message.dart';
+import 'package:peer2peer/validators/validator.dart';
 
-class SignUpBloc {
+class SignUpBloc with Validators{
   final AuthenticationService authenticationService;
 
   String _email = '';
@@ -19,7 +20,7 @@ class SignUpBloc {
   final StreamController<String> _emailController =
   StreamController.broadcast();
   Sink<String> get emailChanged => _emailController.sink;
-  Stream<String> get email => _emailController.stream;
+  Stream<String> get email => _emailController.stream.transform(validateEmail);
 
   final StreamController<String> _passwordController =
   StreamController.broadcast();
