@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:peer2peer/screens/signup/signup_bloc.dart';
 import 'package:peer2peer/services/firebase/FirebaseAuthenticationService.dart';
@@ -13,6 +15,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   late SignUpBloc _signUpBloc;
+  bool showPassword = false;
 
   @override
   void initState() {
@@ -46,7 +49,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
               stream: _signUpBloc.email,
               sink: _signUpBloc.emailChanged,
               iconData: Icons.email,
-            )
+            ),
+            EditText(
+              hintText: 'Password',
+              stream: _signUpBloc.password,
+              sink: _signUpBloc.passwordChanged,
+              iconData: Icons.email,
+              obscureText: true,
+              showText: showPassword,
+              keyboardType: TextInputType.text,
+              onShowText: () {
+                setState(() {
+                  showPassword = !showPassword;
+                });
+              },
+            ),
+            EditText(
+              hintText: 'Confirm Password',
+              stream: _signUpBloc.passwordConfirmation,
+              sink: _signUpBloc.passwordConfirmationChanged,
+              iconData: Icons.email,
+              obscureText: true,
+              showText: showPassword,
+              keyboardType: TextInputType.text,
+              onShowText: () {
+                setState(() {
+                  showPassword = !showPassword;
+                });
+              },
+            ),
           ],
         ),
       ),
@@ -60,64 +91,79 @@ class EditText extends StatelessWidget {
   final String hintText;
   final IconData iconData;
   final bool obscureText;
-  const EditText(
-      {Key? key,
-      required this.stream,
-      required this.sink,
-      required this.hintText,
-      required this.iconData,
-      this.obscureText = false})
-      : super(key: key);
+  final bool showText;
+  final TextInputType keyboardType;
+  final VoidCallback? onShowText;
+  const EditText({
+    Key? key,
+    required this.stream,
+    required this.sink,
+    required this.hintText,
+    required this.iconData,
+    this.obscureText = false,
+    this.keyboardType = TextInputType.emailAddress,
+    this.showText = false,
+    this.onShowText,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: stream,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          return Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(left: 20, right: 10),
-                  decoration: BoxDecoration(
-                      color: kPrimaryDarkColor,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      icon: Icon(
-                        iconData,
-                        color: Colors.white,
-                      ),
-                      hintText: hintText,
-                      border: InputBorder.none,
-                      hintStyle: Theme.of(context)
-                          .textTheme
-                          .headline6!
-                          .copyWith(color: kPrimaryTextColor.withOpacity(.3)),
-                    ),
-                    style: Theme.of(context)
+      stream: stream,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return Container(
+          margin: EdgeInsets.only(top: 30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.only(left: 20, right: 20),
+                decoration: BoxDecoration(
+                    color: kPrimaryDarkColor,
+                    borderRadius: BorderRadius.circular(25)),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    suffixIcon: InkWell(
+                        onTap: onShowText,
+                        child: Icon(
+                          obscureText
+                              ? showText
+                                  ? Icons.visibility_off
+                                  : Icons.visibility
+                              : null,
+                          color: Colors.white,
+                        )),
+                    hintText: hintText,
+                    border: InputBorder.none,
+                    hintStyle: Theme.of(context)
                         .textTheme
                         .headline6!
-                        .copyWith(color: kPrimaryTextColor),
-                    onChanged: sink.add,
-                    obscureText: obscureText,
+                        .copyWith(color: kPrimaryTextColor.withOpacity(.3)),
                   ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6!
+                      .copyWith(color: kPrimaryTextColor),
+                  onChanged: sink.add,
+                  obscureText: obscureText && !showText,
+                  keyboardType: keyboardType,
                 ),
-                if (snapshot.error != null)
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 5),
-                    child: Text(
-                      snapshot.error.toString(),
-                      style: Theme.of(context)
-                          .textTheme
-                          .caption!
-                          .copyWith(color: Colors.red.shade300),
-                    ),
-                  )
-              ],
-            ),
-          );
-        });
+              ),
+              if (snapshot.error != null)
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 5),
+                  child: Text(
+                    snapshot.error.toString(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption!
+                        .copyWith(color: Colors.red.shade300),
+                  ),
+                )
+            ],
+          ),
+        );
+      },
+    );
   }
 }
