@@ -14,15 +14,12 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   late SignUpBloc _signUpBloc;
 
-
   @override
   void initState() {
     super.initState();
-    _signUpBloc = SignUpBloc(
-        authenticationService: FirebaseAuthenticationService()
-    );
+    _signUpBloc =
+        SignUpBloc(authenticationService: FirebaseAuthenticationService());
   }
-
 
   @override
   void dispose() {
@@ -44,7 +41,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            EditText(stream: _signUpBloc.email, sink: _signUpBloc.emailChanged)
+            EditText(
+              hintText: 'email',
+              stream: _signUpBloc.email,
+              sink: _signUpBloc.emailChanged,
+              iconData: Icons.email,
+            )
           ],
         ),
       ),
@@ -55,7 +57,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
 class EditText extends StatelessWidget {
   final Stream stream;
   final Sink sink;
-  const EditText({Key? key, required this.stream, required this.sink}) : super(key: key);
+  final String hintText;
+  final IconData iconData;
+  final bool obscureText;
+  const EditText(
+      {Key? key,
+      required this.stream,
+      required this.sink,
+      required this.hintText,
+      required this.iconData,
+      this.obscureText = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,37 +79,45 @@ class EditText extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.only(left: 20, right: 10),
                   decoration: BoxDecoration(
                       color: kPrimaryDarkColor,
-                      borderRadius: BorderRadius.circular(25)
-                  ),
+                      borderRadius: BorderRadius.circular(25)),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      hintText: 'Name',
-                      border: InputBorder.none,
-                      hintStyle: Theme.of(context).textTheme.headline6!.copyWith(
-                          color: kPrimaryTextColor.withOpacity(.3)
+                      icon: Icon(
+                        iconData,
+                        color: Colors.white,
                       ),
+                      hintText: hintText,
+                      border: InputBorder.none,
+                      hintStyle: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .copyWith(color: kPrimaryTextColor.withOpacity(.3)),
                     ),
-                    style: Theme.of(context).textTheme.headline6!.copyWith(
-                        color: kPrimaryTextColor
-                    ),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6!
+                        .copyWith(color: kPrimaryTextColor),
                     onChanged: sink.add,
+                    obscureText: obscureText,
                   ),
                 ),
-                if(snapshot.error != null)
+                if (snapshot.error != null)
                   Padding(
                     padding: const EdgeInsets.only(left: 20, top: 5),
-                    child: Text(snapshot.error.toString(), style: Theme.of(context).textTheme.caption!.copyWith(
-                        color: Colors.red.shade300
-                    ),),
+                    child: Text(
+                      snapshot.error.toString(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .caption!
+                          .copyWith(color: Colors.red.shade300),
+                    ),
                   )
               ],
             ),
           );
-        }
-    );
+        });
   }
 }
-
