@@ -90,7 +90,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               margin: EdgeInsets.only(top: size.height * 0.05),
               child: Center(
                 child: FloatingActionButton.extended(
-                  onPressed: () {}, label: Text("Create Account"),
+                  onPressed: null, label: Text("Create Account"),
                 ),
               ),
             )
