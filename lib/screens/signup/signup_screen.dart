@@ -32,6 +32,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -79,9 +81,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 });
               },
             ),
-            CustomButton(
-              label: "Create Account",
-              onClick: () {},
+            // CustomButton(
+            //   label: "Create Account",
+            //   onClick: () {},
+            // )
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.only(top: size.height * 0.05),
+              child: Center(
+                child: FloatingActionButton.extended(
+                  onPressed: () {}, label: Text("Create Account"),
+                ),
+              ),
             )
           ],
         ),
@@ -111,7 +122,10 @@ class CustomButton extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                  BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    color: kPrimaryLightColor,
+                  ),
               child: Center(
                 child: Text(
                   label,
