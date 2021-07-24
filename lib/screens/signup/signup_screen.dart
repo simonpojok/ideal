@@ -43,6 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 1.5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             EditText(
               hintText: 'email',
@@ -78,7 +79,50 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 });
               },
             ),
+            CustomButton(
+              label: "Create Account",
+              onClick: () {},
+            )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  final String label;
+  final VoidCallback onClick;
+  const CustomButton({
+    Key? key,
+    required this.label,
+    required this.onClick,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 20),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Material(
+          child: InkWell(
+            onTap: onClick,
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(20)),
+              child: Center(
+                child: Text(
+                  label,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6!
+                      .copyWith(color: Colors.black54),
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -112,27 +156,29 @@ class EditText extends StatelessWidget {
       stream: stream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Container(
-          margin: EdgeInsets.only(top: 30),
+          margin: EdgeInsets.only(top: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 padding: EdgeInsets.only(left: 20, right: 20),
                 decoration: BoxDecoration(
-                    color: kPrimaryDarkColor,
-                    borderRadius: BorderRadius.circular(25)),
+                  color: kPrimaryDarkColor,
+                  borderRadius: BorderRadius.circular(25),
+                ),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    suffixIcon: InkWell(
-                        onTap: onShowText,
-                        child: Icon(
-                          obscureText
-                              ? showText
+                    suffixIcon: obscureText
+                        ? InkWell(
+                            onTap: onShowText,
+                            child: Icon(
+                              showText
                                   ? Icons.visibility_off
-                                  : Icons.visibility
-                              : null,
-                          color: Colors.white,
-                        )),
+                                  : Icons.visibility,
+                              color: Colors.white,
+                            ),
+                          )
+                        : null,
                     hintText: hintText,
                     border: InputBorder.none,
                     hintStyle: Theme.of(context)
