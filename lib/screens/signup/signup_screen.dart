@@ -44,48 +44,60 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            StreamBuilder(
-              stream: _signUpBloc.email,
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                return Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                          color: kPrimaryDarkColor,
-                          borderRadius: BorderRadius.circular(25)
-                        ),
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            hintText: 'Name',
-                            border: InputBorder.none,
-                            hintStyle: Theme.of(context).textTheme.headline6!.copyWith(
-                                color: kPrimaryTextColor.withOpacity(.3)
-                            ),
-                          ),
-                          style: Theme.of(context).textTheme.headline6!.copyWith(
-                            color: kPrimaryTextColor
-                          ),
-                          onChanged: _signUpBloc.emailChanged.add,
-                        ),
-                      ),
-                      if(snapshot.error != null)
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20, top: 5),
-                        child: Text(snapshot.error.toString(), style: Theme.of(context).textTheme.caption!.copyWith(
-                          color: Colors.red.shade300
-                        ),),
-                      )
-                    ],
-                  ),
-                );
-              }
-            )
+            EditText(stream: _signUpBloc.email, sink: _signUpBloc.emailChanged)
           ],
         ),
       ),
     );
   }
 }
+
+class EditText extends StatelessWidget {
+  final Stream stream;
+  final Sink sink;
+  const EditText({Key? key, required this.stream, required this.sink}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+        stream: stream,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                      color: kPrimaryDarkColor,
+                      borderRadius: BorderRadius.circular(25)
+                  ),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: 'Name',
+                      border: InputBorder.none,
+                      hintStyle: Theme.of(context).textTheme.headline6!.copyWith(
+                          color: kPrimaryTextColor.withOpacity(.3)
+                      ),
+                    ),
+                    style: Theme.of(context).textTheme.headline6!.copyWith(
+                        color: kPrimaryTextColor
+                    ),
+                    onChanged: sink.add,
+                  ),
+                ),
+                if(snapshot.error != null)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, top: 5),
+                    child: Text(snapshot.error.toString(), style: Theme.of(context).textTheme.caption!.copyWith(
+                        color: Colors.red.shade300
+                    ),),
+                  )
+              ],
+            ),
+          );
+        }
+    );
+  }
+}
+
