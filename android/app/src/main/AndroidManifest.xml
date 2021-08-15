@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.peer2peer">
    <application
-        android:label="peer2peer"
+        android:label="ideal"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
