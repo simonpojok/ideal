@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/blocs/AuthenticationBloc.dart';
 import 'package:ideal/blocs/AuthenticationBlocProvider.dart';
+import 'package:ideal/pages/home/HomePage.dart';
+import 'package:ideal/pages/login/LoginPage.dart';
 import 'package:ideal/services/AuthenticationService.dart';
 import 'package:ideal/services/authentication_api.dart';
 import 'constants.dart';
@@ -28,11 +30,24 @@ class MyApp extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasData) {
-            return Text("Hello World");
+            return _buildMaterialApp(HomePage());
           }
-          return _buildMaterialApp();
+          return _buildMaterialApp(LoginPage());
         },
       ),
+    );
+  }
+
+  Widget _buildMaterialApp(Widget homePage) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "ideal",
+      theme: ThemeData(
+        primaryColor: Colors.lightGreen,
+        canvasColor: Colors.lightGreen.shade50,
+        bottomAppBarColor: Colors.lightGreen
+      ),
+      home: homePage,
     );
   }
 }
