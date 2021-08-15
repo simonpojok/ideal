@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/blocs/AuthenticationBloc.dart';
+import 'package:ideal/blocs/AuthenticationBlocProvider.dart';
 import 'package:ideal/services/AuthenticationService.dart';
 import 'package:ideal/services/authentication_api.dart';
 import 'constants.dart';
@@ -15,7 +16,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthenticationApi _authenticationApi = AuthenticationService();
     final AuthenticationBloc _authenticationBloc = AuthenticationBloc(_authenticationApi);
-    // return AuthenticationB;
+    return AuthenticationBlocProvider(
+        authenticationBloc: _authenticationBloc,
+      child: StreamBuilder(
+        initialData: null,
+        stream: _authenticationBloc.user,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Container(
+              color: Colors.lightGreen,
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasData) {
+            return Text("Hello World");
+          }
+          return _buildMaterialApp();
+        },
+      ),
+    );
   }
 }
 
