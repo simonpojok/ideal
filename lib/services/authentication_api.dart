@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'models/authentication_message.dart';
-
 abstract class AuthenticationApi {
   FirebaseAuth getFirebaseAuth();
   String currentUid();

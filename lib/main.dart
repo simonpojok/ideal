@@ -1,13 +1,7 @@
- import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:peer2peer/screens/dashboard/dashboard_screen.dart';
-import 'package:peer2peer/screens/login/login_bloc.dart';
-import 'package:peer2peer/screens/login/login_screen.dart';
-import 'package:peer2peer/screens/signup/signup_screen.dart';
-import 'package:peer2peer/services/authentication_api.dart';
-import 'package:peer2peer/services/firebase/FirebaseAuthenticationService.dart';
-import 'package:peer2peer/services/models/authentication_message.dart';
+import 'package:ideal/blocs/AuthenticationBloc.dart';
+import 'package:ideal/services/AuthenticationService.dart';
+import 'package:ideal/services/authentication_api.dart';
 import 'constants.dart';
 
 void main() {
@@ -19,8 +13,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthenticationService _authenticationService = FirebaseAuthenticationService();
-    final LoginBloc _loginBloc = LoginBloc(authenticationService: _authenticationService);
+    final AuthenticationApi _authenticationApi = AuthenticationService();
+    final AuthenticationBloc _authenticationBloc = AuthenticationBloc(_authenticationApi);
     // return AuthenticationB;
   }
 }
