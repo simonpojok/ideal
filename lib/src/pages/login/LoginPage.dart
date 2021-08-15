@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ideal/pages/login/LoginBloc.dart';
-import 'package:ideal/services/AuthenticationService.dart';
+import 'package:ideal/src/services/AuthenticationService.dart';
 
 import '../../constants.dart';
+import 'LoginBloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

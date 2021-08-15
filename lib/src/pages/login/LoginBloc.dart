@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:ideal/services/authentication_api.dart';
+import 'package:ideal/src/services/AuthenticationApi.dart';
+
 
 class LoginBloc {
   final AuthenticationApi authenticationApi;

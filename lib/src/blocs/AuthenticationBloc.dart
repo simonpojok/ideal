@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ideal/services/authentication_api.dart';
+import 'package:ideal/src/services/AuthenticationApi.dart';
 
 class AuthenticationBloc {
   final AuthenticationApi authenticationApi;

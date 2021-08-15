@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ideal/pages/signup/widgets/EditText.dart';
-import 'package:ideal/services/AuthenticationService.dart';
+import 'package:ideal/src/pages/signup/widgets/EditText.dart';
+import 'package:ideal/src/services/AuthenticationService.dart';
 
 import '../../constants.dart';
 import 'SignUpBloc.dart';

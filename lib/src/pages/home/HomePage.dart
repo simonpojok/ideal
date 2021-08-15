@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ideal/pages/home/widgets/borrow_request_card.dart';
-import 'package:ideal/pages/home/widgets/dashboard_header.dart';
-import 'package:ideal/pages/home/widgets/notifications_banner.dart';
+import 'package:ideal/src/pages/home/widgets/borrow_request_card.dart';
+import 'package:ideal/src/pages/home/widgets/dashboard_header.dart';
+import 'package:ideal/src/pages/home/widgets/notifications_banner.dart';
 
 import '../../constants.dart';
 

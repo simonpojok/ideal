@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import 'package:ideal/services/authentication_api.dart';
-import 'package:ideal/validators/validator.dart';
+import 'package:ideal/src/services/AuthenticationApi.dart';
+import 'package:ideal/src/validators/validator.dart';
+
 
 class SignUpBloc with Validators {
   final AuthenticationApi authenticationApi;

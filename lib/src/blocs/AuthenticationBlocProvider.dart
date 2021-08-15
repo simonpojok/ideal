@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ideal/blocs/AuthenticationBloc.dart';
+
+import 'AuthenticationBloc.dart';
 
 class AuthenticationBlocProvider extends InheritedWidget {
   final AuthenticationBloc authenticationBloc;

@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ideal/blocs/AuthenticationBloc.dart';
-import 'package:ideal/blocs/AuthenticationBlocProvider.dart';
-import 'package:ideal/pages/home/HomePage.dart';
-import 'package:ideal/pages/login/LoginPage.dart';
-import 'package:ideal/services/AuthenticationService.dart';
-import 'package:ideal/services/authentication_api.dart';
+import 'package:ideal/src/blocs/AuthenticationBloc.dart';
+import 'package:ideal/src/blocs/AuthenticationBlocProvider.dart';
+import 'package:ideal/src/pages/home/HomePage.dart';
+import 'package:ideal/src/pages/login/LoginPage.dart';
+import 'package:ideal/src/services/AuthenticationService.dart';
+import 'package:ideal/src/services/AuthenticationApi.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,38 +53,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// class MyApp extends StatelessWidget {
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Peer 2 Peer',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//         scaffoldBackgroundColor: kPrimaryColor,
-//       ),
-//       home: FutureBuilder(
-//         future: _initializeFirebase(),
-//         builder: (context, snapshot) {
-//           if(snapshot.connectionState == ConnectionState.done) {
-//             final user = FirebaseAuth.instance.currentUser;
-//
-//             if(user == null) {
-//               return LoginScreen();
-//             }
-//
-//             return DashboardScreen();
-//           }
-//           return Center(
-//             child: Scaffold(
-//               body: CircularProgressIndicator(),
-//             )
-//           );
-//         }
-//       ),
-//     );
-//   }
-//
-// }
