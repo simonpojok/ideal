@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'models/authentication_message.dart';
 
 abstract class AuthenticationApi {
-  getFirebaseAuth();
+  FirebaseAuth getFirebaseAuth();
   Future<String> currentUid();
   Future<void> signOut();
   Future<String> signInWithEmailAndPassword({String email, String password});
