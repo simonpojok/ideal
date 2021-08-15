@@ -5,7 +5,6 @@ import 'package:ideal/pages/home/HomePage.dart';
 import 'package:ideal/pages/login/LoginPage.dart';
 import 'package:ideal/services/AuthenticationService.dart';
 import 'package:ideal/services/authentication_api.dart';
-import 'constants.dart';
 
 void main() {
   runApp(MyApp());
