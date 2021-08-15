@@ -4,10 +4,10 @@ import 'models/authentication_message.dart';
 
 abstract class AuthenticationApi {
   FirebaseAuth getFirebaseAuth();
-  Future<String> currentUid();
+  String currentUid();
   Future<void> signOut();
-  Future<String> signInWithEmailAndPassword({String email, String password});
-  Future<String> createUserWithEmailAndPassword({String email, String password});
+  Future<String> signInWithEmailAndPassword({required String email, required String password});
+  Future<String> createUserWithEmailAndPassword({required String email, required String password});
   Future<void> sendEmailVerification();
-  Future<bool> isEmailVerified();
+  bool isEmailVerified();
 }
