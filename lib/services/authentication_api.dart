@@ -1,6 +1,11 @@
 import 'models/authentication_message.dart';
 
-abstract class AuthenticationService {
-  Future<AuthenticationMessage> signInWithEmailAndPassword({required String email, required String password});
-  Future<AuthenticationMessage> createUserWithEmailAndPassword({required String email, required String password});
+abstract class AuthenticationApi {
+  getFirebaseAuth();
+  Future<String> currentUid();
+  Future<void> signOut();
+  Future<String> signInWithEmailAndPassword({String email, String password});
+  Future<String> createUserWithEmailAndPassword({String email, String password});
+  Future<void> sendEmailVerification();
+  Future<bool> isEmailVerified();
 }
