@@ -40,31 +40,82 @@ class _LenderPageState extends State<LenderPage> {
                   ],
                 ),
               ),
-              RichText(
+              Container(
+                margin: EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
+                child: RichText(
                   text: TextSpan(
-                    text: 'Please drag the pointer through the bar to indicate how much',
+                    text:
+                        'Please drag the pointer through the bar to indicate how much',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2!
+                        .copyWith(color: kLightBlue, fontSize: 16),
                     children: [
                       TextSpan(
-                        text: 'Money'
-                      ),
+                          text: ' Money',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(color: kColorOrange)),
+                      TextSpan(text: ' you want to offer'),
                       TextSpan(
-                        text: ' you want to offer'
+                        text: ' Adam M.',
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                              color: kColorOrange,
+                            ),
                       ),
-                      TextSpan(
-                        text: ' Adam M.'
-                      )
-                    ]
+                    ],
                   ),
+                ),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("450,000 ugx"),
-                  Text("450,000 ugx"),
+                  PriceIndicator(
+                    price: '450, 000',
+                    color: kColorOrange,
+                  ),
+                  PriceIndicator(
+                    price: '550, 000',
+                    color: kLightBlue,
+                  ),
                 ],
               )
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class PriceIndicator extends StatelessWidget {
+  final String price;
+  final Color color;
+  const PriceIndicator({
+    Key? key,
+    required this.price,
+    required this.color,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        text: price,
+        style: Theme.of(context)
+            .textTheme
+            .bodyText2!
+            .copyWith(color: color, fontSize: 18, fontWeight: FontWeight.bold),
+        children: [
+          TextSpan(
+            text: ' ugx',
+            style: Theme.of(context)
+                .textTheme
+                .bodyText2!
+                .copyWith(fontWeight: FontWeight.normal, color: color),
+          ),
+        ],
       ),
     );
   }
