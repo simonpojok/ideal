@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ideal/src/blocs/AuthenticationBloc.dart';
 import 'package:ideal/src/blocs/AuthenticationBlocProvider.dart';
 import 'package:ideal/src/pages/home/HomePage.dart';
+import 'package:ideal/src/pages/lender/LenderPage.dart';
 import 'package:ideal/src/pages/login/LoginPage.dart';
 import 'package:ideal/src/services/AuthenticationService.dart';
 import 'package:ideal/src/services/AuthenticationApi.dart';
@@ -33,9 +34,9 @@ class MyApp extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasData && snapshot.data != "") {
-            return _buildMaterialApp(HomePage());
+            return _buildMaterialApp(LenderPage());
           }
-          return _buildMaterialApp(LoginPage());
+          return _buildMaterialApp(LenderPage());
         },
       ),
     );
