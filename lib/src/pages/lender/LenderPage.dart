@@ -16,12 +16,15 @@ class _LenderPageState extends State<LenderPage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+          // padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
+                padding: const EdgeInsets.symmetric(
+                  vertical: kDefaultPadding,
+                  horizontal: kDefaultPadding,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -44,7 +47,10 @@ class _LenderPageState extends State<LenderPage> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
+                margin: EdgeInsets.symmetric(
+                  vertical: kDefaultPadding * 2,
+                  horizontal: kDefaultPadding,
+                ),
                 child: RichText(
                   text: TextSpan(
                     text:
@@ -71,38 +77,56 @@ class _LenderPageState extends State<LenderPage> {
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  PriceIndicator(
-                    price: '450, 000',
-                    color: kColorOrange,
-                  ),
-                  PriceIndicator(
-                    price: '550, 000',
-                    color: kLightBlue,
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kDefaultPadding,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    PriceIndicator(
+                      price: '450, 000',
+                      color: kColorOrange,
+                    ),
+                    PriceIndicator(
+                      price: '550, 000',
+                      color: kLightBlue,
+                    ),
+                  ],
+                ),
               ),
-              Slider(
-                min: 100000,
-                max: 500000.0,
-                value: price,
-                label: "$price",
-                divisions: 10,
-                onChanged: (double value) {
-                  setState(() {
-                    price = value;
-                  });
-                },
+              SliderTheme(
+                data: SliderThemeData(
+                    activeTrackColor: kColorOrange,
+                    inactiveTrackColor: kLightBlue),
+                child: Slider(
+                  min: 100000,
+                  max: 500000.0,
+                  value: price,
+                  label: "$price",
+                  divisions: 10,
+                  onChanged: (double value) {
+                    setState(() {
+                      price = value;
+                    });
+                  },
+                ),
               ),
-              Row(
-                children: [
-                  Text("Amounts: ", style: Theme.of(context).textTheme.headline5!.copyWith(
-                    color: kLightBlue,
-                  ),),
-                  PriceIndicator(price: "$price", color: kGreenColor)
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kDefaultPadding,
+                ),
+                child: Row(
+                  children: [
+                    Text(
+                      "Amounts: ",
+                      style: Theme.of(context).textTheme.headline5!.copyWith(
+                            color: kLightBlue,
+                          ),
+                    ),
+                    PriceIndicator(price: "$price", color: kGreenColor)
+                  ],
+                ),
               )
             ],
           ),
