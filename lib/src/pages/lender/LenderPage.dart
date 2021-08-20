@@ -127,6 +127,26 @@ class _LenderPageState extends State<LenderPage> {
                     PriceIndicator(price: "$price", color: kGreenColor)
                   ],
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding, vertical: kDefaultPadding * 2),
+                child: RichText(text: TextSpan(
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    color: kLightBlue
+                  ),
+                  text: "Please drag the point through the bar to indicate how much ",
+                  children: [
+                    TextSpan(
+                      text: " Payback period "
+                    ),
+                    TextSpan(
+                      text: "you want to offer "
+                    ),
+                    TextSpan(
+                      text: "Adam M."
+                    )
+                  ]
+                ),),
               )
             ],
           ),
