@@ -10,6 +10,7 @@ class LenderPage extends StatefulWidget {
 }
 
 class _LenderPageState extends State<LenderPage> {
+  double price = 100000;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +18,7 @@ class _LenderPageState extends State<LenderPage> {
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
@@ -80,6 +82,26 @@ class _LenderPageState extends State<LenderPage> {
                     price: '550, 000',
                     color: kLightBlue,
                   ),
+                ],
+              ),
+              Slider(
+                min: 100000,
+                max: 500000.0,
+                value: price,
+                label: "$price",
+                divisions: 10,
+                onChanged: (double value) {
+                  setState(() {
+                    price = value;
+                  });
+                },
+              ),
+              Row(
+                children: [
+                  Text("Amounts: ", style: Theme.of(context).textTheme.headline5!.copyWith(
+                    color: kLightBlue,
+                  ),),
+                  PriceIndicator(price: "$price", color: kGreenColor)
                 ],
               )
             ],
