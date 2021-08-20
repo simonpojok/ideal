@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/pages/lender/widgets/price_indicator.dart';
 
 class LenderPage extends StatefulWidget {
   const LenderPage({Key? key}) : super(key: key);
@@ -84,38 +85,6 @@ class _LenderPageState extends State<LenderPage> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class PriceIndicator extends StatelessWidget {
-  final String price;
-  final Color color;
-  const PriceIndicator({
-    Key? key,
-    required this.price,
-    required this.color,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        text: price,
-        style: Theme.of(context)
-            .textTheme
-            .bodyText2!
-            .copyWith(color: color, fontSize: 18, fontWeight: FontWeight.bold),
-        children: [
-          TextSpan(
-            text: ' ugx',
-            style: Theme.of(context)
-                .textTheme
-                .bodyText2!
-                .copyWith(fontWeight: FontWeight.normal, color: color),
-          ),
-        ],
       ),
     );
   }
