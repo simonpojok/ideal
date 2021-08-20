@@ -104,7 +104,7 @@ class _LenderPageState extends State<LenderPage> {
                   max: 500000.0,
                   value: price,
                   label: "$price",
-                  divisions: 10,
+                  divisions: 50,
                   onChanged: (double value) {
                     setState(() {
                       price = value;
@@ -129,37 +129,97 @@ class _LenderPageState extends State<LenderPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding, vertical: kDefaultPadding * 2),
-                child: RichText(text: TextSpan(
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    color: kLightBlue,
-                    fontSize: 16
-                  ),
-                  text: "Please drag the point through the bar to indicate how much ",
+                padding: const EdgeInsets.symmetric(
+                    horizontal: kDefaultPadding, vertical: kDefaultPadding * 2),
+                child: RichText(
+                  text: TextSpan(
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .copyWith(color: kLightBlue, fontSize: 16),
+                      text:
+                          "Please drag the point through the bar to indicate how much ",
+                      children: [
+                        TextSpan(
+                          text: " Payback period ",
+                          style:
+                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                                    color: kColorOrange,
+                                    fontSize: 16,
+                                  ),
+                        ),
+                        TextSpan(text: "you want to offer "),
+                        TextSpan(
+                          text: "Adam M.",
+                          style:
+                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                                    color: kColorOrange,
+                                    fontSize: 16,
+                                  ),
+                        )
+                      ]),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextSpan(
-                      text: " Payback period ",
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        color: kColorOrange,
-                        fontSize: 16,
-                      ),
+                    CustomCheckBox(
+                      label: "Weeks",
+                      checked: false,
+                      onClick: (bool? value) {},
                     ),
-                    TextSpan(
-                      text: "you want to offer "
+                    CustomCheckBox(
+                      label: "Months",
+                      checked: false,
+                      onClick: (bool? value) {},
                     ),
-                    TextSpan(
-                      text: "Adam M.",
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        color: kColorOrange,
-                        fontSize: 16,
-                      ),
-                    )
-                  ]
-                ),),
+                    CustomCheckBox(
+                      label: "Years",
+                      checked: false,
+                      onClick: (bool? value) {},
+                    ),
+                  ],
+                ),
               )
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CustomCheckBox extends StatelessWidget {
+  final String label;
+  final checked;
+  final Function(bool? value) onClick;
+  const CustomCheckBox({
+    Key? key,
+    required this.label,
+    this.checked,
+    required this.onClick,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        children: [
+          Checkbox(
+            value: checked,
+            onChanged: onClick,
+          ),
+          Text(
+            label,
+            style: Theme.of(context)
+                .textTheme
+                .button!
+                .copyWith(color: Colors.black54),
+          )
+        ],
       ),
     );
   }
