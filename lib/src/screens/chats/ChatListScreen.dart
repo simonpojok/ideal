@@ -39,6 +39,10 @@ class _ChatListScreenState extends State<ChatListScreen> {
         itemBuilder: (BuildContext context, int index) {
           final chat = chats[index];
           return ListTile(
+            contentPadding: EdgeInsets.symmetric(
+              vertical: 8,
+            ),
+            onTap: () {},
             leading: Stack(
               children: [
                 CircleAvatar(
@@ -95,7 +99,9 @@ class _ChatListScreenState extends State<ChatListScreen> {
           );
         },
         separatorBuilder: (BuildContext context, int index) {
-          return Divider();
+          return Divider(
+            height: 0,
+          );
         },
         itemCount: chats.length,
       ),
