@@ -168,7 +168,7 @@ class _LenderPageState extends State<LenderPage> {
                   children: [
                     CustomCheckBox(
                       label: "Weeks",
-                      checked: false,
+                      checked: true,
                       onClick: (bool? value) {},
                     ),
                     CustomCheckBox(
