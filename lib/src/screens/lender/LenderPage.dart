@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/constants.dart';
-import 'package:ideal/src/pages/lender/widgets/custom_slider.dart';
-import 'package:ideal/src/pages/lender/widgets/information_dialog.dart';
-import 'package:ideal/src/pages/lender/widgets/price_indicator.dart';
-import 'package:ideal/src/pages/widgets/rectangular_button.dart';
+import 'package:ideal/src/screens/lender/widgets/custom_slider.dart';
+import 'package:ideal/src/screens/lender/widgets/information_dialog.dart';
+import 'package:ideal/src/screens/lender/widgets/price_indicator.dart';
+import 'package:ideal/src/screens/widgets/rectangular_button.dart';
 
 class LenderPage extends StatefulWidget {
   const LenderPage({Key? key}) : super(key: key);

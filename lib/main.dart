@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ideal/src/blocs/AuthenticationBloc.dart';
 import 'package:ideal/src/blocs/AuthenticationBlocProvider.dart';
-import 'package:ideal/src/pages/subscription/SubscriptionScreen.dart';
+import 'package:ideal/src/screens/subscription/SubscriptionScreen.dart';
 import 'package:ideal/src/services/AuthenticationApi.dart';
 import 'package:ideal/src/services/AuthenticationService.dart';
 

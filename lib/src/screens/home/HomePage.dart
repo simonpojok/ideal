@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ideal/src/pages/home/widgets/borrow_request_card.dart';
-import 'package:ideal/src/pages/home/widgets/dashboard_header.dart';
-import 'package:ideal/src/pages/home/widgets/notifications_banner.dart';
+import 'package:ideal/src/screens/home/widgets/borrow_request_card.dart';
+import 'package:ideal/src/screens/home/widgets/dashboard_header.dart';
+import 'package:ideal/src/screens/home/widgets/notifications_banner.dart';
 
 import '../../constants.dart';
 
@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           Builder(
             builder: (context) => // Ensure Scaffold is in context
-            IconButton(
+                IconButton(
               icon: Icon(Icons.menu),
               onPressed: () => Scaffold.of(context).openEndDrawer(),
             ),

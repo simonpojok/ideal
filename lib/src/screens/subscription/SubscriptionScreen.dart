@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/constants.dart';
-import 'package:ideal/src/pages/widgets/rectangular_button.dart';
+import 'package:ideal/src/screens/widgets/rectangular_button.dart';
 
 String description =
     "Limited access to loans up to 250,000 ugx with flexible payment period not exceeding 2 weeks. Access to over 50 potential lenders and 100 borrowers per month";

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ideal/src/pages/signup/widgets/EditText.dart';
+import 'package:ideal/src/screens/signup/widgets/EditText.dart';
 import 'package:ideal/src/services/AuthenticationService.dart';
 
 import '../../constants.dart';
@@ -19,8 +19,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   void initState() {
     super.initState();
-    _signUpBloc =
-        SignUpBloc(authenticationApi: AuthenticationService());
+    _signUpBloc = SignUpBloc(authenticationApi: AuthenticationService());
   }
 
   @override
@@ -89,7 +88,8 @@ class _SignUpPageState extends State<SignUpPage> {
               margin: EdgeInsets.only(top: size.height * 0.05),
               child: Center(
                 child: FloatingActionButton.extended(
-                  onPressed: null, label: Text("Create Account"),
+                  onPressed: null,
+                  label: Text("Create Account"),
                 ),
               ),
             )
