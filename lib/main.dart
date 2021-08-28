@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ideal/src/blocs/AuthenticationBloc.dart';
 import 'package:ideal/src/blocs/AuthenticationBlocProvider.dart';
-import 'package:ideal/src/pages/lender/LenderPage.dart';
+import 'package:ideal/src/pages/subscription/SubscriptionScreen.dart';
 import 'package:ideal/src/services/AuthenticationApi.dart';
 import 'package:ideal/src/services/AuthenticationService.dart';
 
@@ -32,9 +32,9 @@ class MyApp extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasData && snapshot.data != "") {
-            return _buildMaterialApp(LenderPage());
+            return _buildMaterialApp(SubscriptionScreen());
           }
-          return _buildMaterialApp(LenderPage());
+          return _buildMaterialApp(SubscriptionScreen());
         },
       ),
     );
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "ideal",
       theme: ThemeData(
-        primaryColor: Colors.blue,
+        primaryColor: Colors.deepOrangeAccent,
         canvasColor: Colors.lightGreen.shade50,
         bottomAppBarColor: Colors.lightBlueAccent.withOpacity(0.5),
       ),
