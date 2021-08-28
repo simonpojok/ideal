@@ -24,11 +24,20 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
                 margin: EdgeInsets.only(top: kDefaultPadding * .5),
                 child: Row(
                   children: [
-                    ProfileSummeryCard(),
+                    ProfileSummeryCard(
+                      number: "100%",
+                      label: "Payment\nStatus",
+                    ),
                     SizedBox(width: 10),
-                    ProfileSummeryCard(),
+                    ProfileSummeryCard(
+                      number: "34",
+                      label: "Active\nLoans",
+                    ),
                     SizedBox(width: 10),
-                    ProfileSummeryCard(),
+                    ProfileSummeryCard(
+                      number: "100",
+                      label: "Paid\nLoans",
+                    ),
                   ],
                 ),
               )
@@ -41,7 +50,11 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
 }
 
 class ProfileSummeryCard extends StatelessWidget {
-  const ProfileSummeryCard({Key? key}) : super(key: key);
+  final String number;
+  final String label;
+  const ProfileSummeryCard(
+      {Key? key, required this.number, required this.label})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,19 +71,19 @@ class ProfileSummeryCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "100%",
+              number,
               style: Theme.of(context).textTheme.headline4!.copyWith(
                     color: Colors.deepOrange,
-                    fontSize: 32,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
             ),
             Text(
-              "Payment Status",
+              label,
               style: Theme.of(context).textTheme.headline6!.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.normal,
-                    fontSize: 16,
+                    fontSize: 14,
                   ),
               textAlign: TextAlign.center,
             ),
