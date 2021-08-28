@@ -63,7 +63,7 @@ class ProfileSummeryCard extends StatelessWidget {
         height: 100,
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: Colors.greenAccent,
+          color: Colors.blue.withOpacity(.5),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
@@ -73,7 +73,7 @@ class ProfileSummeryCard extends StatelessWidget {
             Text(
               number,
               style: Theme.of(context).textTheme.headline4!.copyWith(
-                    color: Colors.deepOrange,
+                    color: Colors.yellowAccent,
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
