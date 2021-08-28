@@ -2,11 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ideal/src/blocs/AuthenticationBloc.dart';
 import 'package:ideal/src/blocs/AuthenticationBlocProvider.dart';
-import 'package:ideal/src/pages/home/HomePage.dart';
 import 'package:ideal/src/pages/lender/LenderPage.dart';
-import 'package:ideal/src/pages/login/LoginPage.dart';
-import 'package:ideal/src/services/AuthenticationService.dart';
 import 'package:ideal/src/services/AuthenticationApi.dart';
+import 'package:ideal/src/services/AuthenticationService.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,9 +45,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "ideal",
       theme: ThemeData(
-          primaryColor: Colors.lightGreen,
-          canvasColor: Colors.lightGreen.shade50,
-          bottomAppBarColor: Colors.lightGreen),
+        primaryColor: Colors.blue,
+        canvasColor: Colors.lightGreen.shade50,
+        bottomAppBarColor: Colors.lightBlueAccent.withOpacity(0.5),
+      ),
       home: homePage,
     );
   }
