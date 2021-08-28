@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/constants.dart';
 import 'package:ideal/src/screens/widgets/rectangular_button.dart';
+import 'package:ideal/src/screens/widgets/success_dialog.dart';
 
 String description =
     "Limited access to loans up to 250,000 ugx with flexible payment period not exceeding 2 weeks. Access to over 50 potential lenders and 100 borrowers per month";
@@ -62,7 +63,14 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   height: 20,
                 ),
                 RectangularButton(
-                  onTap: () {},
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return SuccessDialog();
+                      },
+                    );
+                  },
                   label: "Continue",
                   color: Colors.green,
                 ),
