@@ -234,25 +234,50 @@ class _LenderPageState extends State<LenderPage> {
                   divisions: 100,
                   onChanged: (double price) {},
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 30),
-                  height: 50,
-                  width: size.width * .8,
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Make offer",
-                      style: Theme.of(context).textTheme.button!.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                  ),
-                )
+                SizedBox(
+                  height: 20,
+                ),
+                RectangularButton(size: size),
+                SizedBox(
+                  height: 10,
+                ),
               ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class RectangularButton extends StatelessWidget {
+  const RectangularButton({
+    Key? key,
+    required this.size,
+  }) : super(key: key);
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Material(
+        color: Colors.blue,
+        elevation: 4,
+        child: InkWell(
+          onTap: () {},
+          child: Container(
+            height: 50,
+            width: size.width * .8,
+            child: Center(
+              child: Text(
+                "Make offer",
+                style: Theme.of(context).textTheme.button!.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
             ),
           ),
         ),
