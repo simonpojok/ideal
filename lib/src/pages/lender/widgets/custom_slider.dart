@@ -6,7 +6,6 @@ class CustomSlider extends StatelessWidget {
   final double min;
   final double max;
   final double value;
-  final String label;
   final int divisions;
   final Function(double value) onChanged;
   const CustomSlider(
@@ -14,7 +13,6 @@ class CustomSlider extends StatelessWidget {
       required this.min,
       required this.max,
       required this.value,
-      required this.label,
       required this.divisions,
       required this.onChanged})
       : super(key: key);
