@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:ideal/src/constants.dart';
 
 class PaymentHistoryScreen extends StatefulWidget {
@@ -40,7 +42,142 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
                     ),
                   ],
                 ),
-              )
+              ),
+              Expanded(
+                child: ListView.separated(
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      onTap: () {},
+                      contentPadding: EdgeInsets.all(0),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              text: "300, 000",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(
+                                      color: Colors.black45,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                              children: [
+                                TextSpan(
+                                  text: "\tUGX",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5!
+                                      .copyWith(
+                                          fontSize: 14,
+                                          color: Colors.deepOrange),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Text(
+                            "23-04-2021",
+                            style:
+                                Theme.of(context).textTheme.caption!.copyWith(
+                                      color: Colors.black26,
+                                      fontSize: 16,
+                                    ),
+                          ),
+                        ],
+                      ),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              RichText(
+                                text: TextSpan(
+                                  text: "Status",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        fontSize: 15,
+                                        color: Colors.black54,
+                                      ),
+                                  children: [
+                                    TextSpan(
+                                      text: "\t\tPaid",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1!
+                                          .copyWith(
+                                            fontSize: 15,
+                                            color: Colors.green,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  text: "Due on:\t\t",
+                                  children: [
+                                    TextSpan(
+                                      text: "Mar 16th",
+                                    )
+                                  ],
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        color: Colors.black54,
+                                        fontSize: 15,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              RatingBar.builder(
+                                initialRating: 3,
+                                minRating: 1,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                itemPadding:
+                                    EdgeInsets.symmetric(horizontal: 1.0),
+                                itemBuilder: (context, _) => Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                onRatingUpdate: (rating) {
+                                  print(rating);
+                                },
+                                itemSize: 20,
+                              ),
+                              Text(
+                                "12%",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline3!
+                                    .copyWith(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 25,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Divider();
+                  },
+                  itemCount: 70,
+                ),
+              ),
             ],
           ),
         ),
