@@ -9,6 +9,11 @@ class SubscriptionScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Subscriptions"),
       ),
+      body: SafeArea(
+        child: Column(
+          children: [],
+        ),
+      ),
     );
   }
 }
