@@ -17,41 +17,18 @@ class _LenderPageState extends State<LenderPage> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text("REQUESTS"),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: kDefaultPadding,
-                    horizontal: kDefaultPadding,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("LOGO"),
-                      Text(
-                        "REQUESTS",
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline6!
-                            .copyWith(color: kLightBlue, fontSize: 18),
-                      ),
-                      Text(
-                        "Cancel",
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline6!
-                            .copyWith(color: kColorOrange, fontSize: 18),
-                      ),
-                    ],
-                  ),
-                ),
                 Container(
                   margin: EdgeInsets.symmetric(
-                    vertical: kDefaultPadding * 2,
+                    vertical: kDefaultPadding,
                     horizontal: kDefaultPadding,
                   ),
                   child: RichText(
