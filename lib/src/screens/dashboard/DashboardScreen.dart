@@ -15,24 +15,34 @@ class _DashboardScreenState extends State<DashboardScreen> {
       appBar: AppBar(
         title: Text("Dashboard"),
       ),
-      bottomNavigationBar: Container(
-        width: double.infinity,
-        height: 65,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            BottomNavigationButton(),
-            BottomNavigationButton(),
-          ],
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          height: 65,
+          child: OverflowBar(
+            overflowAlignment: OverflowBarAlignment.center,
+            children: [
+              Row(
+                children: [
+                  BottomNavigationButton(
+                    isActive: true,
+                  ),
+                  BottomNavigationButton(
+                    isActive: false,
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
-      ),
+      )
     );
   }
 }
 
 class BottomNavigationButton extends StatelessWidget {
+  final bool isActive;
   const BottomNavigationButton({
-    Key? key,
+    Key? key, required this.isActive,
   }) : super(key: key);
 
   @override
@@ -49,13 +59,13 @@ class BottomNavigationButton extends StatelessWidget {
               children: [
                 Icon(
                   Icons.feed,
-                  color: Colors.black54,
+                  color: isActive ? Theme.of(context).primaryColor : Colors.black54 ,
                   size: 30,
                 ),
                 Text(
                   "Feeds",
                   style: Theme.of(context).textTheme.button!.copyWith(
-                        color: Colors.black54,
+                        color: isActive ? Theme.of(context).primaryColor : Colors.black54,
                         fontSize: 15,
                       ),
                 ),
