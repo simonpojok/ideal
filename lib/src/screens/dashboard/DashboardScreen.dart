@@ -23,17 +23,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
             children: [
               FeatureCard(
                 icon: Icons.account_balance_wallet_outlined,
-                label: "Sacco\nGroups",
+                label: "Sacco\nGroup",
                 onTap: () {},
               ),
               FeatureCard(
                 icon: Icons.monetization_on_outlined,
-                label: "Loan\nRequests",
+                label: "Deals\nRequest",
                 onTap: () {},
               ),
               FeatureCard(
                 icon: Icons.notifications_active_outlined,
-                label: "My\nMessages",
+                label: "My\nMessage",
                 onTap: () {},
               ),
               FeatureCard(
@@ -42,8 +42,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 onTap: () {},
               ),
               FeatureCard(
-                icon: Icons.menu,
-                label: "Others",
+                icon: Icons.payment_outlined,
+                label: "Deal\nOffer",
                 onTap: () {},
               ),
               FeatureCard(
