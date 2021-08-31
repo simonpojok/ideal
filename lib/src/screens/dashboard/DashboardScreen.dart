@@ -9,6 +9,7 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,16 +25,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
               Row(
                 children: [
                   BottomNavigationButton(
-                    isActive: true,
+                    isActive: index == 0,
                     icon: Icons.feed,
                     label: "Requests",
-                    onTap: () {},
+                    onTap: () {
+                      setState(() {
+                        index = 0;
+                      });
+                    },
                   ),
                   BottomNavigationButton(
-                    isActive: false,
+                    isActive: index == 1,
                     icon: Icons.message,
                     label: "Messages",
-                    onTap: () {},
+                    onTap: () {
+                      setState(() {
+                        index = 1;
+                      });
+                    },
                   ),
                 ],
               )
