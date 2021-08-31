@@ -25,9 +25,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 children: [
                   BottomNavigationButton(
                     isActive: true,
+                    icon: Icons.feed,
+                    label: "Requests",
+                    onTap: () {},
                   ),
                   BottomNavigationButton(
                     isActive: false,
+                    icon: Icons.message,
+                    label: "Messages",
+                    onTap: () {},
                   ),
                 ],
               )
@@ -41,8 +47,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
 class BottomNavigationButton extends StatelessWidget {
   final bool isActive;
+  final VoidCallback onTap;
+  final IconData icon;
+  final String label;
   const BottomNavigationButton({
-    Key? key, required this.isActive,
+    Key? key, required this.isActive, required this.onTap, required this.icon, required this.label,
   }) : super(key: key);
 
   @override
@@ -50,7 +59,7 @@ class BottomNavigationButton extends StatelessWidget {
     return Expanded(
       child: Material(
         child: InkWell(
-          onTap: () {},
+          onTap: onTap,
           child: Container(
             color: Colors.white,
             padding: EdgeInsets.symmetric(vertical: kDefaultPadding * .5),
@@ -58,12 +67,12 @@ class BottomNavigationButton extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.feed,
+                  icon,
                   color: isActive ? Theme.of(context).primaryColor : Colors.black54 ,
                   size: 30,
                 ),
                 Text(
-                  "Feeds",
+                  label,
                   style: Theme.of(context).textTheme.button!.copyWith(
                         color: isActive ? Theme.of(context).primaryColor : Colors.black54,
                         fontSize: 15,
