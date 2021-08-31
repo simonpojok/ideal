@@ -83,7 +83,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: kDefaultPadding),
+              margin: EdgeInsets.only(top: kDefaultPadding * 0.3),
               padding: EdgeInsets.symmetric(
                 horizontal: 10,
                 vertical: 2,

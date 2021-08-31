@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ideal/src/blocs/AuthenticationBloc.dart';
 import 'package:ideal/src/blocs/AuthenticationBlocProvider.dart';
-import 'package:ideal/src/screens/chat/ChatDetailScreen.dart';
+import 'package:ideal/src/screens/dashboard/DashboardScreen.dart';
 import 'package:ideal/src/services/AuthenticationApi.dart';
 import 'package:ideal/src/services/AuthenticationService.dart';
 
@@ -32,9 +32,9 @@ class MyApp extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasData && snapshot.data != "") {
-            return _buildMaterialApp(ChatDetailScreen());
+            return _buildMaterialApp(DashboardScreen());
           }
-          return _buildMaterialApp(ChatDetailScreen());
+          return _buildMaterialApp(DashboardScreen());
         },
       ),
     );
