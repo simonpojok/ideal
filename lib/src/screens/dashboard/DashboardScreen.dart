@@ -16,44 +16,57 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Dashboard"),
-      ),
-      body: screens[index],
-      bottomNavigationBar: BottomAppBar(
+      body: SafeArea(
         child: Container(
-          height: 65,
-          child: OverflowBar(
-            overflowAlignment: OverflowBarAlignment.center,
-            children: [
-              Row(
-                children: [
-                  BottomNavigationButton(
-                    isActive: index == 0,
-                    icon: Icons.feed,
-                    label: "Requests",
-                    onTap: () {
-                      setState(() {
-                        index = 0;
-                      });
-                    },
-                  ),
-                  BottomNavigationButton(
-                    isActive: index == 1,
-                    icon: Icons.message,
-                    label: "Messages",
-                    onTap: () {
-                      setState(() {
-                        index = 1;
-                      });
-                    },
-                  ),
-                ],
-              )
-            ],
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/background/girl_with_money.jpg"),
+              fit: BoxFit.cover
+            )
           ),
+          child: Column(
+            children: [
+
+            ],
+          )
         ),
-      )
+      ),
+      // bottomNavigationBar: BottomAppBar(
+      //   child: Container(
+      //     height: 65,
+      //     child: OverflowBar(
+      //       overflowAlignment: OverflowBarAlignment.center,
+      //       children: [
+      //         Row(
+      //           children: [
+      //             BottomNavigationButton(
+      //               isActive: index == 0,
+      //               icon: Icons.feed,
+      //               label: "Requests",
+      //               onTap: () {
+      //                 setState(() {
+      //                   index = 0;
+      //                 });
+      //               },
+      //             ),
+      //             BottomNavigationButton(
+      //               isActive: index == 1,
+      //               icon: Icons.message,
+      //               label: "Messages",
+      //               onTap: () {
+      //                 setState(() {
+      //                   index = 1;
+      //                 });
+      //               },
+      //             ),
+      //           ],
+      //         )
+      //       ],
+      //     ),
+      //   ),
+      // )
     );
   }
 }
