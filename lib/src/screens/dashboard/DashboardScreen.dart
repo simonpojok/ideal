@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/screens/chats/ChatListScreen.dart';
+import 'package:ideal/src/screens/request/requests_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -10,12 +12,11 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int index = 0;
+  List screens = [RequestsScreen(), ChatListScreen(),];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Dashboard"),
-      ),
+      body: screens[index],
       bottomNavigationBar: BottomAppBar(
         child: Container(
           height: 65,

@@ -17,23 +17,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
       appBar: AppBar(
         brightness: Brightness.dark,
         elevation: 8,
-        title: Text("Chats"),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          color: Colors.white,
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
-          ),
-        ],
+        title: Text("Messages"),
       ),
       body: ListView.separated(
         itemBuilder: (BuildContext context, int index) {
