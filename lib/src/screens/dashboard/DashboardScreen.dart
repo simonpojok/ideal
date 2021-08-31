@@ -17,7 +17,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.all(kDefaultPadding),
+          padding: EdgeInsets.all(kDefaultPadding * .5),
           child: GridView.count(
             crossAxisCount: 3,
             children: [
@@ -143,62 +143,6 @@ class FeatureCard extends StatelessWidget {
   }
 }
 
-// class DashboardScreen extends StatefulWidget {
-//   const DashboardScreen({Key? key}) : super(key: key);
-//
-//   @override
-//   _DashboardScreenState createState() => _DashboardScreenState();
-// }
-//
-// class _DashboardScreenState extends State<DashboardScreen> {
-//   int index = 0;
-//   List screens = [
-//     RequestsScreen(),
-//     ChatListScreen(),
-//   ];
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         body: SafeArea(
-//           child: screens[index],
-//         ),
-//         bottomNavigationBar: BottomAppBar(
-//           child: Container(
-//             height: 65,
-//             child: OverflowBar(
-//               overflowAlignment: OverflowBarAlignment.center,
-//               children: [
-//                 Row(
-//                   children: [
-//                     BottomNavigationButton(
-//                       isActive: index == 0,
-//                       icon: Icons.feed,
-//                       label: "Requests",
-//                       onTap: () {
-//                         setState(() {
-//                           index = 0;
-//                         });
-//                       },
-//                     ),
-//                     BottomNavigationButton(
-//                       isActive: index == 1,
-//                       icon: Icons.message,
-//                       label: "Messages",
-//                       onTap: () {
-//                         setState(() {
-//                           index = 1;
-//                         });
-//                       },
-//                     ),
-//                   ],
-//                 )
-//               ],
-//             ),
-//           ),
-//         ));
-//   }
-// }
-//
 class BottomNavigationButton extends StatelessWidget {
   final bool isActive;
   final VoidCallback onTap;
