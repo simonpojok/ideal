@@ -22,7 +22,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             crossAxisCount: 3,
             children: [
               FeatureCard(
-                icon: Icons.account_balance_wallet_outlined,
+                icon: Icons.group_sharp,
                 label: "Sacco\nGroup",
                 onTap: () {},
               ),
