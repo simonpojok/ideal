@@ -18,7 +18,54 @@ class _DashboardScreenState extends State<DashboardScreen> {
           children: [
             Container(
               height: size.height * .4,
-              color: Colors.greenAccent,
+              color: Theme.of(context).primaryColor.withOpacity(0.5),
+              child: Column(
+                children: [
+                  Container(
+                    height: 50,
+                    margin: EdgeInsets.all(kDefaultPadding),
+                    padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: "Search",
+                              hintStyle: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
+                                    color: Colors.black45,
+                                    fontSize: 18,
+                                  ),
+                              border: InputBorder.none,
+                            ),
+                            style:
+                                Theme.of(context).textTheme.bodyText2!.copyWith(
+                                      color: Colors.black54,
+                                      fontSize: 18,
+                                    ),
+                          ),
+                        ),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.search,
+                            color: Colors.black45,
+                          ),
+                          iconSize: 30,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
             Expanded(
               child: FeatureContainers(),
@@ -82,7 +129,7 @@ class FeatureContainers extends StatelessWidget {
         ),
         FeatureCard(
           icon: Icons.monetization_on_outlined,
-          label: "Deals\nRequest",
+          label: "My\nDeals",
           onTap: () {},
         ),
         FeatureCard(
