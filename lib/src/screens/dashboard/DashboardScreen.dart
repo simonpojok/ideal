@@ -101,8 +101,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               BottomNavigationButton(
                 isActive: false,
                 onTap: () {},
-                icon: Icons.bookmark,
-                label: "Tips",
+                icon: Icons.money_sharp,
+                label: "Offers",
               ),
             ],
           ),
