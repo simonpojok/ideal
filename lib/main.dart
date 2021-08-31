@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:ideal/pages.dart';
 import 'package:ideal/src/blocs/AuthenticationBloc.dart';
 import 'package:ideal/src/blocs/AuthenticationBlocProvider.dart';
 import 'package:ideal/src/screens/dashboard/DashboardScreen.dart';
@@ -9,7 +10,24 @@ import 'package:ideal/src/services/AuthenticationService.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(DealApp());
+}
+
+class DealApp extends StatefulWidget {
+  const DealApp({Key? key}) : super(key: key);
+
+  @override
+  _DealAppState createState() => _DealAppState();
+}
+
+class _DealAppState extends State<DealApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Deal",
+      onGenerateRoute: generateRoutes,
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {

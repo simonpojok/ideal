@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ideal/src/constants.dart';
 
 class DashboardScreen extends StatefulWidget {
+  static const DASHBOARD_SCREEN_KEY = ValueKey("DashboardScreen");
   const DashboardScreen({Key? key}) : super(key: key);
 
   @override

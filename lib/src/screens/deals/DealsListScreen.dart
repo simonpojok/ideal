@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DealsListScreen extends StatefulWidget {
+  static const DEALS_LIST_KEY = ValueKey("DealsListScreen");
   const DealsListScreen({Key? key}) : super(key: key);
 
   @override
