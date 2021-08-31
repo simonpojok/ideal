@@ -12,62 +12,50 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int index = 0;
-  List screens = [RequestsScreen(), ChatListScreen(),];
+  List screens = [
+    RequestsScreen(),
+    ChatListScreen(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/background/girl_with_money.jpg"),
-              fit: BoxFit.cover
-            )
-          ),
-          child: Column(
-            children: [
-
-            ],
-          )
+        body: SafeArea(
+          child: screens[index],
         ),
-      ),
-      // bottomNavigationBar: BottomAppBar(
-      //   child: Container(
-      //     height: 65,
-      //     child: OverflowBar(
-      //       overflowAlignment: OverflowBarAlignment.center,
-      //       children: [
-      //         Row(
-      //           children: [
-      //             BottomNavigationButton(
-      //               isActive: index == 0,
-      //               icon: Icons.feed,
-      //               label: "Requests",
-      //               onTap: () {
-      //                 setState(() {
-      //                   index = 0;
-      //                 });
-      //               },
-      //             ),
-      //             BottomNavigationButton(
-      //               isActive: index == 1,
-      //               icon: Icons.message,
-      //               label: "Messages",
-      //               onTap: () {
-      //                 setState(() {
-      //                   index = 1;
-      //                 });
-      //               },
-      //             ),
-      //           ],
-      //         )
-      //       ],
-      //     ),
-      //   ),
-      // )
-    );
+        bottomNavigationBar: BottomAppBar(
+          child: Container(
+            height: 65,
+            child: OverflowBar(
+              overflowAlignment: OverflowBarAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    BottomNavigationButton(
+                      isActive: index == 0,
+                      icon: Icons.feed,
+                      label: "Requests",
+                      onTap: () {
+                        setState(() {
+                          index = 0;
+                        });
+                      },
+                    ),
+                    BottomNavigationButton(
+                      isActive: index == 1,
+                      icon: Icons.message,
+                      label: "Messages",
+                      onTap: () {
+                        setState(() {
+                          index = 1;
+                        });
+                      },
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ));
   }
 }
 
@@ -77,7 +65,11 @@ class BottomNavigationButton extends StatelessWidget {
   final IconData icon;
   final String label;
   const BottomNavigationButton({
-    Key? key, required this.isActive, required this.onTap, required this.icon, required this.label,
+    Key? key,
+    required this.isActive,
+    required this.onTap,
+    required this.icon,
+    required this.label,
   }) : super(key: key);
 
   @override
@@ -94,13 +86,17 @@ class BottomNavigationButton extends StatelessWidget {
               children: [
                 Icon(
                   icon,
-                  color: isActive ? Theme.of(context).primaryColor : Colors.black54 ,
+                  color: isActive
+                      ? Theme.of(context).primaryColor
+                      : Colors.black54,
                   size: 30,
                 ),
                 Text(
                   label,
                   style: Theme.of(context).textTheme.button!.copyWith(
-                        color: isActive ? Theme.of(context).primaryColor : Colors.black54,
+                        color: isActive
+                            ? Theme.of(context).primaryColor
+                            : Colors.black54,
                         fontSize: 15,
                       ),
                 ),
