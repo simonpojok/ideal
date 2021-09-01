@@ -1,4 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/screens/saccos/saccos_screen.dart';
 
 class SaccoScreen extends StatefulWidget {
   static const SACCO_SCREEN_ROUTE = "/sacco_screen";
@@ -33,7 +37,9 @@ class _SaccoScreenState extends State<SaccoScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
                           icon: Icon(
                             Icons.arrow_back,
                             color: Colors.black,
@@ -65,6 +71,76 @@ class _SaccoScreenState extends State<SaccoScreen> {
                     image: AssetImage("assets/background/sacco_background.jpg"),
                     fit: BoxFit.cover,
                   ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(kDefaultPadding * .5),
+                child: Text(
+                  description,
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        fontSize: 16,
+                        color: Colors.black54,
+                      ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: kDefaultPadding * .5),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        color: Colors.black45,
+                        padding: EdgeInsets.symmetric(
+                          vertical: kDefaultPadding * .8,
+                          horizontal: kDefaultPadding,
+                        ),
+                        child: Center(
+                          child: RichText(
+                            text: TextSpan(
+                              text: "500, 000",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
+                                    color: Colors.white70,
+                                    fontSize: 18,
+                                  ),
+                              children: [
+                                TextSpan(
+                                    text: "\t\tUGX",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .copyWith(
+                                          color: Colors.orangeAccent,
+                                          fontSize: 15,
+                                        ))
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        color: Colors.green,
+                        padding: EdgeInsets.symmetric(
+                          vertical: kDefaultPadding * .8,
+                          horizontal: kDefaultPadding,
+                        ),
+                        child: Center(
+                          child: Text(
+                            "JOIN",
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      color: Colors.white70,
+                                      fontSize: 18,
+                                    ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               )
             ],
