@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/screens/signup/SignUpScreen.dart';
 import 'package:ideal/src/screens/widgets/buttons.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -41,10 +42,54 @@ class _LoginScreenState extends State<LoginScreen> {
               keyboardType: TextInputType.visiblePassword,
             ),
             RoundedCornerButton(
-                label: "LOGIN", press: () {}, color: Colors.green),
+              label: "LOGIN",
+              press: () {},
+              color: Colors.green,
+            ),
+            LinkTextButton(
+              login: true,
+              onPress: () {
+                Navigator.of(context)
+                    .pushNamed(SignUpScreen.SIGNUP_SCREEN_ROUTE);
+              },
+            )
           ],
         ),
       ),
+    );
+  }
+}
+
+class LinkTextButton extends StatelessWidget {
+  final bool login;
+  final VoidCallback onPress;
+  const LinkTextButton({
+    Key? key,
+    required this.login,
+    required this.onPress,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          login ? "Don't have an account ? " : "Already have an account ? ",
+          style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                color: Theme.of(context).primaryColor,
+              ),
+        ),
+        TextButton(
+          onPressed: onPress,
+          child: Text(
+            login ? "Sign Up" : "Log In",
+            style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                  color: Colors.blueAccent,
+                ),
+          ),
+        ),
+      ],
     );
   }
 }
