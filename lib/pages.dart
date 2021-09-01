@@ -5,6 +5,7 @@ import 'package:ideal/src/screens/deals/deals_screen.dart';
 import 'package:ideal/src/screens/login/LoginScreen.dart';
 import 'package:ideal/src/screens/message/MessageScreen.dart';
 import 'package:ideal/src/screens/messages/MessagesScreen.dart';
+import 'package:ideal/src/screens/sacco/SaccoScreen.dart';
 import 'package:ideal/src/screens/saccos/saccos_screen.dart';
 import 'package:ideal/src/screens/signup/SignUpScreen.dart';
 import 'package:ideal/src/screens/welcome/WelcomeScreen.dart';
@@ -50,6 +51,11 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
     case SaccosScreen.SACCOS_SCREEN_ROUTE:
       {
         return MaterialPageRoute(builder: (context) => SaccosScreen());
+      }
+
+    case SaccoScreen.SACCO_SCREEN_ROUTE:
+      {
+        return MaterialPageRoute(builder: (context) => SaccoScreen());
       }
 
     default:
