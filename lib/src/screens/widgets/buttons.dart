@@ -19,7 +19,7 @@ class RoundedCornerButton extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: kDefaultPadding),
+        margin: EdgeInsets.symmetric(vertical: kDefaultPadding * .8),
         child: Material(
           child: InkWell(
             splashColor: Colors.greenAccent,
