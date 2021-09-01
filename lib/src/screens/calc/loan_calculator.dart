@@ -21,6 +21,16 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
       appBar: AppBar(
         title: Text("Loan Calculator"),
         elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.share),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.more_vert),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Form(
