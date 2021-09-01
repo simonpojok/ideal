@@ -23,7 +23,7 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => MessagesScreen());
   }
 
-  if (settings.name == MessagesScreen.MESSAGE_SCREEN_ROUTE) {
+  if (settings.name == MessageScreen.MESSAGE_SCREEN_ROUTE) {
     return MaterialPageRoute(builder: (context) => MessageScreen());
   }
 
