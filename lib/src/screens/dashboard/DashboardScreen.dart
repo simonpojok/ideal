@@ -5,6 +5,7 @@ import 'package:ideal/src/screens/dashboard/widgets/profile_header.dart';
 
 class DashboardScreen extends StatefulWidget {
   static const DASHBOARD_SCREEN_KEY = ValueKey("DashboardScreen");
+  static const DASHBOARD_ROUTE = "/DashboardScreen";
   const DashboardScreen({Key? key}) : super(key: key);
 
   @override
