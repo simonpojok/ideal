@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/screens/widgets/buttons.dart';
 
 class LoanCalculatorScreen extends StatefulWidget {
   static const LOAN_CALCULATOR_ROUTE = "/loan_calculator_route";
@@ -14,6 +16,7 @@ class LoanCalculatorScreen extends StatefulWidget {
 }
 
 class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -34,9 +37,39 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
       ),
       body: SafeArea(
         child: Form(
+          key: _formKey,
           child: Column(
             children: [
               HeaderDisplay(),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: kDefaultPadding),
+                width: size.width * .9,
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    filled: true,
+                    border: InputBorder.none,
+                    hintText: "Enter Amount",
+                    hintStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
+                          color: Colors.black45,
+                          fontSize: 16,
+                        ),
+                    prefixIcon: Icon(
+                      Icons.monetization_on_outlined,
+                      color: Colors.black45,
+                    ),
+                    suffix: Text("UGX"),
+                  ),
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        color: Colors.black54,
+                        fontSize: 16,
+                      ),
+                ),
+              ),
+              RoundedCornerButton(
+                label: "Calculate",
+                press: () {},
+                color: Theme.of(context).primaryColor,
+              ),
             ],
           ),
         ),
