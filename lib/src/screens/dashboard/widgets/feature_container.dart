@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ideal/src/screens/messages/ChatListScreen.dart';
+import 'package:ideal/src/screens/messages/MessagesScreen.dart';
 
 import 'feature_card.dart';
 

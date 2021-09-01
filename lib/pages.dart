@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/screens/dashboard/DashboardScreen.dart';
 import 'package:ideal/src/screens/login/LoginScreen.dart';
-import 'package:ideal/src/screens/messages/ChatListScreen.dart';
+import 'package:ideal/src/screens/messages/MessagesScreen.dart';
 import 'package:ideal/src/screens/signup/SignUpScreen.dart';
 import 'package:ideal/src/screens/welcome/WelcomeScreen.dart';
 
