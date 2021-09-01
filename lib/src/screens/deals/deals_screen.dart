@@ -70,7 +70,7 @@ class _DealsScreenState extends State<DealsScreen> {
                   ),
                   Container(
                     margin:
-                        EdgeInsets.symmetric(vertical: kDefaultPadding * .4),
+                        EdgeInsets.symmetric(vertical: kDefaultPadding * .1),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -104,11 +104,31 @@ class _DealsScreenState extends State<DealsScreen> {
                       ],
                     ),
                   ),
-                  // Container(
-                  //   height: 50,
-                  //   width: double.infinity,
-                  //   color: Colors.greenAccent,
-                  // )
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      DealActionChip(
+                        iconData: Icons.email,
+                        onPress: () {},
+                        count: 10,
+                      ),
+                      DealActionChip(
+                        iconData: Icons.visibility,
+                        onPress: () {},
+                        count: 30,
+                      ),
+                      DealActionChip(
+                        iconData: Icons.monetization_on_outlined,
+                        onPress: () {},
+                        count: 1,
+                      ),
+                      DealActionChip(
+                        count: 3,
+                        iconData: Icons.share,
+                        onPress: () {},
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
@@ -120,6 +140,54 @@ class _DealsScreenState extends State<DealsScreen> {
             height: 1,
           );
         },
+      ),
+    );
+  }
+}
+
+class DealActionChip extends StatelessWidget {
+  final IconData iconData;
+  final int count;
+  final VoidCallback onPress;
+  const DealActionChip({
+    Key? key,
+    required this.iconData,
+    required this.count,
+    required this.onPress,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(5),
+        child: Material(
+          child: InkWell(
+            onTap: onPress,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Icon(
+                    iconData,
+                    size: 18,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: kDefaultPadding * .4),
+                    child: Text(
+                      "$count",
+                      style: Theme.of(context).textTheme.caption!.copyWith(
+                            color: Colors.black45,
+                            fontSize: 15,
+                          ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
