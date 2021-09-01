@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:ideal/src/constants.dart';
 import 'package:ideal/src/screens/widgets/buttons.dart';
@@ -17,17 +19,24 @@ class LoanCalculatorScreen extends StatefulWidget {
 
 class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _amountController = TextEditingController(text: "0");
+  final _durationController = TextEditingController(text: "0");
+  final _rateController = TextEditingController(text: "0");
   String duration = 'Day';
   String percentage = "%";
+  String amount = "0.0";
 
   void _calculateLoan() {
-    // double interestRate = (double.parse(_interestRate.text) / 100) / 12;
-    // int months = int.parse(_period.text) * 12;
-    // double monthlyTop = interestRate * pow((1 + interestRate), months);
-    // double monthlyBottom = pow(1 + interestRate, months) - 1;
-    // double monthlyRate =
-    //     double.parse(_mortgageAmount.text) * (monthlyTop / monthlyBottom);
-    // double totalPayment = monthlyRate * months;
+    double interestRate = (double.parse(_rateController.text) / 100) / 12;
+    int months = int.parse(_durationController.text) * 12;
+    double monthlyTop = interestRate * pow((1 + interestRate), months);
+    double monthlyBottom = pow(1 + interestRate, months) - 1;
+    double monthlyRate =
+        double.parse(_amountController.text) * (monthlyTop / monthlyBottom);
+    double totalPayment = monthlyRate * months;
+    setState(() {
+      amount = totalPayment.toStringAsFixed(2);
+    });
   }
 
   @override
@@ -54,11 +63,14 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
             key: _formKey,
             child: Column(
               children: [
-                HeaderDisplay(),
+                HeaderDisplay(
+                  amount: amount,
+                ),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: kDefaultPadding),
                   width: size.width * .9,
                   child: CalculatorEditText(
+                    controller: _amountController,
                     hint: "Amount",
                     leadingIcon: Icons.monetization_on_outlined,
                     validator: (value) {
@@ -78,6 +90,7 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                     children: [
                       Expanded(
                         child: CalculatorEditText(
+                          controller: _durationController,
                           leadingIcon: Icons.calendar_today,
                           hint: 'Duration',
                           validator: (value) {
@@ -112,6 +125,7 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                     children: [
                       Expanded(
                         child: CalculatorEditText(
+                          controller: _rateController,
                           leadingIcon: Icons.rate_review,
                           hint: 'Rate',
                           validator: (value) {
@@ -142,9 +156,7 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                   label: "Calculate",
                   press: () {
                     if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing Data')),
-                      );
+                      _calculateLoan();
                     }
                   },
                   color: Theme.of(context).primaryColor,
@@ -205,17 +217,20 @@ class CalculatorEditText extends StatelessWidget {
   final IconData leadingIcon;
   final String? tailingText;
   final String? Function(String? value)? validator;
+  final TextEditingController controller;
   const CalculatorEditText(
       {Key? key,
       required this.hint,
       required this.leadingIcon,
       this.tailingText,
-      required this.validator})
+      required this.validator,
+      required this.controller})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
         filled: true,
         border: InputBorder.none,
@@ -241,8 +256,10 @@ class CalculatorEditText extends StatelessWidget {
 }
 
 class HeaderDisplay extends StatelessWidget {
+  final String amount;
   const HeaderDisplay({
     Key? key,
+    required this.amount,
   }) : super(key: key);
 
   @override
@@ -256,7 +273,7 @@ class HeaderDisplay extends StatelessWidget {
         child: RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
-            text: "Total Amount\n500, 000",
+            text: "Total Amount\n$amount",
             style: Theme.of(context).primaryTextTheme.headline5!.copyWith(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
