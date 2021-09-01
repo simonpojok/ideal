@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/models/message.dart';
+import 'package:ideal/src/screens/message/MessageScreen.dart';
 
 import '../../../constants.dart';
 
@@ -17,7 +18,9 @@ class MessageContainer extends StatelessWidget {
       contentPadding: EdgeInsets.symmetric(
         vertical: 8,
       ),
-      onTap: () {},
+      onTap: () {
+        MessageScreen.goToMessageScreen(context);
+      },
       leading: Stack(
         children: [
           CircleAvatar(
