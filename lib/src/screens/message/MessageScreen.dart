@@ -5,14 +5,19 @@ import 'package:ideal/src/models/user.dart';
 import 'package:ideal/src/screens/message/widgets/message_item.dart';
 import 'package:ideal/src/screens/message/widgets/send_message.dart';
 
-class ChatDetailScreen extends StatefulWidget {
-  const ChatDetailScreen({Key? key}) : super(key: key);
+class MessageScreen extends StatefulWidget {
+  static const MESSAGE_SCREEN_ROUTE = "/MessageScreen";
+  const MessageScreen({Key? key}) : super(key: key);
 
   @override
-  _ChatDetailScreenState createState() => _ChatDetailScreenState();
+  _MessageScreenState createState() => _MessageScreenState();
+
+  static void goToMessageScreen(BuildContext context) {
+    Navigator.of(context).pushNamed(MESSAGE_SCREEN_ROUTE);
+  }
 }
 
-class _ChatDetailScreenState extends State<ChatDetailScreen> {
+class _MessageScreenState extends State<MessageScreen> {
   @override
   Widget build(BuildContext context) {
     int prevUserId = -1;
