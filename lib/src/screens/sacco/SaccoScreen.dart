@@ -142,7 +142,66 @@ class _SaccoScreenState extends State<SaccoScreen> {
                     ),
                   ],
                 ),
-              )
+              ),
+              Container(
+                height: size.height * .5,
+                child: ListView.separated(
+                  itemCount: 10,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: kDefaultPadding * .3),
+                      leading: CircleAvatar(
+                        radius: 35,
+                        backgroundImage: AssetImage("assets/images/hulk.jpg"),
+                      ),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "OJOK SIMON PETER",
+                            style:
+                                Theme.of(context).textTheme.headline6!.copyWith(
+                                      fontSize: 18,
+                                      color: Colors.black45,
+                                    ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.more_vert),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Member",
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      fontSize: 15,
+                                      color: Colors.black26,
+                                    ),
+                          ),
+                          Text(
+                            "Since 21-05-2021",
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      fontSize: 15,
+                                      color: Colors.green,
+                                    ),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Divider(
+                      height: 1,
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
