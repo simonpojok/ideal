@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/screens/dashboard/DashboardScreen.dart';
 import 'package:ideal/src/screens/login/widgets/background.dart';
 import 'package:ideal/src/screens/signup/SignUpScreen.dart';
 import 'package:ideal/src/screens/widgets/buttons.dart';
@@ -50,7 +51,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               RoundedCornerButton(
                 label: "LOGIN",
-                press: () {},
+                press: () {
+                  DashboardScreen.goToDashboard(context);
+                },
                 color: Colors.green,
               ),
               LinkTextButton(

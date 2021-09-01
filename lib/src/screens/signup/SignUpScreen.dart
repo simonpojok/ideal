@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/screens/dashboard/DashboardScreen.dart';
 import 'package:ideal/src/screens/login/LoginScreen.dart';
 import 'package:ideal/src/screens/signup/widgets/background.dart';
+import 'package:ideal/src/screens/signup/widgets/or_divider.dart';
+import 'package:ideal/src/screens/signup/widgets/social_button.dart';
 import 'package:ideal/src/screens/widgets/buttons.dart';
 import 'package:ideal/src/screens/widgets/text_fields.dart';
 
@@ -57,7 +60,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               RoundedCornerButton(
                 label: "SIGN UP",
-                press: () {},
+                press: () {
+                  DashboardScreen.goToDashboard(context);
+                },
                 color: Colors.green,
               ),
               LinkTextButton(
@@ -91,80 +96,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class SocialMediaButton extends StatelessWidget {
-  final VoidCallback onPress;
-  final String imageSrc;
-  const SocialMediaButton({
-    Key? key,
-    required this.onPress,
-    required this.imageSrc,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPress,
-      child: Container(
-        padding: EdgeInsets.all(kDefaultPadding),
-        margin: EdgeInsets.symmetric(
-          horizontal: kDefaultPadding,
-        ),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Theme.of(context).primaryColorLight,
-            width: 2,
-          ),
-          shape: BoxShape.circle,
-        ),
-        child: SvgPicture.asset(
-          imageSrc,
-          width: kDefaultPadding,
-          height: kDefaultPadding,
-        ),
-      ),
-    );
-  }
-}
-
-class OrDivider extends StatelessWidget {
-  const OrDivider({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width * .8,
-      child: Row(
-        children: [
-          Expanded(
-            child: Divider(
-              color: Theme.of(context).primaryColor,
-              height: 1.5,
-            ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: kDefaultPadding * .5),
-            child: Text(
-              "OR",
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-          Expanded(
-            child: Divider(
-              color: Theme.of(context).primaryColor,
-              height: 1.5,
-            ),
-          ),
-        ],
       ),
     );
   }
