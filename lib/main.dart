@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ideal/pages.dart';
 import 'package:ideal/src/blocs/AuthenticationBloc.dart';
 import 'package:ideal/src/blocs/AuthenticationBlocProvider.dart';
+import 'package:ideal/src/constants.dart';
 import 'package:ideal/src/screens/dashboard/DashboardScreen.dart';
 import 'package:ideal/src/services/AuthenticationApi.dart';
 import 'package:ideal/src/services/AuthenticationService.dart';
@@ -24,7 +25,13 @@ class _DealAppState extends State<DealApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Deal",
+      theme: ThemeData(
+          primaryColor: kPrimaryColor,
+          primaryColorDark: kPrimaryDarkColor,
+          accentColor: kColorOrange,
+          primaryColorLight: kPrimaryLightColor),
       onGenerateRoute: generateRoutes,
     );
   }
