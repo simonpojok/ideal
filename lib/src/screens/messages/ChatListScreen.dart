@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:ideal/src/constants.dart';
 import 'package:ideal/src/models/message.dart';
 
-class ChatListScreen extends StatefulWidget {
-  const ChatListScreen({Key? key}) : super(key: key);
+class MessagesScreen extends StatefulWidget {
+  static const MESSAGE_SCREEN_ROUTE = "/MessagesScreen";
+  const MessagesScreen({Key? key}) : super(key: key);
 
   @override
-  _ChatListScreenState createState() => _ChatListScreenState();
+  _MessagesScreenState createState() => _MessagesScreenState();
+
+  static void goToMessageScreen(BuildContext context) {
+    Navigator.of(context).pushNamed(MESSAGE_SCREEN_ROUTE);
+  }
 }
 
-class _ChatListScreenState extends State<ChatListScreen> {
+class _MessagesScreenState extends State<MessagesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

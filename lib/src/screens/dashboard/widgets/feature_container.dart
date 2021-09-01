@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/screens/messages/ChatListScreen.dart';
 
 import 'feature_card.dart';
 
@@ -25,7 +26,9 @@ class FeatureContainers extends StatelessWidget {
         FeatureCard(
           icon: Icons.notifications_active_outlined,
           label: "My\nMessage",
-          onTap: () {},
+          onTap: () {
+            MessagesScreen.goToMessageScreen(context);
+          },
         ),
         FeatureCard(
           icon: Icons.person_outline_outlined,

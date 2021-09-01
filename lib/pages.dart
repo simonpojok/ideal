@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/screens/dashboard/DashboardScreen.dart';
 import 'package:ideal/src/screens/login/LoginScreen.dart';
+import 'package:ideal/src/screens/messages/ChatListScreen.dart';
 import 'package:ideal/src/screens/signup/SignUpScreen.dart';
 import 'package:ideal/src/screens/welcome/WelcomeScreen.dart';
 
@@ -15,6 +16,10 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
   if (settings.name == DashboardScreen.DASHBOARD_ROUTE) {
     return MaterialPageRoute(builder: (context) => DashboardScreen());
+  }
+
+  if (settings.name == MessagesScreen.MESSAGE_SCREEN_ROUTE) {
+    return MaterialPageRoute(builder: (context) => MessagesScreen());
   }
 
   return MaterialPageRoute(builder: (context) => WelcomeScreen());
