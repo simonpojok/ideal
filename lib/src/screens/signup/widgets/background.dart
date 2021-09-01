@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/constants.dart';
 
 class SignUpScreenBackground extends StatelessWidget {
   final Widget child;
@@ -32,7 +33,10 @@ class SignUpScreenBackground extends StatelessWidget {
               width: size.width * .3,
             ),
           ),
-          child,
+          Container(
+            child: child,
+            padding: EdgeInsets.symmetric(vertical: kDefaultPadding),
+          ),
         ],
       ),
     );

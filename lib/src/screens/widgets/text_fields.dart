@@ -32,7 +32,7 @@ class _RoundCornerTextFieldState extends State<RoundCornerTextField> {
     Size size = MediaQuery.of(context).size;
     return Container(
       width: size.width * .8,
-      margin: EdgeInsets.symmetric(vertical: kDefaultPadding),
+      margin: EdgeInsets.symmetric(vertical: kDefaultPadding * .5),
       padding: EdgeInsets.only(
         left: kDefaultPadding * 1.5,
         right: kDefaultPadding * .6,
