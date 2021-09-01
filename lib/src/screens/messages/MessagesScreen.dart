@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ideal/src/constants.dart';
 import 'package:ideal/src/models/message.dart';
+import 'package:ideal/src/screens/messages/widgets/message_container.dart';
 
 class MessagesScreen extends StatefulWidget {
   static const MESSAGE_SCREEN_ROUTE = "/MessagesScreen";
@@ -27,65 +27,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
       body: ListView.separated(
         itemBuilder: (BuildContext context, int index) {
           final chat = chats[index];
-          return ListTile(
-            contentPadding: EdgeInsets.symmetric(
-              vertical: 8,
-            ),
-            onTap: () {},
-            leading: Stack(
-              children: [
-                CircleAvatar(
-                  radius: 35,
-                  backgroundImage: AssetImage(chat.sender.imageUrl),
-                ),
-                if (chat.sender.isOnline)
-                  Positioned(
-                    right: 5,
-                    top: 5,
-                    child: Container(
-                      width: 15,
-                      height: 15,
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  )
-              ],
-            ),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  chat.sender.name,
-                  style: Theme.of(context).textTheme.headline4!.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                Text(
-                  chat.time,
-                  style: Theme.of(context).textTheme.headline6!.copyWith(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.black54,
-                      ),
-                )
-              ],
-            ),
-            subtitle: Container(
-              margin: EdgeInsets.only(top: kDefaultPadding * 0.5),
-              child: Text(
-                chat.text,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(fontSize: 13, color: Colors.black54),
-                overflow: TextOverflow.clip,
-                maxLines: 2,
-              ),
-            ),
-          );
+          return MessageContainer(chat: chat);
         },
         separatorBuilder: (BuildContext context, int index) {
           return Divider(
