@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/screens/dashboard/DashboardScreen.dart';
+import 'package:ideal/src/screens/deal/deal_detail.dart';
 import 'package:ideal/src/screens/deals/deals_screen.dart';
 import 'package:ideal/src/screens/login/LoginScreen.dart';
 import 'package:ideal/src/screens/message/MessageScreen.dart';
@@ -38,6 +39,11 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
     case DealsScreen.DEALS_SCREEN:
       {
         return MaterialPageRoute(builder: (context) => DealsScreen());
+      }
+
+    case DealScreen.DEAL_SCREEN_ROUTE:
+      {
+        return MaterialPageRoute(builder: (context) => DealScreen());
       }
 
     default:
