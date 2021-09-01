@@ -23,7 +23,52 @@ class _DealsScreenState extends State<DealsScreen> {
       ),
       body: ListView.separated(
         itemBuilder: (BuildContext context, int index) {
-          return ListTile();
+          return ListTile(
+            title: Container(
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // RichText(
+                  //   text: TextSpan(
+                  //       text: "3,000, 000\t\t",
+                  //       style: Theme.of(context).textTheme.headline6!.copyWith(
+                  //             color: Colors.black54,
+                  //             fontSize: 18,
+                  //           ),
+                  //       children: [
+                  //         TextSpan(
+                  //           text: "UGX",
+                  //           style:
+                  //               Theme.of(context).textTheme.headline6!.copyWith(
+                  //                     color: Colors.orange,
+                  //                     fontSize: 15,
+                  //                   ),
+                  //         )
+                  //       ]),
+                  // ),
+                  Text(
+                    "Simon Peter Ojok",
+                    style: Theme.of(context).textTheme.headline5!.copyWith(
+                          color: Colors.orange,
+                          fontSize: 18,
+                        ),
+                  ),
+                  Text(
+                    "12-06-2023",
+                    style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                          color: Colors.black45,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                        ),
+                  )
+                ],
+              ),
+            ),
+            subtitle: Column(
+              children: [],
+            ),
+          );
         },
         itemCount: 30,
         separatorBuilder: (BuildContext context, int index) {
