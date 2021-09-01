@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/constants.dart';
 
 class LoginScreenBackground extends StatelessWidget {
   final Widget child;
@@ -32,7 +33,12 @@ class LoginScreenBackground extends StatelessWidget {
               width: size.width * .3,
             ),
           ),
-          child,
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: kDefaultPadding,
+            ),
+            child: child,
+          ),
         ],
       ),
     );
