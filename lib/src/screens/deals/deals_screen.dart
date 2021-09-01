@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/constants.dart';
+
+const description =
+    "The term loan refers to a type of credit vehicle in which a sum of money is lent to another party in exchange for future repayment of the value or principal amount. In many cases, the lender also adds interest and/or finance charges to the principal value which the borrower must repay in addition to the principal balance. Loans may be for a specific, one-time amount, or they may be available as an open-ended line of credit up to a specified limit. Loans come in many different forms including secured, unsecured, commercial, and personal loans.";
 
 class DealsScreen extends StatefulWidget {
   static const DEALS_SCREEN = "/DealsListScreen";
@@ -26,6 +30,7 @@ class _DealsScreenState extends State<DealsScreen> {
           return ListTile(
             title: Container(
               width: double.infinity,
+              padding: EdgeInsets.symmetric(vertical: kDefaultPadding * .4),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -65,8 +70,21 @@ class _DealsScreenState extends State<DealsScreen> {
                 ],
               ),
             ),
-            subtitle: Column(
-              children: [],
+            subtitle: Container(
+              width: double.infinity,
+              child: Column(
+                children: [
+                  Text(
+                    description,
+                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                          color: Colors.black45,
+                          fontSize: 16,
+                        ),
+                    maxLines: 4,
+                    overflow: TextOverflow.fade,
+                  ),
+                ],
+              ),
             ),
           );
         },
