@@ -40,7 +40,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       height: kDefaultPadding * 2,
                     ),
                     SvgPicture.asset(
-                      "assets/icons/chat.svg",
+                      "assets/icons/message.svg",
                       height: size.height * .5,
                     ),
                     SizedBox(
