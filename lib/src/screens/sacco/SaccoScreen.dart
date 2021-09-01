@@ -25,8 +25,9 @@ class _SaccoScreenState extends State<SaccoScreen> {
               Container(
                 height: size.height * .3,
                 width: double.infinity,
-                color: Colors.greenAccent,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,8 +47,24 @@ class _SaccoScreenState extends State<SaccoScreen> {
                           ),
                         ),
                       ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Kigumba Youth's Sacco",
+                        style: Theme.of(context).textTheme.headline5!.copyWith(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
                     )
                   ],
+                ),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/background/sacco_background.jpg"),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               )
             ],
