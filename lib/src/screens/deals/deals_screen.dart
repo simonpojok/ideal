@@ -37,12 +37,35 @@ class _DealsScreenState extends State<DealsScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Simon Peter Ojok",
-                    style: Theme.of(context).textTheme.headline5!.copyWith(
-                          color: Colors.orange,
-                          fontSize: 18,
-                        ),
+                  Row(
+                    children: [
+                      Text(
+                        "Simon Ojok",
+                        style: Theme.of(context).textTheme.headline5!.copyWith(
+                              color: Colors.orange,
+                              fontSize: 18,
+                            ),
+                        overflow: TextOverflow.clip,
+                      ),
+                      SizedBox(width: 5,),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            size: 15,
+                            color: Colors.black45,
+                          ),
+                          Text(
+                            "Masaka",
+                            style:
+                                Theme.of(context).textTheme.caption!.copyWith(
+                                      color: Colors.black45,
+                                      fontSize: 14,
+                                    ),
+                          )
+                        ],
+                      )
+                    ],
                   ),
                   Text(
                     "12-06-2023",
