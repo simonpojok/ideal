@@ -3,6 +3,7 @@ import 'package:ideal/src/screens/dashboard/widgets/bottom_navigation.dart';
 import 'package:ideal/src/screens/dashboard/widgets/feature_container.dart';
 import 'package:ideal/src/screens/dashboard/widgets/profile_header.dart';
 import 'package:ideal/src/screens/deals/deals_screen.dart';
+import 'package:ideal/src/screens/saccos/saccos_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   static const DASHBOARD_SCREEN_KEY = ValueKey("DashboardScreen");
@@ -47,7 +48,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               BottomNavigationButton(
                 isActive: false,
-                onTap: () {},
+                onTap: () {
+                  SaccosScreen.goToSaccoScreen(context);
+                },
                 icon: Icons.group_work_outlined,
                 label: "Saccos",
               ),
