@@ -49,3 +49,37 @@ class RoundedCornerButton extends StatelessWidget {
     );
   }
 }
+
+class LinkTextButton extends StatelessWidget {
+  final bool login;
+  final VoidCallback onPress;
+  const LinkTextButton({
+    Key? key,
+    required this.login,
+    required this.onPress,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          login ? "Don't have an account ? " : "Already have an account ? ",
+          style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                color: Theme.of(context).primaryColor,
+              ),
+        ),
+        TextButton(
+          onPressed: onPress,
+          child: Text(
+            login ? "Sign Up" : "Log In",
+            style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                  color: Colors.blueAccent,
+                ),
+          ),
+        ),
+      ],
+    );
+  }
+}
