@@ -61,6 +61,14 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                   child: CalculatorEditText(
                     hint: "Amount",
                     leadingIcon: Icons.monetization_on_outlined,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Amount Required')),
+                        );
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 Container(
@@ -72,6 +80,15 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                         child: CalculatorEditText(
                           leadingIcon: Icons.calendar_today,
                           hint: 'Duration',
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Duration Required')),
+                              );
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       Expanded(
@@ -97,6 +114,14 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                         child: CalculatorEditText(
                           leadingIcon: Icons.rate_review,
                           hint: 'Rate',
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('Rate Required')),
+                              );
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       Expanded(
@@ -116,7 +141,11 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                 RoundedCornerButton(
                   label: "Calculate",
                   press: () {
-                    _calculateLoan();
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Processing Data')),
+                      );
+                    }
                   },
                   color: Theme.of(context).primaryColor,
                 ),
@@ -175,11 +204,13 @@ class CalculatorEditText extends StatelessWidget {
   final String hint;
   final IconData leadingIcon;
   final String? tailingText;
+  final String? Function(String? value)? validator;
   const CalculatorEditText(
       {Key? key,
       required this.hint,
       required this.leadingIcon,
-      this.tailingText})
+      this.tailingText,
+      required this.validator})
       : super(key: key);
 
   @override
@@ -204,6 +235,7 @@ class CalculatorEditText extends StatelessWidget {
             fontSize: 16,
           ),
       keyboardType: TextInputType.numberWithOptions(decimal: true),
+      validator: validator,
     );
   }
 }
