@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/screens/calc/loan_calculator.dart';
 import 'package:ideal/src/screens/dashboard/widgets/bottom_navigation.dart';
 import 'package:ideal/src/screens/dashboard/widgets/feature_container.dart';
 import 'package:ideal/src/screens/dashboard/widgets/profile_header.dart';
@@ -43,7 +44,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
             children: [
               BottomNavigationButton(
                 isActive: false,
-                onTap: () {},
+                onTap: () {
+                  LoanCalculatorScreen.goToLoanCalculator(context);
+                },
                 icon: Icons.calculate_outlined,
                 label: "Deal Calc",
               ),
