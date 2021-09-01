@@ -21,6 +21,17 @@ class _DealsScreenState extends State<DealsScreen> {
       appBar: AppBar(
         title: Text("Deals"),
       ),
+      body: ListView.separated(
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile();
+        },
+        itemCount: 30,
+        separatorBuilder: (BuildContext context, int index) {
+          return Divider(
+            height: 1,
+          );
+        },
+      ),
     );
   }
 }
