@@ -23,7 +23,27 @@ class _DealsScreenState extends State<DealsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Deals"),
+        title: Container(
+          width: double.infinity,
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              suffixIcon: Icon(
+                Icons.search,
+                size: 25,
+                color: Theme.of(context).primaryTextTheme.bodyText1!.color,
+              ),
+              hintText: "Search deals",
+              hintStyle: Theme.of(context).primaryTextTheme.bodyText1!.copyWith(
+                    fontSize: 18,
+                    color: Colors.white12,
+                  ),
+            ),
+            style: Theme.of(context).primaryTextTheme.bodyText1!.copyWith(
+                  fontSize: 18,
+                ),
+          ),
+        ),
       ),
       body: ListView.separated(
         itemBuilder: (BuildContext context, int index) {
@@ -47,7 +67,9 @@ class _DealsScreenState extends State<DealsScreen> {
                             ),
                         overflow: TextOverflow.clip,
                       ),
-                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Row(
                         children: [
                           Icon(
