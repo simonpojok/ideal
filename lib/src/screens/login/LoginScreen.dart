@@ -84,7 +84,7 @@ class _RoundCornerTextFieldState extends State<RoundCornerTextField> {
         bottom: kDefaultPadding * .2,
       ),
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColorLight,
+        color: Theme.of(context).primaryColorLight.withOpacity(.8),
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextField(
