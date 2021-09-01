@@ -36,39 +36,45 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
         child: Form(
           child: Column(
             children: [
-              Container(
-                width: size.width,
-                height: size.height * .3,
-                color: Theme.of(context).primaryColor,
-                child: Center(
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      text: "Total Amount\n500, 000",
-                      style: Theme.of(context)
-                          .primaryTextTheme
-                          .headline5!
-                          .copyWith(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                          ),
-                      children: [
-                        TextSpan(
-                          text: "\t\tUGX",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .headline6!
-                              .copyWith(
-                                fontSize: 20,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.orangeAccent,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
+              HeaderDisplay(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HeaderDisplay extends StatelessWidget {
+  const HeaderDisplay({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      width: size.width,
+      height: size.height * .3,
+      color: Theme.of(context).primaryColor,
+      child: Center(
+        child: RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            text: "Total Amount\n500, 000",
+            style: Theme.of(context).primaryTextTheme.headline5!.copyWith(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
                 ),
-              )
+            children: [
+              TextSpan(
+                text: "\t\tUGX",
+                style: Theme.of(context).primaryTextTheme.headline6!.copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.orangeAccent,
+                    ),
+              ),
             ],
           ),
         ),
