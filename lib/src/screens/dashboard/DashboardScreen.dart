@@ -10,6 +10,10 @@ class DashboardScreen extends StatefulWidget {
 
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
+
+  static void goToDashboard(BuildContext context) {
+    Navigator.of(context).pushNamed(DASHBOARD_ROUTE);
+  }
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
