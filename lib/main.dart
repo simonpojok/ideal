@@ -28,10 +28,11 @@ class _DealAppState extends State<DealApp> {
       debugShowCheckedModeBanner: false,
       title: "Deal",
       theme: ThemeData(
-          primaryColor: kPrimaryColor,
-          primaryColorDark: kPrimaryDarkColor,
-          accentColor: kColorOrange,
-          primaryColorLight: kPrimaryLightColor),
+        primaryColor: kPrimaryColor,
+        primaryColorDark: kPrimaryDarkColor,
+        accentColor: kColorOrange,
+        primaryColorLight: kPrimaryLightColor,
+      ),
       onGenerateRoute: generateRoutes,
     );
   }
