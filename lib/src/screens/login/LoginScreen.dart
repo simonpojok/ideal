@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/screens/widgets/buttons.dart';
 
 class LoginScreen extends StatefulWidget {
   static const LOGIN_SCREEN_ROUTE = "/LoginScreens";
@@ -39,6 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
               obscureText: true,
               keyboardType: TextInputType.visiblePassword,
             ),
+            RoundedCornerButton(
+                label: "LOGIN", press: () {}, color: Colors.green),
           ],
         ),
       ),

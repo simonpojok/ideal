@@ -27,12 +27,12 @@ class RoundedCornerButton extends StatelessWidget {
             child: Container(
               width: size.width * .8,
               padding: EdgeInsets.symmetric(
-                vertical: kDefaultPadding * .8,
+                vertical: kDefaultPadding * 1.1,
                 horizontal: kDefaultPadding * 2,
               ),
               decoration: BoxDecoration(
-                color: color.withOpacity(.6),
-                borderRadius: BorderRadius.circular(20),
+                color: color,
+                borderRadius: BorderRadius.circular(10),
               ),
               child: Center(
                 child: Text(
