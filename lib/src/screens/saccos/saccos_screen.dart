@@ -36,11 +36,32 @@ class _SaccosScreenState extends State<SaccosScreen> {
                   left: kDefaultPadding * .5,
                   top: kDefaultPadding * .5,
                 ),
-                child: Text(
-                  "Nyero Saving Sacco",
-                  style: Theme.of(context).textTheme.headline6!.copyWith(
-                        fontSize: 18,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Nyero Saving Sacco",
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                            fontSize: 18,
+                          ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(kDefaultPadding * .5),
+                      child: Text(
+                        "45 members",
+                        style: Theme.of(context).textTheme.caption!.copyWith(
+                              fontSize: 14,
+                            ),
                       ),
+                      decoration: BoxDecoration(
+                        color: Colors.black38,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5),
+                          bottomLeft: Radius.circular(5),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
               subtitle: Container(
@@ -60,28 +81,20 @@ class _SaccosScreenState extends State<SaccosScreen> {
                             color: Colors.black54,
                           ),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Chip(
+                          label: Text("OPEN"),
+                          backgroundColor: Colors.greenAccent,
+                        ),
+                        Chip(label: Text("50,000 ugx")),
+                        Chip(label: Text("Monthly")),
+                        Chip(label: Text("Masaka")),
+                      ],
+                    )
                   ],
                 ),
-              ),
-              trailing: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(kDefaultPadding * .5),
-                    child: Text(
-                      "45 members",
-                      style: Theme.of(context).textTheme.caption!.copyWith(
-                            fontSize: 14,
-                          ),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.black38,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(5),
-                        bottomLeft: Radius.circular(5),
-                      ),
-                    ),
-                  ),
-                ],
               ),
             );
           },
