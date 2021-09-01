@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/screens/login/LoginScreen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -17,6 +18,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       body: WelcomeScreenBackground(
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -27,17 +29,23 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                   ),
+                  SizedBox(
+                    height: kDefaultPadding * 2,
+                  ),
                   SvgPicture.asset(
                     "assets/icons/chat.svg",
                     height: size.height * .5,
                   ),
                   SizedBox(
-                    height: kDefaultPadding,
+                    height: kDefaultPadding * 2,
                   ),
                   RoundedCornerButton(
                     label: "LOGIN",
                     color: Theme.of(context).primaryColor,
-                    press: () {},
+                    press: () {
+                      Navigator.of(context)
+                          .pushNamed(LoginScreen.LOGIN_SCREEN_ROUTE);
+                    },
                   ),
                   RoundedCornerButton(
                     label: "LOGIN",
