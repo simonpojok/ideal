@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/screens/sacco/SaccoScreen.dart';
 
 const description =
     "Bodaboda business in Kenya is one of the most popular industry in providing informal selfemployment and source of income for many unemployed youth, by offering the basic mode of transportation in both rural and urban areas.Conversely, young people especially the youth who have completed schooling in many parts of country, remain unemployed influencing them to seek for alternative employment in boda boda enterprises as a way of selfemployment";
@@ -30,6 +31,7 @@ class _SaccosScreenState extends State<SaccosScreen> {
           itemCount: 30,
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
+              onTap: () => {SaccoScreen.goToSaccoScreen(context)},
               contentPadding: EdgeInsets.zero,
               title: Padding(
                 padding: const EdgeInsets.only(
