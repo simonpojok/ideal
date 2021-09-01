@@ -5,14 +5,19 @@ import 'package:ideal/src/screens/offers/widgets/information_dialog.dart';
 import 'package:ideal/src/screens/offers/widgets/price_indicator.dart';
 import 'package:ideal/src/screens/widgets/rectangular_button.dart';
 
-class LenderPage extends StatefulWidget {
-  const LenderPage({Key? key}) : super(key: key);
+class OffersScreen extends StatefulWidget {
+  static const OFFERS_SCREEN_ROUTE = "/offers_screen_route";
+  const OffersScreen({Key? key}) : super(key: key);
 
   @override
-  _LenderPageState createState() => _LenderPageState();
+  _OffersScreenState createState() => _OffersScreenState();
+
+  static void goToOffersScreen(BuildContext context) {
+    Navigator.of(context).pushNamed(OFFERS_SCREEN_ROUTE);
+  }
 }
 
-class _LenderPageState extends State<LenderPage> {
+class _OffersScreenState extends State<OffersScreen> {
   double price = 100000;
   @override
   Widget build(BuildContext context) {
