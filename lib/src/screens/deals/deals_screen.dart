@@ -28,30 +28,15 @@ class _DealsScreenState extends State<DealsScreen> {
       body: ListView.separated(
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: kDefaultPadding * .5,
+            ),
             title: Container(
               width: double.infinity,
               padding: EdgeInsets.symmetric(vertical: kDefaultPadding * .4),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // RichText(
-                  //   text: TextSpan(
-                  //       text: "3,000, 000\t\t",
-                  //       style: Theme.of(context).textTheme.headline6!.copyWith(
-                  //             color: Colors.black54,
-                  //             fontSize: 18,
-                  //           ),
-                  //       children: [
-                  //         TextSpan(
-                  //           text: "UGX",
-                  //           style:
-                  //               Theme.of(context).textTheme.headline6!.copyWith(
-                  //                     color: Colors.orange,
-                  //                     fontSize: 15,
-                  //                   ),
-                  //         )
-                  //       ]),
-                  // ),
                   Text(
                     "Simon Peter Ojok",
                     style: Theme.of(context).textTheme.headline5!.copyWith(
@@ -80,9 +65,50 @@ class _DealsScreenState extends State<DealsScreen> {
                           color: Colors.black45,
                           fontSize: 16,
                         ),
-                    maxLines: 4,
-                    overflow: TextOverflow.fade,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                   ),
+                  Container(
+                    margin:
+                        EdgeInsets.symmetric(vertical: kDefaultPadding * .4),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                              text: "3,000, 000\t\t",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(
+                                    color: Colors.green,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                              children: [
+                                TextSpan(
+                                  text: "UGX",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6!
+                                      .copyWith(
+                                        color: Colors.orange,
+                                        fontSize: 15,
+                                      ),
+                                )
+                              ]),
+                        ),
+                        Chip(
+                          label: const Text('16% Monthly'),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Container(
+                  //   height: 50,
+                  //   width: double.infinity,
+                  //   color: Colors.greenAccent,
+                  // )
                 ],
               ),
             ),
