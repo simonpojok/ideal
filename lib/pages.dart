@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/screens/calc/loan_calculator.dart';
 import 'package:ideal/src/screens/dashboard/DashboardScreen.dart';
 import 'package:ideal/src/screens/deal/deal_detail.dart';
 import 'package:ideal/src/screens/deals/deals_screen.dart';
@@ -62,6 +63,12 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
       {
         return MaterialPageRoute(
             builder: (BuildContext context) => OffersScreen());
+      }
+
+    case LoanCalculatorScreen.LOAN_CALCULATOR_ROUTE:
+      {
+        return MaterialPageRoute(
+            builder: (BuildContext context) => LoanCalculatorScreen());
       }
 
     default:
