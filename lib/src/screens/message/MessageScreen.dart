@@ -25,7 +25,6 @@ class _MessageScreenState extends State<MessageScreen> {
       backgroundColor: Color(0xFFF6F6F6),
       appBar: AppBar(
         brightness: Brightness.dark,
-        centerTitle: true,
         title: RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
@@ -47,15 +46,6 @@ class _MessageScreenState extends State<MessageScreen> {
               )
             ],
           ),
-        ),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
         ),
         actions: [
           IconButton(

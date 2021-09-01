@@ -7,25 +7,35 @@ import 'package:ideal/src/screens/signup/SignUpScreen.dart';
 import 'package:ideal/src/screens/welcome/WelcomeScreen.dart';
 
 MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
-  if (settings.name == LoginScreen.LOGIN_SCREEN_ROUTE) {
-    return MaterialPageRoute(builder: (context) => LoginScreen());
-  }
+  switch (settings.name) {
+    case LoginScreen.LOGIN_SCREEN_ROUTE:
+      {
+        return MaterialPageRoute(builder: (context) => LoginScreen());
+      }
 
-  if (settings.name == SignUpScreen.SIGNUP_SCREEN_ROUTE) {
-    return MaterialPageRoute(builder: (builder) => SignUpScreen());
-  }
+    case SignUpScreen.SIGNUP_SCREEN_ROUTE:
+      {
+        return MaterialPageRoute(builder: (builder) => SignUpScreen());
+      }
 
-  if (settings.name == DashboardScreen.DASHBOARD_ROUTE) {
-    return MaterialPageRoute(builder: (context) => DashboardScreen());
-  }
+    case DashboardScreen.DASHBOARD_ROUTE:
+      {
+        return MaterialPageRoute(builder: (context) => DashboardScreen());
+      }
 
-  if (settings.name == MessagesScreen.MESSAGE_SCREEN_ROUTE) {
-    return MaterialPageRoute(builder: (context) => MessagesScreen());
-  }
+    case MessagesScreen.MESSAGE_SCREEN_ROUTE:
+      {
+        return MaterialPageRoute(builder: (context) => MessagesScreen());
+      }
 
-  if (settings.name == MessageScreen.MESSAGE_SCREEN_ROUTE) {
-    return MaterialPageRoute(builder: (context) => MessageScreen());
-  }
+    case MessageScreen.MESSAGE_SCREEN_ROUTE:
+      {
+        return MaterialPageRoute(builder: (context) => MessageScreen());
+      }
 
-  return MaterialPageRoute(builder: (context) => WelcomeScreen());
+    default:
+      {
+        return MaterialPageRoute(builder: (context) => WelcomeScreen());
+      }
+  }
 }

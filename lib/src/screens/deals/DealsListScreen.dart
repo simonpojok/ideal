@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
-class DealsListScreen extends StatefulWidget {
+class DealsScreen extends StatefulWidget {
+  static const DEALS_SCREEN = "/DealsListScreen";
+
   static const DEALS_LIST_KEY = ValueKey("DealsListScreen");
-  const DealsListScreen({Key? key}) : super(key: key);
+  const DealsScreen({Key? key}) : super(key: key);
 
   @override
-  _DealsListScreenState createState() => _DealsListScreenState();
+  _DealsScreenState createState() => _DealsScreenState();
+
+  static void goToDealsScreen(BuildContext context) {
+    Navigator.of(context).pushNamed(DEALS_SCREEN);
+  }
 }
 
-class _DealsListScreenState extends State<DealsListScreen> {
+class _DealsScreenState extends State<DealsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
