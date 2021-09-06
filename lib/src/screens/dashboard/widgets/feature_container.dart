@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/screens/messages/MessagesScreen.dart';
+import 'package:ideal/src/screens/profile/ProfileScreen.dart';
 
 import 'feature_card.dart';
 
@@ -33,7 +34,9 @@ class FeatureContainers extends StatelessWidget {
         FeatureCard(
           icon: Icons.person_outline_outlined,
           label: "Profile\nInfo",
-          onTap: () {},
+          onTap: () {
+            ProfileScreen.goToProfileScreen(context);
+          },
         ),
         FeatureCard(
           icon: Icons.payment_outlined,
