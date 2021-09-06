@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/constants.dart';
-import 'package:ideal/src/screens/offers/widgets/custom_slider.dart';
-import 'package:ideal/src/screens/offers/widgets/information_dialog.dart';
-import 'package:ideal/src/screens/offers/widgets/price_indicator.dart';
-import 'package:ideal/src/screens/widgets/rectangular_button.dart';
+
+const requirements =
+    "Sadly, there are many specific bank loan requirements that you’ll need to meet in order to qualify. In most cases, small business owners have difficult meeting all of them. Or, even if they do, the process takes too long, especially if they have an immediate business need. Inpost, we’ll detail what a typical bank will expect from a small business loan applicant. Once you’re finished reading this blog post, you can determine if this is the right financing option for your small business.";
 
 class OffersScreen extends StatefulWidget {
   static const OFFERS_SCREEN_ROUTE = "/offers_screen_route";
@@ -25,221 +24,53 @@ class _OffersScreenState extends State<OffersScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("REQUESTS"),
+        title: Text("Offers"),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  margin: EdgeInsets.symmetric(
-                    vertical: kDefaultPadding,
-                    horizontal: kDefaultPadding,
-                  ),
-                  child: RichText(
-                    text: TextSpan(
-                      text:
-                          'Please drag the pointer through the bar to indicate how much',
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                            color: Colors.black38,
-                            fontSize: 16,
+        child: ListView.separated(
+          itemCount: 50,
+          separatorBuilder: (BuildContext context, int index) {
+            return ListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Simon Peter O"),
+                  Container(
+                    padding: EdgeInsets.all(kDefaultPadding * .5),
+                    child: Text(
+                      "16%",
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                            color: Colors.white,
+                            fontSize: 18,
                           ),
-                      children: [
-                        TextSpan(
-                          text: ' Money',
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    color: kColorOrange,
-                                  ),
-                        ),
-                        TextSpan(text: ' you want to offer'),
-                        TextSpan(
-                          text: ' Adam M.',
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    color: kColorOrange,
-                                  ),
-                        ),
-                      ],
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: kDefaultPadding,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      PriceIndicator(
-                        price: '10, 000',
-                        color: kColorOrange,
-                      ),
-                      PriceIndicator(
-                        price: '500, 000',
-                        color: kLightBlue,
-                      ),
-                    ],
-                  ),
-                ),
-                CustomSlider(
-                  min: 10000,
-                  max: 500000,
-                  value: price,
-                  divisions: 50,
-                  onChanged: (double price) {
-                    setState(
-                      () {
-                        this.price = price;
-                      },
-                    );
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: kDefaultPadding,
-                  ),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Amounts: ",
-                        style: Theme.of(context).textTheme.headline5!.copyWith(
-                              color: kLightBlue,
-                            ),
-                      ),
-                      PriceIndicator(price: "$price", color: kGreenColor)
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: kDefaultPadding,
-                      vertical: kDefaultPadding * 2),
-                  child: RichText(
-                    text: TextSpan(
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                            color: Colors.black38,
-                            fontSize: 16,
-                          ),
-                      text:
-                          "Please drag the point through the bar to indicate how much ",
-                      children: [
-                        TextSpan(
-                          text: " Payback period ",
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    color: kColorOrange,
-                                    fontSize: 16,
-                                  ),
-                        ),
-                        TextSpan(text: "you want to offer "),
-                        TextSpan(
-                          text: "Adam M.",
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    color: kColorOrange,
-                                    fontSize: 16,
-                                  ),
-                        )
-                      ],
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(5),
                     ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomCheckBox(
-                        label: "Weeks",
-                        checked: true,
-                        onClick: (bool? value) {},
-                      ),
-                      CustomCheckBox(
-                        label: "Months",
-                        checked: false,
-                        onClick: (bool? value) {},
-                      ),
-                      CustomCheckBox(
-                        label: "Years",
-                        checked: false,
-                        onClick: (bool? value) {},
-                      ),
-                    ],
-                  ),
-                ),
-                CustomSlider(
-                  min: 5,
-                  max: 20,
-                  value: 10,
-                  divisions: 2,
-                  onChanged: (double price) {},
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: kDefaultPadding,
-                      vertical: kDefaultPadding * 2),
-                  child: RichText(
-                    text: TextSpan(
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                            color: Colors.black38,
-                            fontSize: 16,
-                          ),
-                      text:
-                          "Please drag the point through the bar to indicator how much ",
-                      children: [
-                        TextSpan(
-                          text: " Interest ",
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    color: kColorOrange,
-                                    fontSize: 16,
-                                  ),
+                  )
+                ],
+              ),
+              subtitle: Column(
+                children: [
+                  Text(
+                    requirements,
+                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                          color: Colors.black45,
+                          fontSize: 16,
                         ),
-                        TextSpan(text: " you want to offer "),
-                        TextSpan(
-                          text: "Adam M.",
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    color: kColorOrange,
-                                    fontSize: 16,
-                                  ),
-                        )
-                      ],
-                    ),
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-                CustomSlider(
-                  min: 1,
-                  max: 100,
-                  value: 10,
-                  divisions: 100,
-                  onChanged: (double price) {},
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                RectangularButton(
-                  label: "Make Offer",
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return SummeryDialog();
-                      },
-                    );
-                  },
-                  color: Colors.deepOrangeAccent,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-              ],
-            ),
-          ),
+                ],
+              ),
+            );
+          },
+          itemBuilder: (BuildContext context, int index) {
+            return Divider(
+              height: 1,
+            );
+          },
         ),
       ),
     );
