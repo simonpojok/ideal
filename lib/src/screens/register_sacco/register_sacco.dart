@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/blocs/sacco/SaccoBloc.dart';
+import 'package:ideal/src/blocs/sacco/SaccoBlocProvider.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/models/sacco.dart';
 import 'package:ideal/src/screens/widgets/buttons.dart';
 
 class RegisterSaccoScreen extends StatefulWidget {
@@ -18,8 +21,11 @@ class _RegisterSaccoScreenState extends State<RegisterSaccoScreen> {
   final _nameController = TextEditingController(text: "");
   final _priceController = TextEditingController(text: "");
   final _descriptionController = TextEditingController(text: "");
+
   @override
   Widget build(BuildContext context) {
+    final SaccoBloc _bloc = SaccoBlocProvider.of(context).saccoBloc;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Register Sacco"),
@@ -64,7 +70,21 @@ class _RegisterSaccoScreenState extends State<RegisterSaccoScreen> {
                 RoundedCornerButton(
                   color: Colors.green,
                   label: "Register",
-                  press: () {},
+                  press: () {
+                    final _sacco = Sacco(
+                        name: "",
+                        status: "",
+                        price: 89000,
+                        frequency: "Monthly",
+                        location: "Masaka",
+                        description: "new",
+                        banner: "");
+                    _bloc.register(_sacco).then((value) {
+                      print("success");
+                    }).catchError((error) {
+                      print("Error");
+                    });
+                  },
                 )
               ],
             ),

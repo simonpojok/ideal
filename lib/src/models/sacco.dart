@@ -9,8 +9,14 @@ class Sacco {
   late String id;
   String banner;
 
-  Sacco(this.name, this.status, this.price, this.frequency, this.location,
-      this.description, this.banner);
+  Sacco(
+      {required this.name,
+      required this.status,
+      required this.price,
+      required this.frequency,
+      required this.location,
+      required this.description,
+      required this.banner});
 
   Sacco.fromJson(Map<String, dynamic> sacco)
       : name = sacco["name"],

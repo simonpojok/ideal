@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/blocs/sacco/SaccoBloc.dart';
 
-class SaccoRegistrationBlocProvider extends InheritedWidget {
-  final SaccoRegistrationBloc saccoRegistrationBloc;
+class SaccoBlocProvider extends InheritedWidget {
+  final SaccoBloc saccoBloc;
 
-  SaccoRegistrationBlocProvider(
-      {Key? key, required Widget child, required this.saccoRegistrationBloc})
+  static SaccoBlocProvider of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<SaccoBlocProvider>()
+        as SaccoBlocProvider;
+  }
+
+  SaccoBlocProvider({Key? key, required Widget child, required this.saccoBloc})
       : super(key: key, child: child);
 
   @override
-  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
-    // TODO: implement updateShouldNotify
-    throw UnimplementedError();
-  }
+  bool updateShouldNotify(covariant SaccoBlocProvider oldWidget) =>
+      saccoBloc != oldWidget.saccoBloc;
 }

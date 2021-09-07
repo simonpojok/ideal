@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/blocs/sacco/SaccoBloc.dart';
+import 'package:ideal/src/blocs/sacco/SaccoBlocProvider.dart';
 import 'package:ideal/src/screens/calc/loan_calculator.dart';
 import 'package:ideal/src/screens/dashboard/DashboardScreen.dart';
 import 'package:ideal/src/screens/deal/deal_detail.dart';
@@ -13,6 +15,8 @@ import 'package:ideal/src/screens/sacco/SaccoScreen.dart';
 import 'package:ideal/src/screens/saccos/saccos_screen.dart';
 import 'package:ideal/src/screens/signup/SignUpScreen.dart';
 import 'package:ideal/src/screens/welcome/WelcomeScreen.dart';
+import 'package:ideal/src/services/saccos/FirebaseSaccoService.dart';
+import 'package:ideal/src/services/saccos/SaccoServiceApi.dart';
 
 MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
   print("${settings.name} arguments ${settings.arguments}");
@@ -81,9 +85,14 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
     case RegisterSaccoScreen.REGISTER_SACCO_SCREEN:
       {
+        final SaccoServiceApi _service = FirebaseSaccoService();
+        final SaccoBloc _bloc = SaccoBloc(_service);
         return MaterialPageRoute(
           builder: (BuildContext context) {
-            return RegisterSaccoScreen();
+            return SaccoBlocProvider(
+              child: RegisterSaccoScreen(),
+              saccoBloc: _bloc,
+            );
           },
         );
       }
