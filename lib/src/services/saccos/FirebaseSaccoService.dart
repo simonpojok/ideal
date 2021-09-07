@@ -14,4 +14,9 @@ class FirebaseSaccoService implements SaccoServiceApi {
     }
     return "";
   }
+
+  @override
+  Stream<QuerySnapshot<Object?>> getSaccos() {
+    return _saccoCollection.snapshots();
+  }
 }
