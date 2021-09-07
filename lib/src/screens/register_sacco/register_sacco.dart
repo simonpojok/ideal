@@ -22,7 +22,7 @@ class _RegisterSaccoScreenState extends State<RegisterSaccoScreen> {
         title: Text("Register Sacco"),
       ),
       body: SafeArea(
-        childs: Container(
+        child: Container(
           padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * .5),
           child: SingleChildScrollView(
             child: Column(
