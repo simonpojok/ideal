@@ -19,14 +19,14 @@ class Sacco {
       required this.banner});
 
   Sacco.fromJson(Map<String, dynamic> sacco)
-      : name = sacco["name"],
-        status = sacco["status"],
-        price = sacco["price"],
-        frequency = sacco["frequency"],
-        location = sacco["location"],
-        description = sacco["description"],
-        members = sacco["members"],
-        banner = sacco["banner"];
+      : name = sacco["name"] ?? "",
+        status = sacco["status"] ?? "",
+        price = sacco["price"] ?? 0,
+        frequency = sacco["frequency"] ?? "",
+        location = sacco["location"] ?? "",
+        description = sacco["description"] ?? "",
+        members = sacco["members"] ?? 0,
+        banner = sacco["banner"] ?? "";
 
   Map<String, dynamic> toJson() => {
         'name': name,
