@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/constants.dart';
 
 class RegisterSaccoScreen extends StatefulWidget {
   static const REGISTER_SACCO_SCREEN = "/register_sacco";
@@ -13,12 +14,77 @@ class RegisterSaccoScreen extends StatefulWidget {
 }
 
 class _RegisterSaccoScreenState extends State<RegisterSaccoScreen> {
+  final _nameController = TextEditingController(text: "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Register Sacco"),
       ),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * .5),
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(kDefaultPadding),
+              child: Center(
+                child: Text(
+                  "Sacco Registration",
+                  style: Theme.of(context).textTheme.headline4!.copyWith(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ),
+            ),
+            EditText(
+              hint: "Name",
+              validator: (value) {},
+              keyboard: TextInputType.name,
+              controller: _nameController,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class EditText extends StatelessWidget {
+  final String hint;
+  final String? tailingText;
+  final String? Function(String? value)? validator;
+  final TextEditingController controller;
+  final TextInputType keyboard;
+  const EditText(
+      {Key? key,
+      required this.hint,
+      this.tailingText,
+      required this.validator,
+      required this.controller,
+      required this.keyboard})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(
+        filled: true,
+        border: InputBorder.none,
+        hintText: hint,
+        hintStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
+              color: Colors.black45,
+              fontSize: 16,
+            ),
+        suffixText: tailingText,
+      ),
+      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            color: Colors.black54,
+            fontSize: 16,
+          ),
+      keyboardType: keyboard,
+      validator: validator,
     );
   }
 }
