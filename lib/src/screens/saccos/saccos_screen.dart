@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/screens/register_sacco/register_sacco.dart';
 import 'package:ideal/src/screens/sacco/SaccoScreen.dart';
 
 const description =
@@ -25,6 +26,17 @@ class _SaccosScreenState extends State<SaccosScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Saving Sacco Groups"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              RegisterSaccoScreen.goToRegisterSaccoScreen(context);
+            },
+            icon: Icon(
+              Icons.add,
+              size: 32,
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: ListView.separated(

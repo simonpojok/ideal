@@ -8,6 +8,7 @@ import 'package:ideal/src/screens/message/MessageScreen.dart';
 import 'package:ideal/src/screens/messages/MessagesScreen.dart';
 import 'package:ideal/src/screens/offers/offers_screen.dart';
 import 'package:ideal/src/screens/profile/ProfileScreen.dart';
+import 'package:ideal/src/screens/register_sacco/register_sacco.dart';
 import 'package:ideal/src/screens/sacco/SaccoScreen.dart';
 import 'package:ideal/src/screens/saccos/saccos_screen.dart';
 import 'package:ideal/src/screens/signup/SignUpScreen.dart';
@@ -76,6 +77,15 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
       {
         return MaterialPageRoute(
             builder: (BuildContext context) => ProfileScreen());
+      }
+
+    case RegisterSaccoScreen.REGISTER_SACCO_SCREEN:
+      {
+        return MaterialPageRoute(
+          builder: (BuildContext context) {
+            return RegisterSaccoScreen();
+          },
+        );
       }
 
     default:
