@@ -5,11 +5,13 @@ import 'package:ideal/src/services/saccos/SaccoServiceApi.dart';
 class FirebaseSaccoService implements SaccoServiceApi {
   final _saccoCollection = FirebaseFirestore.instance.collection("saccos");
   @override
-  Future<void> registerSacco(Sacco sacco) async {
+  Future<String> registerSacco(Sacco sacco) async {
     try {
       DocumentReference reference = await _saccoCollection.add(sacco.toJson());
+      return reference.id;
     } catch (e) {
       print(e);
     }
+    return "";
   }
 }

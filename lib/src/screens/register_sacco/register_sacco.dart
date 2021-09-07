@@ -72,15 +72,15 @@ class _RegisterSaccoScreenState extends State<RegisterSaccoScreen> {
                   label: "Register",
                   press: () {
                     final _sacco = Sacco(
-                        name: "",
+                        name: _nameController.text,
                         status: "",
-                        price: 89000,
+                        price: double.tryParse(_priceController.text) ?? 0,
                         frequency: "Monthly",
                         location: "Masaka",
-                        description: "new",
+                        description: _descriptionController.text,
                         banner: "");
                     _bloc.register(_sacco).then((value) {
-                      print("success");
+                      Navigator.of(context).pop();
                     }).catchError((error) {
                       print("Error");
                     });
