@@ -21,29 +21,46 @@ class _RegisterSaccoScreenState extends State<RegisterSaccoScreen> {
       appBar: AppBar(
         title: Text("Register Sacco"),
       ),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * .5),
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(kDefaultPadding),
-              child: Center(
-                child: Text(
-                  "Sacco Registration",
-                  style: Theme.of(context).textTheme.headline4!.copyWith(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
+      body: SafeArea(
+        childs: Container(
+          padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * .5),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(kDefaultPadding),
+                  child: Center(
+                    child: Text(
+                      "Sacco Registration",
+                      style: Theme.of(context).textTheme.headline4!.copyWith(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ),
                 ),
-              ),
+                EditText(
+                  hint: "Name",
+                  validator: (value) {},
+                  keyboard: TextInputType.name,
+                  controller: _nameController,
+                ),
+                EditText(
+                  hint: "Price",
+                  validator: (value) {},
+                  keyboard: TextInputType.name,
+                  controller: _nameController,
+                ),
+                EditText(
+                  hint: "Descriptions",
+                  validator: (value) {},
+                  keyboard: TextInputType.name,
+                  controller: _nameController,
+                  maxLine: 10,
+                ),
+              ],
             ),
-            EditText(
-              hint: "Name",
-              validator: (value) {},
-              keyboard: TextInputType.name,
-              controller: _nameController,
-            ),
-          ],
+          ),
         ),
       ),
     );
@@ -56,35 +73,41 @@ class EditText extends StatelessWidget {
   final String? Function(String? value)? validator;
   final TextEditingController controller;
   final TextInputType keyboard;
+  final int maxLine;
   const EditText(
       {Key? key,
       required this.hint,
       this.tailingText,
       required this.validator,
       required this.controller,
-      required this.keyboard})
+      required this.keyboard,
+      this.maxLine = 1})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        filled: true,
-        border: InputBorder.none,
-        hintText: hint,
-        hintStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
-              color: Colors.black45,
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: kDefaultPadding * .5),
+      child: TextFormField(
+        controller: controller,
+        decoration: InputDecoration(
+          filled: true,
+          border: InputBorder.none,
+          hintText: hint,
+          hintStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
+                color: Colors.black45,
+                fontSize: 16,
+              ),
+          suffixText: tailingText,
+        ),
+        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+              color: Colors.black54,
               fontSize: 16,
             ),
-        suffixText: tailingText,
+        keyboardType: keyboard,
+        validator: validator,
+        maxLines: maxLine,
       ),
-      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-            color: Colors.black54,
-            fontSize: 16,
-          ),
-      keyboardType: keyboard,
-      validator: validator,
     );
   }
 }
