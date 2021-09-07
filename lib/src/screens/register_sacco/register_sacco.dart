@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/screens/widgets/buttons.dart';
 
 class RegisterSaccoScreen extends StatefulWidget {
   static const REGISTER_SACCO_SCREEN = "/register_sacco";
@@ -15,6 +16,8 @@ class RegisterSaccoScreen extends StatefulWidget {
 
 class _RegisterSaccoScreenState extends State<RegisterSaccoScreen> {
   final _nameController = TextEditingController(text: "");
+  final _priceController = TextEditingController(text: "");
+  final _descriptionController = TextEditingController(text: "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,16 +51,21 @@ class _RegisterSaccoScreenState extends State<RegisterSaccoScreen> {
                 EditText(
                   hint: "Price",
                   validator: (value) {},
-                  keyboard: TextInputType.name,
-                  controller: _nameController,
+                  keyboard: TextInputType.numberWithOptions(decimal: true),
+                  controller: _priceController,
                 ),
                 EditText(
                   hint: "Descriptions",
                   validator: (value) {},
                   keyboard: TextInputType.name,
-                  controller: _nameController,
+                  controller: _descriptionController,
                   maxLine: 10,
                 ),
+                RoundedCornerButton(
+                  color: Colors.green,
+                  label: "Register",
+                  press: () {},
+                )
               ],
             ),
           ),
