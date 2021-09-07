@@ -15,6 +15,10 @@ class RegisterSaccoScreen extends StatefulWidget {
 class _RegisterSaccoScreenState extends State<RegisterSaccoScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Register Sacco"),
+      ),
+    );
   }
 }
