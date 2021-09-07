@@ -58,7 +58,16 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
     case SaccosScreen.SACCOS_SCREEN_ROUTE:
       {
-        return MaterialPageRoute(builder: (context) => SaccosScreen());
+        final SaccoServiceApi _service = FirebaseSaccoService();
+        final SaccoBloc _bloc = SaccoBloc(_service);
+        return MaterialPageRoute(
+          builder: (BuildContext context) {
+            return SaccoBlocProvider(
+              child: SaccosScreen(),
+              saccoBloc: _bloc,
+            );
+          },
+        );
       }
 
     case SaccoScreen.SACCO_SCREEN_ROUTE:
