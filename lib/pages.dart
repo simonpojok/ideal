@@ -82,8 +82,14 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
       }
     case OffersScreen.OFFERS_SCREEN_ROUTE:
       {
-        return MaterialPageRoute(
-            builder: (BuildContext context) => OffersScreen());
+        final LoanOfferApi _service = FirebaseLoanOfferService();
+        final LoanOfferBloc _bloc = LoanOfferBloc(_service);
+        return MaterialPageRoute(builder: (BuildContext context) {
+          return LoanOfferBlocProvider(
+            child: OffersScreen(),
+            loanOfferBloc: _bloc,
+          );
+        });
       }
 
     case LoanCalculatorScreen.LOAN_CALCULATOR_ROUTE:
