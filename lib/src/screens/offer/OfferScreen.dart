@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/screens/widgets/labeled_text_input.dart';
 
 class OfferScreen extends StatefulWidget {
   static const OFFER_SCREEN_ROUTE = '/offer_screen';
+
   const OfferScreen({Key? key}) : super(key: key);
 
   @override
@@ -45,7 +47,11 @@ class _OfferScreenState extends State<OfferScreen> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  RangePriceInput(),
+                  LabeledTextInput(
+                    hint: "From Amount",
+                    onChange: (String value) {},
+                    label: "From",
+                  ),
                   Container(
                     padding: EdgeInsets.symmetric(
                       horizontal: kDefaultPadding * .5,
@@ -60,7 +66,11 @@ class _OfferScreenState extends State<OfferScreen> {
                       ),
                     ),
                   ),
-                  RangePriceInput(),
+                  LabeledTextInput(
+                    hint: "To Amount",
+                    onChange: (String value) {},
+                    label: "To",
+                  ),
                 ],
               ),
               SizedBox(
@@ -78,47 +88,5 @@ class _OfferScreenState extends State<OfferScreen> {
         ),
       ),
     );
-  }
-}
-
-class RangePriceInput extends StatelessWidget {
-  const RangePriceInput({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-        child: Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              bottom: kDefaultPadding * .5,
-            ),
-            child: Text(
-              "Loan Range",
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                    fontSize: 15,
-                    color: Colors.black45,
-                    fontWeight: FontWeight.normal,
-                  ),
-            ),
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              filled: true,
-              border: InputBorder.none,
-              fillColor: Colors.black12,
-            ),
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                  fontSize: 18,
-                  color: Colors.black45,
-                ),
-          ),
-        ],
-      ),
-    ));
   }
 }
