@@ -15,6 +15,10 @@ class DealScreen extends StatefulWidget {
 class _DealScreenState extends State<DealScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Deal Details"),
+      ),
+    );
   }
 }
