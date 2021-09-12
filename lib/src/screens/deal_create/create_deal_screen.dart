@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/blocs/deal/DealBlocProvider.dart';
+import 'package:ideal/src/models/deal_model.dart';
 import 'package:ideal/src/screens/widgets/filled_text_input.dart';
+import 'package:ideal/src/screens/widgets/information_botton_sheet.dart';
+import 'package:ideal/src/screens/widgets/loading_modal_botton_sheet.dart';
 import 'package:ideal/src/screens/widgets/loan_duration_picker.dart';
 import 'package:ideal/src/screens/widgets/rectangular_button.dart';
 
@@ -20,7 +24,7 @@ class CreateDealScreen extends StatefulWidget {
 
 class _CreateDealScreenState extends State<CreateDealScreen> {
   final _amountController = TextEditingController();
-  final _durationController = TextEditingController();
+  final _frequencyController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _rateController = TextEditingController();
   final _locationController = TextEditingController();
@@ -28,6 +32,7 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final _dealService = DealBlocProvider.of(context).dealBloc.dealApi;
     return Scaffold(
       appBar: AppBar(
         title: Text("Create Loan Request"),
@@ -76,7 +81,7 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
                 SizedBox(height: 10),
                 LoanDurationPicker(
                   hint: "Frequency",
-                  durationController: _durationController,
+                  durationController: _frequencyController,
                   options: ["Daily", "Weekly", "Monthly", "Yearly"],
                   onValueChanged: (String? value) {
                     setState(() {
@@ -111,7 +116,43 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
                 ),
                 SizedBox(height: 10),
                 RectangularButton(
-                  onTap: () {},
+                  onTap: () {
+                    final amount = _amountController.text;
+                    final frequency = _frequencyController.text;
+                    final rate = _rateController.text;
+                    final location = _locationController.text;
+                    final description = _descriptionController.text;
+
+                    Deal deal = Deal(
+                      description: description,
+                      price: double.tryParse(amount) ?? 0.0,
+                      frequency: frequency,
+                      rate: double.tryParse(rate) ?? 0.0,
+                      location: location,
+                      date: new DateTime.now().toIso8601String(),
+                    );
+
+                    LoadingModalBottomSheet.showBottomSheet(
+                        context, "Posting Loan Request...");
+                    _dealService.postDeal(deal).then((value) {
+                      InformationModalBottomSheet.showBottomSheet(context,
+                              "Posted Successfully", Colors.green, Icons.done)
+                          .then((value) {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                      });
+                    }).catchError((error) {
+                      InformationModalBottomSheet.showBottomSheet(
+                              context,
+                              "Unknown Error!\nTry again later",
+                              Colors.red,
+                              Icons.error_outline)
+                          .then((value) {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                      });
+                    });
+                  },
                   color: Colors.greenAccent,
                   label: 'Create Request',
                 )
