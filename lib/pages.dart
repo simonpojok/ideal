@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/blocs/loan_offer/LoanOfferBloc.dart';
+import 'package:ideal/src/blocs/loan_offer/LoanOfferBlocProvider.dart';
 import 'package:ideal/src/blocs/sacco/SaccoBloc.dart';
 import 'package:ideal/src/blocs/sacco/SaccoBlocProvider.dart';
 import 'package:ideal/src/screens/calc/loan_calculator.dart';
@@ -17,6 +19,8 @@ import 'package:ideal/src/screens/sacco/SaccoScreen.dart';
 import 'package:ideal/src/screens/saccos/saccos_screen.dart';
 import 'package:ideal/src/screens/signup/SignUpScreen.dart';
 import 'package:ideal/src/screens/welcome/WelcomeScreen.dart';
+import 'package:ideal/src/services/loan_offer/LoanOfferApi.dart';
+import 'package:ideal/src/services/loan_offer/LoanOfferFirebaseService.dart';
 import 'package:ideal/src/services/saccos/FirebaseSaccoService.dart';
 import 'package:ideal/src/services/saccos/SaccoServiceApi.dart';
 
@@ -117,8 +121,13 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
     case OfferScreen.OFFER_SCREEN_ROUTE:
       {
+        final LoanOfferApi _service = FirebaseLoanOfferService();
+        final LoanOfferBloc _bloc = LoanOfferBloc(_service);
         return MaterialPageRoute(builder: (BuildContext context) {
-          return OfferScreen();
+          return LoanOfferBlocProvider(
+            child: OfferScreen(),
+            loanOfferBloc: _bloc,
+          );
         });
       }
 
