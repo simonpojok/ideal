@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/screens/offer/OfferScreen.dart';
 
 const requirements =
     "Sadly, there are many specific bank loan requirements that you’ll need to meet in order to qualify. In most cases, small business owners have difficult meeting all of them. Or, even if they do, the process takes too long, especially if they have an immediate business need. Inpost, we’ll detail what a typical bank will expect from a small business loan applicant. Once you’re finished reading this blog post, you can determine if this is the right financing option for your small business.";
@@ -25,7 +26,13 @@ class _OffersScreenState extends State<OffersScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Offers"),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                OfferScreen.goToOfferScreen(context);
+              },
+              icon: Icon(Icons.add))
+        ],
       ),
       body: SafeArea(
         child: ListView.separated(

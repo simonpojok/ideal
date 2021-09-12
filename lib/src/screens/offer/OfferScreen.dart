@@ -7,7 +7,7 @@ class OfferScreen extends StatefulWidget {
   @override
   _OfferScreenState createState() => _OfferScreenState();
 
-  void goToOfferScreen(BuildContext context) {
+  static void goToOfferScreen(BuildContext context) {
     Navigator.of(context).pushNamed(OFFER_SCREEN_ROUTE);
   }
 }
