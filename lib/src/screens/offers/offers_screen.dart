@@ -48,7 +48,9 @@ class _OffersScreenState extends State<OffersScreen> {
                   itemBuilder: (BuildContext context, int index) {
                     LoanOffer offer =
                         LoanOffer.fromJson(snapshot.data.docs[index].data());
-                    return LoanOfferItemCard();
+                    return LoanOfferItemCard(
+                      offer: offer,
+                    );
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return Divider(
@@ -58,26 +60,26 @@ class _OffersScreenState extends State<OffersScreen> {
                 );
               }
 
-              return Center(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 6,
-                      ),
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 60,
+                    height: 60,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 6,
                     ),
-                    Text(
-                      "Loading...",
-                      style: Theme.of(context).textTheme.headline5!.copyWith(
-                            fontWeight: FontWeight.normal,
-                            fontSize: 16,
-                            color: Colors.black54,
-                          ),
-                    )
-                  ],
-                ),
+                  ),
+                  Text(
+                    "Loading...",
+                    style: Theme.of(context).textTheme.headline5!.copyWith(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 16,
+                          color: Colors.black54,
+                        ),
+                  )
+                ],
               );
             }),
       ),
@@ -86,8 +88,11 @@ class _OffersScreenState extends State<OffersScreen> {
 }
 
 class LoanOfferItemCard extends StatelessWidget {
+  final LoanOffer offer;
+
   const LoanOfferItemCard({
     Key? key,
+    required this.offer,
   }) : super(key: key);
 
   @override
@@ -97,26 +102,24 @@ class LoanOfferItemCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text("Simon Peter O"),
-          Container(
-            padding: EdgeInsets.all(kDefaultPadding * .5),
-            child: Text(
-              "16%",
-              style: Theme.of(context).textTheme.headline6!.copyWith(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
-            ),
-            decoration: BoxDecoration(
-              color: Colors.green,
-              borderRadius: BorderRadius.circular(5),
-            ),
-          )
+          Row(
+            children: [
+              Chip(label: Text("${offer.duration} ${offer.range}")),
+              SizedBox(
+                width: 1,
+              ),
+              Chip(
+                label: Text("${offer.rate}%"),
+                backgroundColor: Colors.greenAccent,
+              ),
+            ],
+          ),
         ],
       ),
       subtitle: Column(
         children: [
           Text(
-            requirements,
+            offer.description,
             style: Theme.of(context).textTheme.bodyText1!.copyWith(
                   color: Colors.black45,
                   fontSize: 16,
@@ -124,6 +127,59 @@ class LoanOfferItemCard extends StatelessWidget {
             maxLines: 4,
             overflow: TextOverflow.ellipsis,
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              RichText(
+                text: TextSpan(
+                  text: "${offer.fromAmount}",
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        color: Colors.black54,
+                      ),
+                  children: [
+                    TextSpan(
+                      text: "\tUGX",
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                            color: Colors.orangeAccent,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: kDefaultPadding * .5,
+                ),
+                child: Text(
+                  "-",
+                  style: Theme.of(context).textTheme.headline5!.copyWith(
+                        fontSize: 15,
+                        color: Colors.black,
+                      ),
+                ),
+              ),
+              RichText(
+                text: TextSpan(
+                  text: "${offer.toAmount}",
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        color: Colors.black54,
+                      ),
+                  children: [
+                    TextSpan(
+                      text: "\tUGX",
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                            color: Colors.orangeAccent,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
