@@ -16,6 +16,19 @@ class CreateDealScreen extends StatefulWidget {
 class _CreateDealScreenState extends State<CreateDealScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Create Loan Request"),
+      ),
+      body: SafeArea(
+        child: Container(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
