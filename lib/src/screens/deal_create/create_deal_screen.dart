@@ -68,26 +68,35 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
                   keyboard: TextInputType.numberWithOptions(decimal: true),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: kDefaultPadding * .5),
-                  child: Text(
-                    "Frequency",
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontSize: 15,
-                          color: Colors.black45,
-                          fontWeight: FontWeight.normal,
+                  margin: EdgeInsets.only(top: kDefaultPadding),
+                  padding: EdgeInsets.only(left: kDefaultPadding * .3),
+                  color: Colors.black12,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          "Frequency",
+                          style:
+                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                                    fontSize: 15,
+                                    color: Colors.black45,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                         ),
+                      ),
+                      SelectDropDown(
+                        value: selectedFrequency,
+                        onValueChange: (String? value) {
+                          setState(() {
+                            selectedFrequency = value ?? selectedFrequency;
+                          });
+                        },
+                        options: ["Daily", "Weekly", "Monthly", "Yearly"],
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: 10),
-                SelectDropDown(
-                  value: selectedFrequency,
-                  onValueChange: (String? value) {
-                    setState(() {
-                      selectedFrequency = value ?? selectedFrequency;
-                    });
-                  },
-                  options: ["Daily", "Weekly", "Monthly", "Yearly"],
-                ),
                 TextInputLabeled(
                   label: "Expected Rate",
                   hint: "Percentage  ( % )",
