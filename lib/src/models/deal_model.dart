@@ -9,10 +9,10 @@ class Deal {
   String frequency;
   double rate;
   double price;
-  List<DealEmail>? emails;
-  List<DealOffer>? offers;
-  List<DealShare>? sharers;
-  List<DealView>? views;
+  List<DealEmail> emails = [];
+  List<DealOffer> offers = [];
+  List<DealShare> sharers = [];
+  List<DealView> views = [];
 
   Deal({
     required this.date,
@@ -31,10 +31,10 @@ class Deal {
       "frequency": frequency,
       "rate": rate,
       "price": price,
-      "emails": emails!.map((DealEmail user) => user.toMap()),
-      "offers": offers!.map((DealOffer offer) => offer.toMap()),
-      "sharers": sharers!.map((DealShare share) => share.toMap()),
-      "views": views!.map((DealView dealView) => dealView.toMap()),
+      "emails": emails.map((DealEmail user) => user.toMap()),
+      "offers": offers.map((DealOffer offer) => offer.toMap()),
+      "sharers": sharers.map((DealShare share) => share.toMap()),
+      "views": views.map((DealView dealView) => dealView.toMap()),
       "userId": userId
     };
   }
