@@ -59,7 +59,14 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
     case DealsScreen.DEALS_SCREEN:
       {
-        return MaterialPageRoute(builder: (context) => DealsScreen());
+        DealApi service = DealFirebaseService();
+        DealBloc bloc = DealBloc(dealApi: service);
+        return MaterialPageRoute(
+          builder: (context) => DealBlocProvider(
+            dealBloc: bloc,
+            child: DealsScreen(),
+          ),
+        );
       }
 
     case DealScreen.DEAL_SCREEN_ROUTE:
