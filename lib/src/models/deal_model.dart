@@ -13,15 +13,16 @@ class Deal {
   List<DealOffer> offers = [];
   List<DealShare> sharers = [];
   List<DealView> views = [];
+  User user;
 
-  Deal({
-    required this.date,
-    required this.description,
-    required this.location,
-    required this.frequency,
-    required this.rate,
-    required this.price,
-  });
+  Deal(
+      {required this.date,
+      required this.description,
+      required this.location,
+      required this.frequency,
+      required this.rate,
+      required this.price,
+      required this.user});
 
   Map<String, dynamic> toJson() {
     return {
@@ -35,7 +36,8 @@ class Deal {
       "offers": offers.map((DealOffer offer) => offer.toMap()).toList(),
       "sharers": sharers.map((DealShare share) => share.toMap()).toList(),
       "views": views.map((DealView dealView) => dealView.toMap()).toList(),
-      "userId": userId
+      "userId": userId,
+      "user": user.toMap()
     };
   }
 
@@ -47,6 +49,7 @@ class Deal {
         frequency = deal["frequency"],
         rate = deal["rate"],
         price = deal["price"],
+        user = User.fromJson(deal["user"]),
         emails = (deal["emails"] as List<dynamic>)
             .map((e) => DealEmail.fromJson(e))
             .toList(),

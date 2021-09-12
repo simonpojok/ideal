@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/blocs/deal/DealBlocProvider.dart';
 import 'package:ideal/src/models/deal_model.dart';
+import 'package:ideal/src/models/user_model.dart';
 import 'package:ideal/src/screens/widgets/filled_text_input.dart';
 import 'package:ideal/src/screens/widgets/information_botton_sheet.dart';
 import 'package:ideal/src/screens/widgets/loading_modal_botton_sheet.dart';
@@ -130,6 +131,11 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
                       rate: double.tryParse(rate) ?? 0.0,
                       location: location,
                       date: new DateTime.now().toIso8601String(),
+                      user: User(
+                          username: "simonojok19",
+                          firstName: "Ojok",
+                          lastName: "Simon",
+                          id: ""),
                     );
 
                     LoadingModalBottomSheet.showBottomSheet(
