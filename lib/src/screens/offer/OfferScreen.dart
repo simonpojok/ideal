@@ -40,113 +40,116 @@ class _OfferScreenState extends State<OfferScreen> {
           padding: EdgeInsets.all(
             kDefaultPadding * .5,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: kDefaultPadding,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: kDefaultPadding,
+                  ),
+                  child: Text(
+                    "Create Loan Offer",
+                    style: Theme.of(context).textTheme.headline5!.copyWith(
+                          fontSize: 20,
+                          color: Colors.black54,
+                          fontWeight: FontWeight.bold,
+                        ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-                child: Text(
-                  "Create Loan Offer",
-                  style: Theme.of(context).textTheme.headline5!.copyWith(
-                        fontSize: 20,
-                        color: Colors.black54,
-                        fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: kDefaultPadding * .2,
+                    top: kDefaultPadding,
+                  ),
+                  child: TextInputLabel(
+                    label: "Price Range ( UGX )",
+                  ),
+                ),
+                PriceRangeTextInputGroup(
+                  fromAmountController: _fromAmountController,
+                  toAmountController: _toAmountController,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsets.symmetric(vertical: kDefaultPadding),
+                      child: TextInputLabel(
+                        label: "Price Range ( % )",
                       ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  bottom: kDefaultPadding * .2,
-                  top: kDefaultPadding,
-                ),
-                child: TextInputLabel(
-                  label: "Price Range ( UGX )",
-                ),
-              ),
-              PriceRangeTextInputGroup(
-                fromAmountController: _fromAmountController,
-                toAmountController: _toAmountController,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: kDefaultPadding),
-                    child: TextInputLabel(
-                      label: "Price Range ( % )",
                     ),
-                  ),
-                  TextFormField(
-                    controller: _rateController,
-                    decoration: InputDecoration(
-                      filled: true,
-                      border: InputBorder.none,
-                      fillColor: Colors.black12,
+                    TextFormField(
+                      controller: _rateController,
+                      decoration: InputDecoration(
+                        filled: true,
+                        border: InputBorder.none,
+                        fillColor: Colors.black12,
+                      ),
+                      keyboardType:
+                          TextInputType.numberWithOptions(decimal: true),
                     ),
-                    keyboardType:
-                        TextInputType.numberWithOptions(decimal: true),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextInputLabel(label: "Duration"),
-              LoanDurationPicker(
-                durationController: _durationController,
-                selectedValue: range,
-                onValueChanged: (String? value) {
-                  setState(() {
-                    range = value ?? range;
-                  });
-                },
-                options: ["Day", "Week", "Month", "Year"],
-              ),
-              TextInputLabel(label: "Description"),
-              Expanded(
-                child: FilledTextInput(
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextInputLabel(label: "Duration"),
+                LoanDurationPicker(
+                  durationController: _durationController,
+                  selectedValue: range,
+                  onValueChanged: (String? value) {
+                    setState(() {
+                      range = value ?? range;
+                    });
+                  },
+                  options: ["Day", "Week", "Month", "Year"],
+                ),
+                TextInputLabel(label: "Description"),
+                FilledTextInput(
                   onChange: (String value) {},
                   hint: "Description",
                   keyboard: TextInputType.multiline,
                   maxLine: 8,
                   controller: _descriptionController,
                 ),
-              ),
-              RectangularButton(
-                onTap: () {
-                  final fromAmount = _fromAmountController.text;
-                  final toAmount = _toAmountController.text;
-                  final rate = _rateController.text;
-                  final duration = _durationController.text;
-                  final description = _durationController.text;
+                SizedBox(
+                  height: 20,
+                ),
+                RectangularButton(
+                  onTap: () {
+                    final fromAmount = _fromAmountController.text;
+                    final toAmount = _toAmountController.text;
+                    final rate = _rateController.text;
+                    final duration = _durationController.text;
+                    final description = _durationController.text;
 
-                  final offer = LoanOffer(
-                    fromAmount: double.tryParse(fromAmount) ?? 0 / 0,
-                    toAmount: double.tryParse(toAmount) ?? 0.0,
-                    rate: int.tryParse(rate) ?? 0,
-                    duration: int.tryParse(duration) ?? 0,
-                    range: range,
-                    description: description,
-                  );
+                    final offer = LoanOffer(
+                      fromAmount: double.tryParse(fromAmount) ?? 0 / 0,
+                      toAmount: double.tryParse(toAmount) ?? 0.0,
+                      rate: int.tryParse(rate) ?? 0,
+                      duration: int.tryParse(duration) ?? 0,
+                      range: range,
+                      description: description,
+                    );
 
-                  _bloc.loanOfferApi.createLoanOffer(offer).then((value) {
-                    print(value);
-                    Navigator.of(context).pop();
-                  }).catchError((error) {
-                    print("Error occurred");
-                  });
-                },
-                label: "Create Offer",
-                color: Theme.of(context).primaryColor,
-              ),
-            ],
+                    _bloc.loanOfferApi.createLoanOffer(offer).then((value) {
+                      print(value);
+                      Navigator.of(context).pop();
+                    }).catchError((error) {
+                      print("Error occurred");
+                    });
+                  },
+                  label: "Create Offer",
+                  color: Theme.of(context).primaryColor,
+                ),
+              ],
+            ),
           ),
         ),
       ),
