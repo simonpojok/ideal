@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/blocs/deal/DealBloc.dart';
+import 'package:ideal/src/blocs/deal/DealBlocProvider.dart';
 import 'package:ideal/src/blocs/loan_offer/LoanOfferBloc.dart';
 import 'package:ideal/src/blocs/loan_offer/LoanOfferBlocProvider.dart';
 import 'package:ideal/src/blocs/sacco/SaccoBloc.dart';
@@ -6,6 +8,7 @@ import 'package:ideal/src/blocs/sacco/SaccoBlocProvider.dart';
 import 'package:ideal/src/screens/calc/loan_calculator.dart';
 import 'package:ideal/src/screens/dashboard/DashboardScreen.dart';
 import 'package:ideal/src/screens/deal/deal_detail.dart';
+import 'package:ideal/src/screens/deal_create/create_deal_screen.dart';
 import 'package:ideal/src/screens/deals/deals_screen.dart';
 import 'package:ideal/src/screens/login/LoginScreen.dart';
 import 'package:ideal/src/screens/message/MessageScreen.dart';
@@ -19,6 +22,8 @@ import 'package:ideal/src/screens/sacco/SaccoScreen.dart';
 import 'package:ideal/src/screens/saccos/saccos_screen.dart';
 import 'package:ideal/src/screens/signup/SignUpScreen.dart';
 import 'package:ideal/src/screens/welcome/WelcomeScreen.dart';
+import 'package:ideal/src/services/deal/DealApi.dart';
+import 'package:ideal/src/services/deal/DealFirebaseService.dart';
 import 'package:ideal/src/services/loan_offer/LoanOfferApi.dart';
 import 'package:ideal/src/services/loan_offer/LoanOfferFirebaseService.dart';
 import 'package:ideal/src/services/saccos/FirebaseSaccoService.dart';
@@ -134,6 +139,15 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
             child: OfferScreen(),
             loanOfferBloc: _bloc,
           );
+        });
+      }
+
+    case CreateDealScreen.CREATE_DEAL_SCREEN_ROUTE:
+      {
+        final DealApi service = DealFirebaseService();
+        final DealBloc _bloc = DealBloc(dealApi: service);
+        return MaterialPageRoute(builder: (BuildContext context) {
+          return DealBlocProvider(child: CreateDealScreen(), dealBloc: _bloc);
         });
       }
 
