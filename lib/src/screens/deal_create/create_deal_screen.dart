@@ -5,8 +5,8 @@ import 'package:ideal/src/models/user_model.dart';
 import 'package:ideal/src/screens/widgets/filled_text_input.dart';
 import 'package:ideal/src/screens/widgets/information_botton_sheet.dart';
 import 'package:ideal/src/screens/widgets/loading_modal_botton_sheet.dart';
-import 'package:ideal/src/screens/widgets/loan_duration_picker.dart';
 import 'package:ideal/src/screens/widgets/rectangular_button.dart';
+import 'package:ideal/src/screens/widgets/select_dropdown.dart';
 
 import '../../constants.dart';
 
@@ -25,11 +25,10 @@ class CreateDealScreen extends StatefulWidget {
 
 class _CreateDealScreenState extends State<CreateDealScreen> {
   final _amountController = TextEditingController();
-  final _frequencyController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _rateController = TextEditingController();
   final _locationController = TextEditingController();
-  String selectedDuration = "Daily";
+  String selectedFrequency = "Daily";
 
   @override
   Widget build(BuildContext context) {
@@ -80,16 +79,14 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
                   ),
                 ),
                 SizedBox(height: 10),
-                LoanDurationPicker(
-                  hint: "Frequency",
-                  durationController: _frequencyController,
-                  options: ["Daily", "Weekly", "Monthly", "Yearly"],
-                  onValueChanged: (String? value) {
+                SelectDropDown(
+                  value: selectedFrequency,
+                  onValueChange: (String? value) {
                     setState(() {
-                      selectedDuration = value ?? selectedDuration;
+                      selectedFrequency = value ?? selectedFrequency;
                     });
                   },
-                  selectedValue: selectedDuration,
+                  options: ["Daily", "Weekly", "Monthly", "Yearly"],
                 ),
                 TextInputLabeled(
                   label: "Expected Rate",
@@ -119,7 +116,6 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
                 RectangularButton(
                   onTap: () {
                     final amount = _amountController.text;
-                    final frequency = _frequencyController.text;
                     final rate = _rateController.text;
                     final location = _locationController.text;
                     final description = _descriptionController.text;
@@ -127,7 +123,7 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
                     Deal deal = Deal(
                       description: description,
                       price: double.tryParse(amount) ?? 0.0,
-                      frequency: frequency,
+                      frequency: selectedFrequency,
                       rate: double.tryParse(rate) ?? 0.0,
                       location: location,
                       date: new DateTime.now().toIso8601String(),
