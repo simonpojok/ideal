@@ -127,7 +127,7 @@ class _OfferScreenState extends State<OfferScreen> {
                     final toAmount = _toAmountController.text;
                     final rate = _rateController.text;
                     final duration = _durationController.text;
-                    final description = _durationController.text;
+                    final description = _descriptionController.text;
 
                     final offer = LoanOffer(
                       fromAmount: double.tryParse(fromAmount) ?? 0.0,
