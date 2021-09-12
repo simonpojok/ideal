@@ -7,9 +7,6 @@ import 'package:ideal/src/screens/deal_create/create_deal_screen.dart';
 import 'package:ideal/src/screens/widgets/stream_loading_indicator.dart';
 import 'package:intl/intl.dart';
 
-const description =
-    "The term loan refers to a type of credit vehicle in which a sum of money is lent to another party in exchange for future repayment of the value or principal amount. In many cases, the offers also adds interest and/or finance charges to the principal value which the borrower must repay in addition to the principal balance. Loans may be for a specific, one-time amount, or they may be available as an open-ended line of credit up to a specified limit. Loans come in many different forms including secured, unsecured, commercial, and personal loans.";
-
 class DealsScreen extends StatefulWidget {
   static const DEALS_SCREEN = "/DealsListScreen";
 
@@ -110,32 +107,32 @@ class DealListTile extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "Simon Ojok",
+                  "${deal.user.firstName} ${deal.user.lastName}",
                   style: Theme.of(context).textTheme.headline5!.copyWith(
                         color: Colors.orange,
                         fontSize: 18,
                       ),
                   overflow: TextOverflow.clip,
                 ),
-                SizedBox(
-                  width: 5,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.location_on,
-                      size: 15,
-                      color: Colors.black45,
-                    ),
-                    Text(
-                      deal.location,
-                      style: Theme.of(context).textTheme.caption!.copyWith(
-                            color: Colors.black45,
-                            fontSize: 14,
-                          ),
-                    )
-                  ],
-                )
+                // SizedBox(
+                //   width: 5,
+                // ),
+                // Row(
+                //   children: [
+                //     Icon(
+                //       Icons.location_on,
+                //       size: 15,
+                //       color: Colors.black45,
+                //     ),
+                //     Text(
+                //       deal.location,
+                //       style: Theme.of(context).textTheme.caption!.copyWith(
+                //             color: Colors.black45,
+                //             fontSize: 14,
+                //           ),
+                //     )
+                //   ],
+                // )
               ],
             ),
             Text(
@@ -152,9 +149,10 @@ class DealListTile extends StatelessWidget {
       subtitle: Container(
         width: double.infinity,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              description,
+              deal.description,
               style: Theme.of(context).textTheme.bodyText2!.copyWith(
                     color: Colors.black45,
                     fontSize: 16,
@@ -169,7 +167,7 @@ class DealListTile extends StatelessWidget {
                 children: [
                   RichText(
                     text: TextSpan(
-                        text: "3,000, 000\t\t",
+                        text: "${deal.price}\t\t",
                         style: Theme.of(context).textTheme.headline6!.copyWith(
                               color: Colors.green,
                               fontSize: 18,
@@ -186,8 +184,12 @@ class DealListTile extends StatelessWidget {
                           )
                         ]),
                   ),
+                  Flexible(child: Container()),
                   Chip(
-                    label: const Text('16% Monthly'),
+                    label: Text('${deal.rate}%'),
+                  ),
+                  Chip(
+                    label: Text('${deal.frequency}'),
                   ),
                 ],
               ),
@@ -198,20 +200,20 @@ class DealListTile extends StatelessWidget {
                 DealActionChip(
                   iconData: Icons.email,
                   onPress: () {},
-                  count: 10,
+                  count: deal.emails.length,
                 ),
                 DealActionChip(
                   iconData: Icons.visibility,
                   onPress: () {},
-                  count: 30,
+                  count: deal.views.length,
                 ),
                 DealActionChip(
                   iconData: Icons.monetization_on_outlined,
                   onPress: () {},
-                  count: 1,
+                  count: deal.offers.length,
                 ),
                 DealActionChip(
-                  count: 3,
+                  count: deal.sharers.length,
                   iconData: Icons.share,
                   onPress: () {},
                 ),
