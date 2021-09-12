@@ -101,7 +101,23 @@ class LoanOfferItemCard extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Simon Peter O"),
+          RichText(
+            text: TextSpan(
+                text: "${offer.user?.lastName} ${offer.user?.firstName}",
+                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      color: Colors.black54,
+                      fontSize: 16,
+                    ),
+                children: [
+                  TextSpan(
+                    text: "\t@${offer.user?.username}",
+                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                          color: Colors.black26,
+                          fontSize: 13,
+                        ),
+                  ),
+                ]),
+          ),
           Row(
             children: [
               Chip(label: Text("${offer.duration} ${offer.range}")),
@@ -123,6 +139,7 @@ class LoanOfferItemCard extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyText1!.copyWith(
                   color: Colors.black45,
                   fontSize: 16,
+                  fontWeight: FontWeight.normal,
                 ),
             maxLines: 4,
             overflow: TextOverflow.ellipsis,

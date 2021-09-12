@@ -132,13 +132,13 @@ class _OfferScreenState extends State<OfferScreen> {
                     final description = _descriptionController.text;
 
                     final offer = LoanOffer(
-                      fromAmount: double.tryParse(fromAmount) ?? 0.0,
-                      toAmount: double.tryParse(toAmount) ?? 0.0,
-                      rate: int.tryParse(rate) ?? 0,
-                      duration: int.tryParse(duration) ?? 0,
-                      range: range,
-                      description: description,
-                    );
+                        fromAmount: double.tryParse(fromAmount) ?? 0.0,
+                        toAmount: double.tryParse(toAmount) ?? 0.0,
+                        rate: int.tryParse(rate) ?? 0,
+                        duration: int.tryParse(duration) ?? 0,
+                        range: range,
+                        description: description,
+                        userid: "");
 
                     LoadingModalBottomSheet.showBottomSheet(
                         context, "Creating Loan Offer...");

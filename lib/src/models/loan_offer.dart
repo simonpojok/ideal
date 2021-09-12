@@ -1,3 +1,5 @@
+import 'package:ideal/src/models/user_model.dart';
+
 class LoanOffer {
   double fromAmount;
   double toAmount;
@@ -5,6 +7,8 @@ class LoanOffer {
   int duration;
   String range;
   String description;
+  String userid;
+  User? user;
 
   LoanOffer({
     required this.fromAmount,
@@ -13,6 +17,7 @@ class LoanOffer {
     required this.duration,
     required this.range,
     required this.description,
+    required this.userid,
   });
 
   LoanOffer.fromJson(Map<String, dynamic> loanOffer)
@@ -21,6 +26,8 @@ class LoanOffer {
         rate = loanOffer["rate"] ?? 0,
         duration = loanOffer["duration"] ?? 0,
         range = loanOffer["range"] ?? "Month",
+        userid = loanOffer["userid"],
+        user = User.fromJson(loanOffer["user"]),
         description = loanOffer["description"] ?? "...";
 
   Map<String, dynamic> toJson() => {
