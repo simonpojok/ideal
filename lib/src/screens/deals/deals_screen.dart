@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/blocs/deal/DealBlocProvider.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/models/deal_model.dart';
 import 'package:ideal/src/screens/deal/deal_detail.dart';
 import 'package:ideal/src/screens/deal_create/create_deal_screen.dart';
 import 'package:ideal/src/screens/widgets/stream_loading_indicator.dart';
+import 'package:intl/intl.dart';
 
 const description =
     "The term loan refers to a type of credit vehicle in which a sum of money is lent to another party in exchange for future repayment of the value or principal amount. In many cases, the offers also adds interest and/or finance charges to the principal value which the borrower must repay in addition to the principal balance. Loans may be for a specific, one-time amount, or they may be available as an open-ended line of credit up to a specified limit. Loans come in many different forms including secured, unsecured, commercial, and personal loans.";
@@ -61,47 +63,39 @@ class _DealsScreenState extends State<DealsScreen> {
       body: StreamBuilder(
           stream: service.getDeals(),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            return ListView.separated(
-              itemBuilder: (BuildContext context, int index) {
-                if (snapshot.hasData) {
-                  return ListView.separated(
-                    itemCount: snapshot.data.docs.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      // LoanOffer offer =
-                      // LoanOffer.fromJson(snapshot.data.docs[index].data());
-                      // return LoanOfferItemCard(
-                      //   offer: offer,
-                      // );
-                      return DealListTile();
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return Divider(
-                        height: 1,
-                      );
-                    },
+            if (snapshot.hasData) {
+              return ListView.separated(
+                itemCount: snapshot.data.docs.length,
+                itemBuilder: (BuildContext context, int index) {
+                  Deal deal = Deal.fromJson(snapshot.data.docs[index].data());
+                  return DealListTile(
+                    deal: deal,
                   );
-                }
-                return StreamLoadingIndicator();
-              },
-              itemCount: 30,
-              separatorBuilder: (BuildContext context, int index) {
-                return Divider(
-                  height: 1,
-                );
-              },
-            );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return Divider(
+                    height: 1,
+                  );
+                },
+              );
+            }
+            return StreamLoadingIndicator();
           }),
     );
   }
 }
 
 class DealListTile extends StatelessWidget {
+  final Deal deal;
   const DealListTile({
     Key? key,
+    required this.deal,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    DateTime date = DateTime.parse(deal.date);
+    String dateTime = DateFormat("MM/dd/yyyy hh:mm a").format(date);
     return ListTile(
       onTap: () => {DealScreen.goToDealScreen(context)},
       contentPadding: EdgeInsets.symmetric(
@@ -134,7 +128,7 @@ class DealListTile extends StatelessWidget {
                       color: Colors.black45,
                     ),
                     Text(
-                      "Masaka",
+                      deal.location,
                       style: Theme.of(context).textTheme.caption!.copyWith(
                             color: Colors.black45,
                             fontSize: 14,
@@ -145,7 +139,7 @@ class DealListTile extends StatelessWidget {
               ],
             ),
             Text(
-              "12-06-2023",
+              dateTime,
               style: Theme.of(context).textTheme.subtitle1!.copyWith(
                     color: Colors.black45,
                     fontSize: 13,

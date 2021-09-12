@@ -47,18 +47,18 @@ class Deal {
         frequency = deal["frequency"],
         rate = deal["rate"],
         price = deal["price"],
-        emails = ((deal["emails"] as List<Map<String, dynamic>>).map(
-                (Map<String, dynamic> dealMail) => DealEmail.fromJson(dealMail))
-            as List<DealEmail>),
-        offers = ((deal["offers"] as List<Map<String, dynamic>>)
-                .map((Map<String, dynamic> offer) => DealOffer.fromJson(offer))
-            as List<DealOffer>),
-        sharers = ((deal["sharers"] as List<Map<String, dynamic>>)
-                .map((Map<String, dynamic> share) => DealShare.fromJson(share))
-            as List<DealShare>),
-        views = ((deal["views"] as List<Map<String, dynamic>>).map(
-                (Map<String, dynamic> dealView) => DealView.fromJson(dealView))
-            as List<DealView>);
+        emails = (deal["emails"] as List<dynamic>)
+            .map((e) => DealEmail.fromJson(e))
+            .toList(),
+        offers = (deal["offers"] as List<dynamic>)
+            .map((e) => DealOffer.fromJson(e))
+            .toList(),
+        sharers = (deal["sharers"] as List<dynamic>)
+            .map((e) => DealShare.fromJson(e))
+            .toList(),
+        views = (deal["views"] as List<dynamic>)
+            .map((e) => DealView.fromJson(e))
+            .toList();
 }
 
 class DealView {
