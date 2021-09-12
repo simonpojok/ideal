@@ -39,13 +39,19 @@ class _OfferScreenState extends State<OfferScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                "Create Loan Offer",
-                style: Theme.of(context).textTheme.headline5!.copyWith(
-                      fontSize: 20,
-                      color: Colors.black54,
-                    ),
-                textAlign: TextAlign.center,
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: kDefaultPadding,
+                ),
+                child: Text(
+                  "Create Loan Offer",
+                  style: Theme.of(context).textTheme.headline5!.copyWith(
+                        fontSize: 20,
+                        color: Colors.black54,
+                        fontWeight: FontWeight.bold,
+                      ),
+                  textAlign: TextAlign.center,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(
