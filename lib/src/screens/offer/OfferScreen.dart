@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/blocs/loan_offer/LoanOfferBlocProvider.dart';
 import 'package:ideal/src/constants.dart';
+import 'package:ideal/src/models/loan_offer.dart';
 import 'package:ideal/src/screens/offer/widgets/price_range_input_group.dart';
 import 'package:ideal/src/screens/widgets/filled_text_input.dart';
 import 'package:ideal/src/screens/widgets/loan_duration_picker.dart';
@@ -21,12 +23,14 @@ class OfferScreen extends StatefulWidget {
 class _OfferScreenState extends State<OfferScreen> {
   final TextEditingController _fromAmountController = TextEditingController();
   final TextEditingController _toAmountController = TextEditingController();
+  final TextEditingController _rateController = TextEditingController();
   final TextEditingController _durationController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  String duration = "Month";
+  String range = "Month";
 
   @override
   Widget build(BuildContext context) {
+    final _bloc = LoanOfferBlocProvider.of(context).loanOfferBloc;
     return Scaffold(
       appBar: AppBar(
         title: Text("Publish Load Offer"),
@@ -80,6 +84,7 @@ class _OfferScreenState extends State<OfferScreen> {
                     ),
                   ),
                   TextFormField(
+                    controller: _rateController,
                     decoration: InputDecoration(
                       filled: true,
                       border: InputBorder.none,
@@ -96,10 +101,10 @@ class _OfferScreenState extends State<OfferScreen> {
               TextInputLabel(label: "Duration"),
               LoanDurationPicker(
                 durationController: _durationController,
-                selectedValue: duration,
+                selectedValue: range,
                 onValueChanged: (String? value) {
                   setState(() {
-                    duration = value ?? duration;
+                    range = value ?? range;
                   });
                 },
                 options: ["Day", "Week", "Month", "Year"],
@@ -115,7 +120,29 @@ class _OfferScreenState extends State<OfferScreen> {
                 ),
               ),
               RectangularButton(
-                onTap: () {},
+                onTap: () {
+                  final fromAmount = _fromAmountController.text;
+                  final toAmount = _toAmountController.text;
+                  final rate = _rateController.text;
+                  final duration = _durationController.text;
+                  final description = _durationController.text;
+
+                  final offer = LoanOffer(
+                    fromAmount: double.tryParse(fromAmount) ?? 0 / 0,
+                    toAmount: double.tryParse(toAmount) ?? 0.0,
+                    rate: int.tryParse(rate) ?? 0,
+                    duration: int.tryParse(duration) ?? 0,
+                    range: range,
+                    description: description,
+                  );
+
+                  _bloc.loanOfferApi.createLoanOffer(offer).then((value) {
+                    print(value);
+                    Navigator.of(context).pop();
+                  }).catchError((error) {
+                    print("Error occurred");
+                  });
+                },
                 label: "Create Offer",
                 color: Theme.of(context).primaryColor,
               ),
