@@ -16,6 +16,8 @@ class OfferScreen extends StatefulWidget {
 }
 
 class _OfferScreenState extends State<OfferScreen> {
+  final TextEditingController _fromAmountController = TextEditingController();
+  final TextEditingController _toAmountController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +41,7 @@ class _OfferScreenState extends State<OfferScreen> {
                 child: Text(
                   "Loan Range",
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                        fontSize: 18,
+                        fontSize: 15,
                         color: Colors.black45,
                       ),
                 ),
@@ -48,6 +50,7 @@ class _OfferScreenState extends State<OfferScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   LabeledTextInput(
+                    controller: _fromAmountController,
                     hint: "From Amount",
                     onChange: (String value) {},
                     label: "From",
@@ -67,6 +70,7 @@ class _OfferScreenState extends State<OfferScreen> {
                     ),
                   ),
                   LabeledTextInput(
+                    controller: _toAmountController,
                     hint: "To Amount",
                     onChange: (String value) {},
                     label: "To",

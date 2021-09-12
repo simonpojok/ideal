@@ -7,12 +7,14 @@ class LabeledTextInput extends StatelessWidget {
   final String hint;
   final Function(String value) onChange;
   final String label;
+  final TextEditingController controller;
 
   const LabeledTextInput({
     Key? key,
     required this.hint,
     required this.onChange,
     required this.label,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -40,6 +42,7 @@ class LabeledTextInput extends StatelessWidget {
             hint: hint,
             keyboard: TextInputType.numberWithOptions(decimal: true),
             maxLine: 1,
+            controller: controller,
           ),
         ],
       ),

@@ -7,16 +7,19 @@ class FilledTextInput extends StatelessWidget {
     required this.hint,
     required this.keyboard,
     required this.maxLine,
+    required this.controller,
   }) : super(key: key);
 
   final Function(String value) onChange;
   final String hint;
   final TextInputType keyboard;
   final int maxLine;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       onChanged: onChange,
       decoration: InputDecoration(
         hintText: hint,
