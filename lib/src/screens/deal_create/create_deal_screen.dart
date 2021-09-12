@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/screens/widgets/filled_text_input.dart';
 import 'package:ideal/src/screens/widgets/loan_duration_picker.dart';
+import 'package:ideal/src/screens/widgets/rectangular_button.dart';
 
 import '../../constants.dart';
 
@@ -20,7 +21,11 @@ class CreateDealScreen extends StatefulWidget {
 class _CreateDealScreenState extends State<CreateDealScreen> {
   final _amountController = TextEditingController();
   final _durationController = TextEditingController();
+  final _descriptionController = TextEditingController();
+  final _rateController = TextEditingController();
+  final _locationController = TextEditingController();
   String selectedDuration = "Daily";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +73,7 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
                         ),
                   ),
                 ),
+                SizedBox(height: 10),
                 LoanDurationPicker(
                   hint: "Frequency",
                   durationController: _durationController,
@@ -78,6 +84,36 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
                     });
                   },
                   selectedValue: selectedDuration,
+                ),
+                TextInputLabeled(
+                  label: "Expected Rate",
+                  hint: "Percentage  ( % )",
+                  amountController: _rateController,
+                  lineNumber: 1,
+                  keyboard: TextInputType.numberWithOptions(decimal: true),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 5),
+                  child: TextInputLabeled(
+                    label: "Location",
+                    hint: "Your Location",
+                    amountController: _locationController,
+                    lineNumber: 1,
+                    keyboard: TextInputType.text,
+                  ),
+                ),
+                TextInputLabeled(
+                  label: "Comment",
+                  hint: "comment here",
+                  amountController: _descriptionController,
+                  lineNumber: 6,
+                  keyboard: TextInputType.text,
+                ),
+                SizedBox(height: 10),
+                RectangularButton(
+                  onTap: () {},
+                  color: Colors.greenAccent,
+                  label: 'Create Request',
                 )
               ],
             ),
@@ -94,6 +130,7 @@ class TextInputLabeled extends StatelessWidget {
   final String hint;
   final int lineNumber;
   final TextInputType keyboard;
+
   const TextInputLabeled({
     Key? key,
     required TextEditingController amountController,
