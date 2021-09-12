@@ -8,6 +8,7 @@ import 'package:ideal/src/screens/deals/deals_screen.dart';
 import 'package:ideal/src/screens/login/LoginScreen.dart';
 import 'package:ideal/src/screens/message/MessageScreen.dart';
 import 'package:ideal/src/screens/messages/MessagesScreen.dart';
+import 'package:ideal/src/screens/my_sacco/MySaccoGroup.dart';
 import 'package:ideal/src/screens/offers/offers_screen.dart';
 import 'package:ideal/src/screens/profile/ProfileScreen.dart';
 import 'package:ideal/src/screens/register_sacco/register_sacco.dart';
@@ -104,6 +105,20 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
             );
           },
         );
+      }
+
+    case MySaccoGroupScreen.MY_SACCO_GROUP_ROUTE:
+      {
+        return MaterialPageRoute(builder: (BuildContext context) {
+          return MySaccoGroupScreen();
+        });
+      }
+
+    case OffersScreen.OFFERS_SCREEN_ROUTE:
+      {
+        return MaterialPageRoute(builder: (BuildContext context) {
+          return OffersScreen();
+        });
       }
 
     default:

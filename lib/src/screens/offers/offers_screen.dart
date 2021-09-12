@@ -25,6 +25,7 @@ class _OffersScreenState extends State<OffersScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Offers"),
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
       ),
       body: SafeArea(
         child: ListView.separated(
