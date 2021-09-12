@@ -69,6 +69,7 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
                   ),
                 ),
                 LoanDurationPicker(
+                  hint: "Frequency",
                   durationController: _durationController,
                   options: ["Daily", "Weekly", "Monthly", "Yearly"],
                   onValueChanged: (String? value) {

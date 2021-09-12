@@ -10,13 +10,15 @@ class LoanDurationPicker extends StatelessWidget {
       required this.durationController,
       required this.selectedValue,
       required this.onValueChanged,
-      required this.options})
+      required this.options,
+      this.hint = 'Duration'})
       : super(key: key);
 
   final TextEditingController durationController;
   final String selectedValue;
   final Function(String? value) onValueChanged;
   final List<String> options;
+  final String hint;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -29,7 +31,7 @@ class LoanDurationPicker extends StatelessWidget {
             child: CalculatorEditText(
               controller: durationController,
               leadingIcon: Icons.calendar_today,
-              hint: 'Duration',
+              hint: hint,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
