@@ -23,7 +23,7 @@ class Deal {
     required this.price,
   });
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       "date": date,
       "description": description,
