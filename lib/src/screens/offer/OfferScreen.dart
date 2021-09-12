@@ -143,17 +143,22 @@ class _OfferScreenState extends State<OfferScreen> {
                     LoadingModalBottomSheet.showBottomSheet(
                         context, "Creating Loan Offer...");
                     _bloc.loanOfferApi.createLoanOffer(offer).then((value) {
-                      Navigator.of(context).pop();
-
                       InformationModalBottomSheet.showBottomSheet(context,
-                          "Created Successfully", Colors.green, Icons.done);
-                      Navigator.of(context).pop();
+                              "Created Successfully", Colors.green, Icons.done)
+                          .then((value) {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                      });
                     }).catchError((error) {
                       InformationModalBottomSheet.showBottomSheet(
-                          context,
-                          "Created Successfully",
-                          Colors.red,
-                          Icons.error_outline);
+                              context,
+                              "Unknown Error!\nTry again later",
+                              Colors.red,
+                              Icons.error_outline)
+                          .then((value) {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                      });
                     });
                   },
                   label: "Create Offer",

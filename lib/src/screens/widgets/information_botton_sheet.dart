@@ -14,9 +14,9 @@ class InformationModalBottomSheet extends StatelessWidget {
     required this.icon,
   }) : super(key: key);
 
-  static void showBottomSheet(
+  static Future<void> showBottomSheet(
       BuildContext context, String message, Color color, IconData icon) {
-    showModalBottomSheet<void>(
+    return showModalBottomSheet<void>(
       context: context,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
