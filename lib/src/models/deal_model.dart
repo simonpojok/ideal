@@ -1,6 +1,7 @@
 import 'package:ideal/src/models/user_model.dart';
 
 class Deal {
+  String? userId;
   String date;
   String description;
   String? id;
@@ -34,11 +35,13 @@ class Deal {
       "offers": offers!.map((DealOffer offer) => offer.toMap()),
       "sharers": sharers!.map((DealShare share) => share.toMap()),
       "views": views!.map((DealView dealView) => dealView.toMap()),
+      "userId": userId
     };
   }
 
   Deal.fromJson(Map<String, dynamic> deal)
       : date = deal["date"],
+        userId = deal["userId"],
         description = deal["description"],
         location = deal["location"],
         frequency = deal["frequency"],
