@@ -114,25 +114,6 @@ class DealListTile extends StatelessWidget {
                       ),
                   overflow: TextOverflow.clip,
                 ),
-                // SizedBox(
-                //   width: 5,
-                // ),
-                // Row(
-                //   children: [
-                //     Icon(
-                //       Icons.location_on,
-                //       size: 15,
-                //       color: Colors.black45,
-                //     ),
-                //     Text(
-                //       deal.location,
-                //       style: Theme.of(context).textTheme.caption!.copyWith(
-                //             color: Colors.black45,
-                //             fontSize: 14,
-                //           ),
-                //     )
-                //   ],
-                // )
               ],
             ),
             Text(
