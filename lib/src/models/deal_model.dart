@@ -31,10 +31,10 @@ class Deal {
       "frequency": frequency,
       "rate": rate,
       "price": price,
-      "emails": emails.map((DealEmail user) => user.toMap()),
-      "offers": offers.map((DealOffer offer) => offer.toMap()),
-      "sharers": sharers.map((DealShare share) => share.toMap()),
-      "views": views.map((DealView dealView) => dealView.toMap()),
+      "emails": emails.map((DealEmail user) => user.toMap()).toList(),
+      "offers": offers.map((DealOffer offer) => offer.toMap()).toList(),
+      "sharers": sharers.map((DealShare share) => share.toMap()).toList(),
+      "views": views.map((DealView dealView) => dealView.toMap()).toList(),
       "userId": userId
     };
   }
