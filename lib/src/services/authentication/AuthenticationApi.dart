@@ -1,0 +1,6 @@
+abstract class AuthenticationApi {
+  Future<String> signInWithEmailAndPassword(
+      {required String email, required String password});
+  Future<String> createUserWithEmailAndPassword(
+      {required String email, required String password});
+}

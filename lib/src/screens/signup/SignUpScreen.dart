@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ideal/src/blocs/authentication/AuthenticationBloc.dart';
+import 'package:ideal/src/blocs/authentication/AuthenticationBlocProvider.dart';
 import 'package:ideal/src/constants.dart';
 import 'package:ideal/src/screens/dashboard/DashboardScreen.dart';
 import 'package:ideal/src/screens/login/LoginScreen.dart';
@@ -11,6 +13,7 @@ import 'package:ideal/src/screens/widgets/text_fields.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const SIGNUP_SCREEN_ROUTE = "/SignUpScreen";
+
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
@@ -18,9 +21,14 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  String password = "";
+  String email = "";
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    AuthenticationBloc bloc = AuthenticationBlocProvider.of(context).bloc;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -43,12 +51,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 Expanded(child: Text("")),
                 RoundCornerTextField(
-                  onValueChanged: (String email) {},
+                  onValueChanged: (String email) {
+                    setState(() {
+                      this.email = email;
+                    });
+                  },
                 ),
                 RoundCornerTextField(
                   hint: "Password",
                   icon: Icons.lock,
-                  onValueChanged: (String password) {},
+                  onValueChanged: (String password) {
+                    this.password = password;
+                  },
                   obscureText: true,
                   keyboardType: TextInputType.visiblePassword,
                 ),
@@ -62,7 +76,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 RoundedCornerButton(
                   label: "SIGN UP",
                   press: () {
-                    DashboardScreen.goToDashboard(context);
+                    bloc.signup(email: email, password: password).then((value) {
+                      bloc.login(email: email, password: password);
+                      DashboardScreen.goToDashboard(context);
+                    }).catchError((onError) {
+                      print("Error");
+                    });
                   },
                   color: Colors.green,
                 ),

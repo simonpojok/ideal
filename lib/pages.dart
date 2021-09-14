@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/blocs/authentication/AuthenticationBloc.dart';
+import 'package:ideal/src/blocs/authentication/AuthenticationBlocProvider.dart';
 import 'package:ideal/src/blocs/deal/DealBloc.dart';
 import 'package:ideal/src/blocs/deal/DealBlocProvider.dart';
 import 'package:ideal/src/blocs/loan_offer/LoanOfferBloc.dart';
@@ -22,6 +24,8 @@ import 'package:ideal/src/screens/sacco/SaccoScreen.dart';
 import 'package:ideal/src/screens/saccos/saccos_screen.dart';
 import 'package:ideal/src/screens/signup/SignUpScreen.dart';
 import 'package:ideal/src/screens/welcome/WelcomeScreen.dart';
+import 'package:ideal/src/services/authentication/AuthenticationApi.dart';
+import 'package:ideal/src/services/authentication/FirebaseAuthenticationService.dart';
 import 'package:ideal/src/services/deal/DealApi.dart';
 import 'package:ideal/src/services/deal/DealFirebaseService.dart';
 import 'package:ideal/src/services/loan_offer/LoanOfferApi.dart';
@@ -39,7 +43,15 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
     case SignUpScreen.SIGNUP_SCREEN_ROUTE:
       {
-        return MaterialPageRoute(builder: (builder) => SignUpScreen());
+        AuthenticationApi api = FirebaseAuthenticationService();
+        AuthenticationBloc bloc = AuthenticationBloc(api: api);
+
+        return MaterialPageRoute(
+          builder: (builder) => AuthenticationBlocProvider(
+            child: SignUpScreen(),
+            bloc: bloc,
+          ),
+        );
       }
 
     case DashboardScreen.DASHBOARD_ROUTE:
