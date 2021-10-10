@@ -9,7 +9,7 @@ import 'package:ideal/src/screens/saccos/saccos_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   static const DASHBOARD_SCREEN_KEY = ValueKey("DashboardScreen");
-  static const DASHBOARD_ROUTE = "/DashboardScreen";
+  static const DASHBOARD_ROUTE = "/";
   const DashboardScreen({Key? key}) : super(key: key);
 
   @override

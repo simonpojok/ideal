@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ideal/src/blocs/authentication/AuthenticationBloc.dart';
 import 'package:ideal/src/blocs/authentication/AuthenticationBlocProvider.dart';
@@ -34,7 +35,12 @@ import 'package:ideal/src/services/saccos/FirebaseSaccoService.dart';
 import 'package:ideal/src/services/saccos/SaccoServiceApi.dart';
 
 MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
-  print("${settings.name} arguments ${settings.arguments}");
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  if (_firebaseAuth.currentUser == null) {
+    return MaterialPageRoute(builder: (context) => WelcomeScreen());
+  }
+
   switch (settings.name) {
     case LoginScreen.LOGIN_SCREEN_ROUTE:
       {
