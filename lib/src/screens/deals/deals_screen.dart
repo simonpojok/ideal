@@ -10,15 +10,21 @@ import 'package:intl/intl.dart';
 
 class DealsScreen extends StatefulWidget {
   static const DEALS_SCREEN = "/DealsListScreen";
+  static const USER_DEALS_SCREEN = "/DealsListScreen";
   static const DEALS_LIST_KEY = ValueKey("DealsListScreen");
+  final bool userDeals;
 
-  const DealsScreen({Key? key}) : super(key: key);
+  const DealsScreen({Key? key, this.userDeals = false}) : super(key: key);
 
   @override
   _DealsScreenState createState() => _DealsScreenState();
 
   static void goToDealsScreen(BuildContext context) {
     Navigator.of(context).pushNamed(DEALS_SCREEN);
+  }
+
+  static void goToUserDealsScreen(BuildContext context) {
+    Navigator.of(context).pushNamed(USER_DEALS_SCREEN);
   }
 }
 

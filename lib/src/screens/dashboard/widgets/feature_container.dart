@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/screens/deals/deals_screen.dart';
 import 'package:ideal/src/screens/messages/MessagesScreen.dart';
 import 'package:ideal/src/screens/my_sacco/MySaccoGroup.dart';
 import 'package:ideal/src/screens/profile/ProfileScreen.dart';
@@ -24,7 +25,7 @@ class FeatureContainers extends StatelessWidget {
           icon: Icons.monetization_on_outlined,
           label: "My\nDeals",
           onTap: () {
-            MySaccoGroupScreen.goToMySaccoGroupScreen(context);
+            DealsScreen.goToUserDealsScreen(context);
           },
         ),
         FeatureCard(
