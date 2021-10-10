@@ -21,7 +21,6 @@ import 'package:ideal/src/screens/messages/MessagesScreen.dart';
 import 'package:ideal/src/screens/my_sacco/MySaccoGroup.dart';
 import 'package:ideal/src/screens/offer/OfferScreen.dart';
 import 'package:ideal/src/screens/offers/offers_screen.dart';
-import 'package:ideal/src/screens/profile/ProfileScreen.dart';
 import 'package:ideal/src/screens/profile/user_profile_screen.dart';
 import 'package:ideal/src/screens/register_sacco/register_sacco.dart';
 import 'package:ideal/src/screens/sacco/SaccoScreen.dart';

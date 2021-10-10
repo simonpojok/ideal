@@ -13,7 +13,7 @@ class UserProfileBlocProvider extends InheritedWidget {
       userProfileBloc != oldWidget.userProfileBloc;
 
   static UserProfileBlocProvider of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType()
+    return context.dependOnInheritedWidgetOfExactType<UserProfileBlocProvider>()
         as UserProfileBlocProvider;
   }
 }
