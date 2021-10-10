@@ -53,13 +53,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                 bool hasError = snapshot.hasError;
                 bool hasData = snapshot.hasData && !snapshot.data!.exists;
-                bool loading =
-                    !(snapshot.connectionState == ConnectionState.done);
-                // Map<String, dynamic>? data = hasData ? snapshot.data!.data() as Map<String, dynamic> : null;
-                Map<String, dynamic>? data =
-                    (hasData && !loading) ? snapshot.data.data() : null;
 
-                if (data != null) {
+                if ((snapshot.connectionState == ConnectionState.done) && hasData) {
+                  Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
                   LocalUser user = LocalUser.fromJson(data);
                   _firstNameController.text = user.firstName;
                   _lastNameController.text = user.lastName;
