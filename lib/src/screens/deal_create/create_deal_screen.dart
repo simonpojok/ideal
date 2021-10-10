@@ -136,11 +136,12 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
                       rate: double.tryParse(rate) ?? 0.0,
                       location: location,
                       date: new DateTime.now().toIso8601String(),
-                      user: User(
+                      user: LocalUser(
                           username: "simonojok19",
                           firstName: "Ojok",
                           lastName: "Simon",
-                          id: ""),
+                          id: "",
+                          email: ""),
                     );
 
                     LoadingModalBottomSheet.showBottomSheet(

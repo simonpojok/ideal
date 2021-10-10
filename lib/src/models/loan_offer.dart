@@ -8,7 +8,7 @@ class LoanOffer {
   String range;
   String description;
   String userid;
-  User? user;
+  LocalUser? user;
 
   LoanOffer({
     required this.fromAmount,
@@ -27,7 +27,7 @@ class LoanOffer {
         duration = loanOffer["duration"] ?? 0,
         range = loanOffer["range"] ?? "Month",
         userid = loanOffer["userid"],
-        user = User.fromJson(loanOffer["user"]),
+        user = LocalUser.fromJson(loanOffer["user"]),
         description = loanOffer["description"] ?? "...";
 
   Map<String, dynamic> toJson() => {

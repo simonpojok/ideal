@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ideal/src/models/user_model.dart';
 import 'package:ideal/src/services/authentication/AuthenticationApi.dart';
 
 class FirebaseAuthenticationService implements AuthenticationApi {
@@ -19,4 +20,11 @@ class FirebaseAuthenticationService implements AuthenticationApi {
         .signInWithEmailAndPassword(email: email, password: password);
     return userCredential.user!.uid;
   }
+
+  @override
+  LocalUser getCurrentUser() {
+    // TODO: implement getCurrentUser
+    throw UnimplementedError();
+  }
+
 }

@@ -32,6 +32,7 @@ class _DealsScreenState extends State<DealsScreen> {
   @override
   Widget build(BuildContext context) {
     final service = DealBlocProvider.of(context).dealBloc.dealApi;
+    final userDeals = widget.userDeals;
     return Scaffold(
       appBar: AppBar(
         title: Container(
@@ -65,7 +66,7 @@ class _DealsScreenState extends State<DealsScreen> {
         ],
       ),
       body: StreamBuilder(
-          stream: service.getDeals(),
+          stream: userDeals ? service.getUserDeals("userId"): service.getDeals(),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.hasData) {
               return ListView.separated(

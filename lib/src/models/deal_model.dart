@@ -13,7 +13,7 @@ class Deal {
   List<DealOffer> offers = [];
   List<DealShare> sharers = [];
   List<DealView> views = [];
-  User user;
+  LocalUser user;
 
   Deal(
       {required this.date,
@@ -49,7 +49,7 @@ class Deal {
         frequency = deal["frequency"],
         rate = deal["rate"],
         price = deal["price"],
-        user = User.fromJson(deal["user"]),
+        user = LocalUser.fromJson(deal["user"]),
         emails = (deal["emails"] as List<dynamic>)
             .map((e) => DealEmail.fromJson(e))
             .toList(),
@@ -65,13 +65,13 @@ class Deal {
 }
 
 class DealView {
-  User user;
+  LocalUser user;
   String date;
 
   DealView({required this.user, required this.date});
 
   DealView.fromJson(Map<String, dynamic> dealView)
-      : user = User.fromJson(dealView["user"]),
+      : user = LocalUser.fromJson(dealView["user"]),
         date = dealView["date"];
 
   Map<String, dynamic> toMap() {
@@ -83,7 +83,7 @@ class DealView {
 }
 
 class DealEmail {
-  User user;
+  LocalUser user;
   String date;
   String to;
   String body;
@@ -98,7 +98,7 @@ class DealEmail {
   });
 
   DealEmail.fromJson(Map<String, dynamic> email)
-      : user = User.fromJson(email["user"]),
+      : user = LocalUser.fromJson(email["user"]),
         date = email["date"],
         to = email["to"],
         body = email["body"],
@@ -116,14 +116,14 @@ class DealEmail {
 }
 
 class DealOffer {
-  User user;
+  LocalUser user;
   double price;
   String date;
   double rate;
   String frequency;
 
   DealOffer.fromJson(Map<String, dynamic> dealOffer)
-      : user = User.fromJson(dealOffer["user"]),
+      : user = LocalUser.fromJson(dealOffer["user"]),
         price = dealOffer["price"],
         date = dealOffer["date"],
         rate = dealOffer["rate"],
@@ -141,16 +141,16 @@ class DealOffer {
 }
 
 class DealShare {
-  User user;
+  LocalUser user;
   String date;
   String message;
-  User to;
+  LocalUser to;
 
   DealShare.fromJson(Map<String, dynamic> share)
-      : user = User.fromJson(share["user"]),
+      : user = LocalUser.fromJson(share["user"]),
         date = share["date"],
         message = share["message"],
-        to = User.fromJson(share["to"]);
+        to = LocalUser.fromJson(share["to"]);
 
   Map<String, dynamic> toMap() {
     return {
