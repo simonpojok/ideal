@@ -5,11 +5,12 @@ import '../../../constants.dart';
 class DecoratedTextField extends StatelessWidget {
   final TextEditingController controller;
   final String label;
+  final bool enabled;
 
   const DecoratedTextField({
     Key? key,
     required this.controller,
-    required this.label,
+    required this.label, this.enabled = true,
   }) : super(key: key);
 
   @override
@@ -17,13 +18,13 @@ class DecoratedTextField extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: kDefaultPadding,
-        vertical: kDefaultPadding * .5,
+        vertical: kDefaultPadding * .4,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            "First Name",
+            label,
             style: Theme.of(context).textTheme.headline6!.copyWith(
                   fontSize: 16.0,
                   color: kPrimaryColor,
@@ -33,6 +34,8 @@ class DecoratedTextField extends StatelessWidget {
             height: kDefaultPadding * .5,
           ),
           TextField(
+            enabled: enabled,
+            controller: controller,
             decoration: InputDecoration(
               filled: true,
               border: InputBorder.none,
