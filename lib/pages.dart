@@ -91,11 +91,17 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
       {
         DealApi service = DealFirebaseService();
         DealBloc bloc = DealBloc(dealApi: service);
+        AuthenticationApi api = FirebaseAuthenticationService();
+        AuthenticationBloc authenticationBloc = AuthenticationBloc(api: api);
         return MaterialPageRoute(
-          builder: (context) => DealBlocProvider(
-            dealBloc: bloc,
-            child: DealsScreen(userDeals: true,),
-          ),
+          builder: (context) => AuthenticationBlocProvider(
+              child: DealBlocProvider(
+                dealBloc: bloc,
+                child: DealsScreen(
+                  userDeals: true,
+                ),
+              ),
+              bloc: authenticationBloc),
         );
       }
 
