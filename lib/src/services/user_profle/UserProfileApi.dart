@@ -3,5 +3,5 @@ import 'package:ideal/src/models/user_model.dart';
 
 abstract class UserProfileApi {
   Stream<QuerySnapshot<Object?>> getCurrentUser();
-  Future<void> updateCurrentUser(LocalUser localUser);
+  Future<String> createOrUpdateCurrentUser(LocalUser localUser);
 }

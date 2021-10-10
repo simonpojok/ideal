@@ -8,14 +8,19 @@ class FirebaseUserProfileService implements UserProfileApi {
   final _userCollection = FirebaseFirestore.instance.collection("users");
 
   @override
-  Future<void> updateCurrentUser(LocalUser localUser) {
-    // TODO: implement updateCurrentUser
-    throw UnimplementedError();
-  }
-
-  @override
   Stream<QuerySnapshot<Object?>> getCurrentUser() {
     final user = _firebaseAuth.currentUser!;
     return _userCollection.where("userId", isEqualTo: user.uid).snapshots();
+  }
+
+  @override
+  Future<String> createOrUpdateCurrentUser(LocalUser localUser) async {
+    final snapShot = await _userCollection.doc(localUser.id).get();
+    if (snapShot.exists) {
+      await _userCollection.doc(localUser.id).update(localUser.toMap());
+    } else {
+      await _userCollection.doc(localUser.id).set(localUser.toMap());
+    }
+    return _userCollection.doc(localUser.id).id;
   }
 }
