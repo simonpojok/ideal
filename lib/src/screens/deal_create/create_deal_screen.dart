@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/blocs/authentication/AuthenticationBlocProvider.dart';
 import 'package:ideal/src/blocs/deal/DealBlocProvider.dart';
 import 'package:ideal/src/models/deal_model.dart';
 import 'package:ideal/src/models/user_model.dart';
@@ -33,6 +34,7 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
   @override
   Widget build(BuildContext context) {
     final _dealService = DealBlocProvider.of(context).dealBloc.dealApi;
+    final _localUser = AuthenticationBlocProvider.of(context).bloc.getLocalUser();
     return Scaffold(
       appBar: AppBar(
         title: Text("Create Loan Request"),
