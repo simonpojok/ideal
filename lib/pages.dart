@@ -8,6 +8,8 @@ import 'package:ideal/src/blocs/loan_offer/LoanOfferBloc.dart';
 import 'package:ideal/src/blocs/loan_offer/LoanOfferBlocProvider.dart';
 import 'package:ideal/src/blocs/sacco/SaccoBloc.dart';
 import 'package:ideal/src/blocs/sacco/SaccoBlocProvider.dart';
+import 'package:ideal/src/blocs/user_profile/UserProfileBloc.dart';
+import 'package:ideal/src/blocs/user_profile/UserProfileBlocProvider.dart';
 import 'package:ideal/src/screens/calc/loan_calculator.dart';
 import 'package:ideal/src/screens/dashboard/DashboardScreen.dart';
 import 'package:ideal/src/screens/deal/deal_detail.dart';
@@ -34,6 +36,8 @@ import 'package:ideal/src/services/loan_offer/LoanOfferApi.dart';
 import 'package:ideal/src/services/loan_offer/LoanOfferFirebaseService.dart';
 import 'package:ideal/src/services/saccos/FirebaseSaccoService.dart';
 import 'package:ideal/src/services/saccos/SaccoServiceApi.dart';
+import 'package:ideal/src/services/user_profle/FirebaseUserProfileService.dart';
+import 'package:ideal/src/services/user_profle/UserProfileApi.dart';
 
 MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -154,7 +158,11 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
     case UserProfileScreen.PROFILE_SCREEN_ROUTE:
       {
         return MaterialPageRoute(
-            builder: (BuildContext context) => UserProfileScreen());
+          builder: (BuildContext context) => UserProfileBlocProvider(
+            userProfileBloc: UserProfileBloc(api: FirebaseUserProfileService()),
+            child: UserProfileScreen(),
+          ),
+        );
       }
 
     case RegisterSaccoScreen.REGISTER_SACCO_SCREEN:
