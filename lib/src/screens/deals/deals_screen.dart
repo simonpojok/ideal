@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/blocs/authentication/AuthenticationBlocProvider.dart';
 import 'package:ideal/src/blocs/deal/DealBlocProvider.dart';
 import 'package:ideal/src/constants.dart';
 import 'package:ideal/src/models/deal_model.dart';
@@ -10,7 +11,7 @@ import 'package:intl/intl.dart';
 
 class DealsScreen extends StatefulWidget {
   static const DEALS_SCREEN = "/DealsListScreen";
-  static const USER_DEALS_SCREEN = "/DealsListScreen";
+  static const USER_DEALS_SCREEN = "/user_deals_list_screen";
   static const DEALS_LIST_KEY = ValueKey("DealsListScreen");
   final bool userDeals;
 
@@ -33,6 +34,7 @@ class _DealsScreenState extends State<DealsScreen> {
   Widget build(BuildContext context) {
     final service = DealBlocProvider.of(context).dealBloc.dealApi;
     final userDeals = widget.userDeals;
+    final user = AuthenticationBlocProvider.of(context).bloc.getLocalUser();
     return Scaffold(
       appBar: AppBar(
         title: Container(
@@ -66,7 +68,7 @@ class _DealsScreenState extends State<DealsScreen> {
         ],
       ),
       body: StreamBuilder(
-          stream: userDeals ? service.getUserDeals("userId"): service.getDeals(),
+          stream: userDeals ? service.getUserDeals(user.id): service.getDeals(),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.hasData) {
               return ListView.separated(

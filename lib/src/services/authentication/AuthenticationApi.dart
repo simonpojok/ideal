@@ -5,5 +5,5 @@ abstract class AuthenticationApi {
       {required String email, required String password});
   Future<String> createUserWithEmailAndPassword(
       {required String email, required String password});
-  LocalUser getCurrentUser();
+  LocalUser getLocalUser();
 }

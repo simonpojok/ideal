@@ -1,3 +1,4 @@
+import 'package:ideal/src/models/user_model.dart';
 import 'package:ideal/src/services/authentication/AuthenticationApi.dart';
 
 class AuthenticationBloc {
@@ -15,5 +16,9 @@ class AuthenticationBloc {
     required String password,
   }) async {
     return api.signInWithEmailAndPassword(email: email, password: password);
+  }
+  
+  LocalUser getLocalUser(){
+    return api.getLocalUser();
   }
 }

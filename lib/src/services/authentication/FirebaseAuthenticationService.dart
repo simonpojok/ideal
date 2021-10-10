@@ -22,9 +22,8 @@ class FirebaseAuthenticationService implements AuthenticationApi {
   }
 
   @override
-  LocalUser getCurrentUser() {
-    // TODO: implement getCurrentUser
-    throw UnimplementedError();
+  LocalUser getLocalUser() {
+    return LocalUser.fromFirebase(_firebaseAuth.currentUser!);
   }
 
 }
