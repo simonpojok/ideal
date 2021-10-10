@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideal/src/screens/profile/widgets/decorated_text_field.dart';
 import 'package:ideal/src/screens/profile/widgets/profile_header.dart';
+import 'package:ideal/src/screens/widgets/buttons.dart';
 import 'package:ideal/src/screens/widgets/labeled_text_input.dart';
 
 import '../../constants.dart';
@@ -62,6 +63,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               DecoratedTextField(
                 controller: _villageController,
                 label: "Village",
+              ),
+              RoundedCornerButton(
+                color: kPrimaryDarkColor,
+                press: () {},
+                label: 'Update',
               ),
             ],
           ),
