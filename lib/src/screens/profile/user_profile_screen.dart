@@ -54,7 +54,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 bool hasError = snapshot.hasError;
                 bool hasData = snapshot.hasData && !snapshot.data!.exists;
 
-                if ((snapshot.connectionState == ConnectionState.done) && hasData) {
+                if (snapshot.connectionState == ConnectionState.done) {
                   Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
                   LocalUser user = LocalUser.fromJson(data);
                   _firstNameController.text = user.firstName;
