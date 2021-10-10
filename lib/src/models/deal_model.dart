@@ -44,7 +44,7 @@ class Deal {
   }
 
   Deal.fromJson(Map<String, dynamic> deal)
-      : date = deal["date"],
+      : date = deal["date"] ?? "",
         userId = deal["userId"],
         description = deal["description"],
         location = deal["location"],
