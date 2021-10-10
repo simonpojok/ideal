@@ -8,6 +8,7 @@ import 'package:ideal/src/screens/widgets/information_botton_sheet.dart';
 import 'package:ideal/src/screens/widgets/loading_modal_botton_sheet.dart';
 import 'package:ideal/src/screens/widgets/rectangular_button.dart';
 import 'package:ideal/src/screens/widgets/select_dropdown.dart';
+import 'package:ideal/src/services/share_preferences/shared_preference_data.dart';
 
 import '../../constants.dart';
 
@@ -30,12 +31,19 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
   final _rateController = TextEditingController();
   final _locationController = TextEditingController();
   String selectedFrequency = "Daily";
+  late LocalUser _localUser;
+
+
+  @override
+  void initState() {
+    super.initState();
+    SharedPreferenceData.getCurrentUser().then((value) => _localUser = value);
+
+  }
 
   @override
   Widget build(BuildContext context) {
     final _dealService = DealBlocProvider.of(context).dealBloc.dealApi;
-    final _localUser =
-        AuthenticationBlocProvider.of(context).bloc.getLocalUser();
     return Scaffold(
       appBar: AppBar(
         title: Text("Create Loan Request"),
