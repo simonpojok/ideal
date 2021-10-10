@@ -24,22 +24,19 @@ class DealApp extends StatefulWidget {
 class _DealAppState extends State<DealApp> {
   @override
   Widget build(BuildContext context) {
-    final AuthenticationApi _authenticationApi = AuthenticationService();
-    final AuthenticationBloc _authenticationBloc =
-        AuthenticationBloc(_authenticationApi);
-    return AuthenticationBlocProvider(
-      authenticationBloc: _authenticationBloc,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: "Deal",
-        theme: ThemeData(
-          primaryColor: kPrimaryColor,
-          primaryColorDark: kPrimaryDarkColor,
-          accentColor: kColorOrange,
-          primaryColorLight: kPrimaryLightColor,
-        ),
-        onGenerateRoute: generateRoutes,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "Deal",
+      theme: ThemeData(
+        primaryColor: kPrimaryColor,
+        primaryColorDark: kPrimaryDarkColor,
+        accentColor: kColorOrange,
+        primaryColorLight: kPrimaryLightColor,
+        appBarTheme: AppBarTheme(
+          color: kPrimaryDarkColor
+        )
       ),
+      onGenerateRoute: generateRoutes,
     );
   }
 }
@@ -49,20 +46,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      initialData: null,
-      stream: AuthenticationBlocProvider.of(context).authenticationBloc.user,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Container(
-            color: Colors.lightGreen,
-            child: CircularProgressIndicator(),
-          );
-        } else if (snapshot.hasData && snapshot.data != "") {
+    final AuthenticationApi _authenticationApi = AuthenticationService();
+    final AuthenticationBloc _authenticationBloc =
+        AuthenticationBloc(_authenticationApi);
+    return AuthenticationBlocProvider(
+      authenticationBloc: _authenticationBloc,
+      child: StreamBuilder(
+        initialData: null,
+        stream: AuthenticationBlocProvider.of(context).authenticationBloc.user,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Container(
+              color: Colors.lightGreen,
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasData && snapshot.data != "") {
+            return _buildMaterialApp(DashboardScreen());
+          }
           return _buildMaterialApp(DashboardScreen());
-        }
-        return _buildMaterialApp(DashboardScreen());
-      },
+        },
+      ),
     );
   }
 
