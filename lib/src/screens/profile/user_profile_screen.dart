@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ideal/src/blocs/user_profile/UserProfileBlocProvider.dart';
 import 'package:ideal/src/screens/profile/widgets/decorated_text_field.dart';
 import 'package:ideal/src/screens/profile/widgets/profile_header.dart';
 import 'package:ideal/src/screens/widgets/buttons.dart';
@@ -29,6 +30,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final userProfileApi =
+        UserProfileBlocProvider.of(context).userProfileBloc.api;
     return Scaffold(
       appBar: AppBar(
         title: Text("User Profile"),
@@ -36,40 +39,42 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              UserProfileHeader(),
-              DecoratedTextField(
-                controller: _firstNameController,
-                label: "First Name",
-              ),
-              DecoratedTextField(
-                controller: _lastNameController,
-                label: "Last Name",
-              ),
-              DecoratedTextField(
-                enabled: false,
-                controller: _emailController,
-                label: "Email",
-              ),
-              DecoratedTextField(
-                controller: _nationalIdNumberController,
-                label: "NIN",
-              ),
-              DecoratedTextField(
-                controller: _districtController,
-                label: "District",
-              ),
-              DecoratedTextField(
-                controller: _villageController,
-                label: "Village",
-              ),
-              RoundedCornerButton(
-                color: kPrimaryDarkColor,
-                press: () {},
-                label: 'Update',
-              ),
-            ],
+          child: Container(
+            child: Column(
+              children: [
+                UserProfileHeader(),
+                DecoratedTextField(
+                  controller: _firstNameController,
+                  label: "First Name",
+                ),
+                DecoratedTextField(
+                  controller: _lastNameController,
+                  label: "Last Name",
+                ),
+                DecoratedTextField(
+                  enabled: false,
+                  controller: _emailController,
+                  label: "Email",
+                ),
+                DecoratedTextField(
+                  controller: _nationalIdNumberController,
+                  label: "NIN",
+                ),
+                DecoratedTextField(
+                  controller: _districtController,
+                  label: "District",
+                ),
+                DecoratedTextField(
+                  controller: _villageController,
+                  label: "Village",
+                ),
+                RoundedCornerButton(
+                  color: kPrimaryDarkColor,
+                  press: () {},
+                  label: 'Update',
+                ),
+              ],
+            ),
           ),
         ),
       ),
