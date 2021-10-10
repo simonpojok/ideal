@@ -1,7 +1,7 @@
 import 'package:ideal/src/models/user_model.dart';
 
 class Deal {
-  String? userId;
+  String userId;
   String date;
   String description;
   String? id;
@@ -15,14 +15,16 @@ class Deal {
   List<DealView> views = [];
   LocalUser user;
 
-  Deal(
-      {required this.date,
-      required this.description,
-      required this.location,
-      required this.frequency,
-      required this.rate,
-      required this.price,
-      required this.user});
+  Deal({
+    required this.date,
+    required this.description,
+    required this.location,
+    required this.frequency,
+    required this.rate,
+    required this.price,
+    required this.user,
+    required this.userId,
+  });
 
   Map<String, dynamic> toJson() {
     return {

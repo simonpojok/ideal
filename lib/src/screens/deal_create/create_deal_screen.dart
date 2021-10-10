@@ -34,7 +34,8 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
   @override
   Widget build(BuildContext context) {
     final _dealService = DealBlocProvider.of(context).dealBloc.dealApi;
-    final _localUser = AuthenticationBlocProvider.of(context).bloc.getLocalUser();
+    final _localUser =
+        AuthenticationBlocProvider.of(context).bloc.getLocalUser();
     return Scaffold(
       appBar: AppBar(
         title: Text("Create Loan Request"),
@@ -132,19 +133,14 @@ class _CreateDealScreenState extends State<CreateDealScreen> {
                     final description = _descriptionController.text;
 
                     Deal deal = Deal(
-                      description: description,
-                      price: double.tryParse(amount) ?? 0.0,
-                      frequency: selectedFrequency,
-                      rate: double.tryParse(rate) ?? 0.0,
-                      location: location,
-                      date: new DateTime.now().toIso8601String(),
-                      user: LocalUser(
-                          username: "simonojok19",
-                          firstName: "Ojok",
-                          lastName: "Simon",
-                          id: "",
-                          email: ""),
-                    );
+                        description: description,
+                        price: double.tryParse(amount) ?? 0.0,
+                        frequency: selectedFrequency,
+                        rate: double.tryParse(rate) ?? 0.0,
+                        location: location,
+                        date: new DateTime.now().toIso8601String(),
+                        user: _localUser,
+                        userId: _localUser.id);
 
                     LoadingModalBottomSheet.showBottomSheet(
                         context, "Posting Loan Request...");

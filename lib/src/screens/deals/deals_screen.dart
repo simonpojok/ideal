@@ -68,7 +68,8 @@ class _DealsScreenState extends State<DealsScreen> {
         ],
       ),
       body: StreamBuilder(
-          stream: userDeals ? service.getUserDeals(user.id): service.getDeals(),
+          stream:
+              userDeals ? service.getUserDeals(user.id) : service.getDeals(),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.hasData) {
               return ListView.separated(
