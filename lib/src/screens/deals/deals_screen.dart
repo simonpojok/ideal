@@ -4,13 +4,14 @@ import 'package:ideal/src/constants.dart';
 import 'package:ideal/src/models/deal_model.dart';
 import 'package:ideal/src/screens/deal/deal_detail.dart';
 import 'package:ideal/src/screens/deal_create/create_deal_screen.dart';
+import 'package:ideal/src/screens/deals/widget/deal_tile.dart';
 import 'package:ideal/src/screens/widgets/stream_loading_indicator.dart';
 import 'package:intl/intl.dart';
 
 class DealsScreen extends StatefulWidget {
   static const DEALS_SCREEN = "/DealsListScreen";
-
   static const DEALS_LIST_KEY = ValueKey("DealsListScreen");
+
   const DealsScreen({Key? key}) : super(key: key);
 
   @override
@@ -78,179 +79,6 @@ class _DealsScreenState extends State<DealsScreen> {
             }
             return StreamLoadingIndicator();
           }),
-    );
-  }
-}
-
-class DealListTile extends StatelessWidget {
-  final Deal deal;
-  const DealListTile({
-    Key? key,
-    required this.deal,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    DateTime date = DateTime.parse(deal.date);
-    String dateTime = DateFormat("MM/dd/yyyy hh:mm a").format(date);
-    return ListTile(
-      onTap: () => {DealScreen.goToDealScreen(context)},
-      contentPadding: EdgeInsets.symmetric(
-        horizontal: kDefaultPadding * .5,
-      ),
-      title: Container(
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(vertical: kDefaultPadding * .4),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Text(
-                  "${deal.user.firstName} ${deal.user.lastName}",
-                  style: Theme.of(context).textTheme.headline5!.copyWith(
-                        color: Colors.orange,
-                        fontSize: 18,
-                      ),
-                  overflow: TextOverflow.clip,
-                ),
-              ],
-            ),
-            Text(
-              dateTime,
-              style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                    color: Colors.black45,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
-                  ),
-            )
-          ],
-        ),
-      ),
-      subtitle: Container(
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              deal.description,
-              style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    color: Colors.black45,
-                    fontSize: 16,
-                  ),
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: kDefaultPadding * .1),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RichText(
-                    text: TextSpan(
-                        text: "${deal.price}\t\t",
-                        style: Theme.of(context).textTheme.headline6!.copyWith(
-                              color: Colors.green,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                        children: [
-                          TextSpan(
-                            text: "UGX",
-                            style:
-                                Theme.of(context).textTheme.headline6!.copyWith(
-                                      color: Colors.orange,
-                                      fontSize: 15,
-                                    ),
-                          )
-                        ]),
-                  ),
-                  Flexible(child: Container()),
-                  Chip(
-                    label: Text('${deal.rate}%'),
-                  ),
-                  Chip(
-                    label: Text('${deal.frequency}'),
-                  ),
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                DealActionChip(
-                  iconData: Icons.email,
-                  onPress: () {},
-                  count: deal.emails.length,
-                ),
-                DealActionChip(
-                  iconData: Icons.visibility,
-                  onPress: () {},
-                  count: deal.views.length,
-                ),
-                DealActionChip(
-                  iconData: Icons.monetization_on_outlined,
-                  onPress: () {},
-                  count: deal.offers.length,
-                ),
-                DealActionChip(
-                  count: deal.sharers.length,
-                  iconData: Icons.share,
-                  onPress: () {},
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class DealActionChip extends StatelessWidget {
-  final IconData iconData;
-  final int count;
-  final VoidCallback onPress;
-  const DealActionChip({
-    Key? key,
-    required this.iconData,
-    required this.count,
-    required this.onPress,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(5),
-        child: Material(
-          child: InkWell(
-            onTap: onPress,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Icon(
-                    iconData,
-                    size: 18,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: kDefaultPadding * .4),
-                    child: Text(
-                      "$count",
-                      style: Theme.of(context).textTheme.caption!.copyWith(
-                            color: Colors.black45,
-                            fontSize: 15,
-                          ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
