@@ -4,13 +4,12 @@ import 'package:ideal/src/models/user_model.dart';
 import 'package:ideal/src/services/user_profle/UserProfileApi.dart';
 
 class FirebaseUserProfileService implements UserProfileApi {
-  final _firebaseAuth = FirebaseAuth.instance;
+  final _firebaseUser = FirebaseAuth.instance.currentUser!;
   final _userCollection = FirebaseFirestore.instance.collection("users");
 
   @override
-  Stream<QuerySnapshot<Object?>> getCurrentUser() {
-    final user = _firebaseAuth.currentUser!;
-    return _userCollection.where("userId", isEqualTo: user.uid).snapshots();
+  Future<DocumentSnapshot<Map<String, dynamic>>> getCurrentUser() {
+    return _userCollection.doc(_firebaseUser.uid).get();
   }
 
   @override

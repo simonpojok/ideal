@@ -7,7 +7,7 @@ class UserProfileBloc {
 
   UserProfileBloc({required this.api});
 
-  Stream<QuerySnapshot<Object?>> getCurrentUserProfile() {
+  Future<DocumentSnapshot<Map<String, dynamic>>> getCurrentUserProfile() {
     return api.getCurrentUser();
   }
 
