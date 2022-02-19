@@ -26,9 +26,9 @@ class LocalUser {
         firstName = user["firstName"] ?? "",
         lastName = user["lastName"] ?? "",
         email = user["email"] ?? "",
-        nin = user["nin"],
-        district = user["district"],
-        village = user["village"],
+        nin = user["nin"] ?? "",
+        district = user["district"] ?? "",
+        village = user["village"] ?? "",
         id = user["id"] ?? "";
 
   Map<String, dynamic> toMap() {

@@ -41,10 +41,6 @@ import 'package:ideal/src/services/user_profle/UserProfileApi.dart';
 MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  if (_firebaseAuth.currentUser == null) {
-    return MaterialPageRoute(builder: (context) => WelcomeScreen());
-  }
-
   switch (settings.name) {
     case LoginScreen.LOGIN_SCREEN_ROUTE:
       {
@@ -66,21 +62,33 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
     case DashboardScreen.DASHBOARD_ROUTE:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         return MaterialPageRoute(builder: (context) => DashboardScreen());
       }
 
     case MessagesScreen.MESSAGE_SCREEN_ROUTE:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         return MaterialPageRoute(builder: (context) => MessagesScreen());
       }
 
     case MessageScreen.MESSAGE_SCREEN_ROUTE:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         return MaterialPageRoute(builder: (context) => MessageScreen());
       }
 
     case DealsScreen.DEALS_SCREEN:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         DealApi service = DealFirebaseService();
         DealBloc bloc = DealBloc(dealApi: service);
         AuthenticationApi api = FirebaseAuthenticationService();
@@ -97,6 +105,9 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
     case DealsScreen.USER_DEALS_SCREEN:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         DealApi service = DealFirebaseService();
         DealBloc bloc = DealBloc(dealApi: service);
         AuthenticationApi api = FirebaseAuthenticationService();
@@ -115,11 +126,17 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
     case DealScreen.DEAL_SCREEN_ROUTE:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         return MaterialPageRoute(builder: (context) => DealScreen());
       }
 
     case SaccosScreen.SACCOS_SCREEN_ROUTE:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         final SaccoServiceApi _service = FirebaseSaccoService();
         final SaccoBloc _bloc = SaccoBloc(_service);
         return MaterialPageRoute(
@@ -134,10 +151,16 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
     case SaccoScreen.SACCO_SCREEN_ROUTE:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         return MaterialPageRoute(builder: (context) => SaccoScreen());
       }
     case OffersScreen.OFFERS_SCREEN_ROUTE:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         final LoanOfferApi _service = FirebaseLoanOfferService();
         final LoanOfferBloc _bloc = LoanOfferBloc(_service);
         return MaterialPageRoute(builder: (BuildContext context) {
@@ -150,12 +173,18 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
     case LoanCalculatorScreen.LOAN_CALCULATOR_ROUTE:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         return MaterialPageRoute(
             builder: (BuildContext context) => LoanCalculatorScreen());
       }
 
     case UserProfileScreen.PROFILE_SCREEN_ROUTE:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         return MaterialPageRoute(
           builder: (BuildContext context) => UserProfileBlocProvider(
             userProfileBloc: UserProfileBloc(api: FirebaseUserProfileService()),
@@ -166,6 +195,9 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
     case RegisterSaccoScreen.REGISTER_SACCO_SCREEN:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         final SaccoServiceApi _service = FirebaseSaccoService();
         final SaccoBloc _bloc = SaccoBloc(_service);
         return MaterialPageRoute(
@@ -180,6 +212,9 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
     case MySaccoGroupScreen.MY_SACCO_GROUP_ROUTE:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         return MaterialPageRoute(builder: (BuildContext context) {
           return MySaccoGroupScreen();
         });
@@ -187,6 +222,9 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
     case OfferScreen.OFFER_SCREEN_ROUTE:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         final LoanOfferApi _service = FirebaseLoanOfferService();
         final LoanOfferBloc _bloc = LoanOfferBloc(_service);
         return MaterialPageRoute(builder: (BuildContext context) {
@@ -199,6 +237,9 @@ MaterialPageRoute<dynamic> generateRoutes(RouteSettings settings) {
 
     case CreateDealScreen.CREATE_DEAL_SCREEN_ROUTE:
       {
+        if (_firebaseAuth.currentUser == null)
+          return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
         final DealApi service = DealFirebaseService();
         final DealBloc _bloc = DealBloc(dealApi: service);
         AuthenticationApi api = FirebaseAuthenticationService();
